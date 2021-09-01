@@ -19,12 +19,13 @@ bool isSquare(long int x){
 int main(){
     //find a number that is sum of integers and also pefect square
     //36 is such a number
-
+    cout <<"\nGoogle Exercise 1: Find numbers that are sum of integers and perfect square\n";
+    cout <<"36 is both a sum of integers and a perfect square.  See below for others after 36.\n\n";
     long int i=0, j=0 , num=0;
     for (i=1; i <=10000; i++){
         j+=i;
         if (i>1 && isSquare(j)){ 
-            cout << "Num is " << i << " " << j << " Sum of integers is a square. " << sqrt(j) << " " << endl; 
+            cout << "Sum of 1-" << i << " is " << j << ". Square root of "<< j << " = " << sqrt(j) <<  endl; 
             //break;
         }
     }
