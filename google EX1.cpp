@@ -13,8 +13,7 @@ bool isSquare(long int x){
     // y = <long> sqrt(x);
     if (sqrt(x) == static_cast <long int> (sqrt(x)) ) return true;
     return false;
-    
-}
+    }
 int main(){
     //find a number that is sum of integers and also pefect square
     //36 is such a numer
