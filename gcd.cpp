@@ -1,4 +1,7 @@
-//firstword.cpp
+//Greatest Common Divisor
+//uses recursion to go through GCD function
+//the only time a value is returned is when y==0
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -12,7 +15,7 @@ int gcd(int x, int y){
        return gcd(y, x%y);
 }
 
-/*
+
 int main(){
     cout << "gcd(12,18)= " << gcd(12,18) << endl;
 
@@ -22,4 +25,3 @@ int main(){
     return 0;
 
 }
-*/
