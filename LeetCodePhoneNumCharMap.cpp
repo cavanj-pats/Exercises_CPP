@@ -7,180 +7,101 @@
 
 using namespace std;
 
-/*
+string mp[10];
+
+void build(int pos, int &length_error, string str, vector<string> &ans, string &D) ;  
+
+
 class Solution {
 public:
     vector<string> letterCombinations(string digits) {
-        int * inputDigits = new int[digits.length()-1];
-        int currDigit =0;
-        mapsize = 1;
+       // int * inputDigits = new int[digits.length()-1];
+       // int currDigit =0;
+       
+       
+        mp[0] = "0"; mp[1] = "1"; mp[2] = "abc"; mp[3] = "def"; mp[4] = "ghi";
+        mp[5] = "jkl"; mp[6] = "mno"; mp[7] = "pqrs"; mp[8] = "tuv"; mp[9] = "wxyz";
         
-        for(int i = 0; i<digits.length(); i++){       
-            inputDigits[i] =  (int) (digits[i]-'0');  //i recall this but forgot.  need to subt
-            mapsize *= map[inputDigits[i]].length();
-        }
-        
-        for(int i=0; i<digits.length(); i++){
-            //if there is no input digit can return
-        
-            for (int j=0; j<map[inputDigits[i]].length(); j++){
-                //if the digit refers to a map with no characters can return here
-                if (inputDigits[i]==0 || inputDigits[i]=1){
-                    //exit
-                }
-                
-
-
-
-            }
-        }
-
-        switch (digits.length()){
-            case 0:
-                return "";
-            case 1:
-
-            case 2:
-
-            case 3:
-
-            case 4:
-
-            default:
-                return ""
-        }
-
-        //while loop to traverse each inputDigits
-        for (int j=0; j<mapsize; j++){
-                //populate the vector
-                record = "";
-                letterCombinations.pushback(traverse(0, digits, &record));
-
-            }
-
-
-        
-
-        delete [] inputDigits;
-    }
-
-private:    
-    string map[10];
-    int mapsize ;
-    string record;
+        vector<string> ans;
+        int len = digits.size();
+        if (!len) return ans;
+       
+        build(0, len, "", ans, digits);
+        return ans;
+         
+    }  
 
 
 };
 
-Solution::Solution(){
-    map[0] = "0";
-    map[1] = "1";
-    map[2] = "abc";
-    map[3] = "def";
-    map[4] = "ghi";
-    map[5] = "jkl";
-    map[6] = "mno";
-    map[7] = "pqrs";
-    map[8] = "tuv";
-    map[9] = "wxyz";
-}
 
-string oneDigit(int digit){
-    string temp;
-    temp.push_back(map[digit][0]);
-    temp.push_back(",");
-    temp.push_back(map[digit][1]);
-    temp.push_back(",");
-    temp.push_back(map[digit][2");
-    temp.push_back(",");
-    if(digit == 7 || digit ==8) temp.push_back(map[digit][3]);
-
-    return temp;
-}
-
-void merge(string &map, &inputDigits int num){
+void build(int pos, int &len, string str,  vector<string> &ans, string &D){
     //try 
-    //if num is 0 then return empty map
-    //if num is 1 then return a map of the inputDigits
-    //if num > 1 then merge
-    if (num == 0 ) return ;
-    if (num ==1 )
-        return ;
-    for(int i=0;i<num;i++){
+    //pos is the position wihtin the input character sequence
+    // L is the length of the character sequence
+      // dig is the input character sequence
+      //str is the buildup of the combined phone number characters culiminating in the answer
+      int asciiValue = '0';
+      int dpos = D[pos];  //to cast char to integer
 
+    if(pos == len) ans.push_back(str) ;
+    else{
+        string letters = mp[dpos-asciiValue];
+        for(int i=0;i<letters.size();i++){
+            build(pos+1,len ,str+letters[i], ans, D);
+        }
 
     }
         
 }
 
-push  character 1,  character 1, character 1 character 1
-push  character 1, character 1 character 1, character 2
-1 1 1 1
-1 1 1 2
-1 1 1 3
-1 1 1 4
-1 1 2 1
-1 1 2 2
-1 1 2 3
-1 1 2 4
-1 1 3 1 
-1 1 3 2
-1 1 3 3 
-1 1 3 4
-1 2 1 1
-1 2 1 2         
-...
-//need to solve for up to four digits
-string traverse(int inputDigit, string digits, string *record){
-    if inputdigit < digits.length(){} 
-        inputDigit++;
-        traverse = ;
-}
 
 
 
 
-*/
+
+
 
 
 
 int main(){ 
-   string map[10];
-    map[0] = "";
-    map[1] = "";
-    map[2] = "abc";
-    map[3] = "def";
-    map[4] = "ghi";
-    map[5] = "jkl";
-    map[6] = "mno";
-    map[7] = "pqrs";
-    map[8] = "tuv";
-    map[9] = "wxyz";
-
+  
+   
    int mapsize = 1;  //this will be the size of the array that holds the solution
    //max is four digits.  max size could be 
    
-  // Solution mySol;
+   Solution mySol;
 
 
-   string strDigits = "6789";
+   string strDigits = "45";
+   int asciiValue = '0';
+  vector<string> solution =  mySol.letterCombinations(strDigits);
+
    int * inputDigits = new int[strDigits.length()-1];
    
    if(strDigits.length() ==0) mapsize =0;
 
    for(int i = 0; i<strDigits.length(); i++){       
        // cout << strDigits[i] << endl;
-        inputDigits[i] =  (int) (strDigits[i]-'0');  //i recall this but forgot.  need to subtract as shown.
+        inputDigits[i] =  (int) (strDigits[i]-asciiValue);  //i recall this but forgot.  need to subtract as shown.
         //cout << inputDigits[i] << endl;
-        mapsize *= map[inputDigits[i]].length();
+       // mapsize *= map[inputDigits[i]].length();
     }
     cout << mapsize << endl;
 
-    string * mergedMap = new string[mapsize];
-
+    string * mergedmap = new string[mapsize];
+     
+     /*
+        for(int i = 0; i<digits.length(); i++){       
+            inputDigits[i] =  (int) (digits[i]-'0');  //i recall this but forgot.  need to subt
+           // mapsize *= map[inputDigits[i]].length();
+        }
+        
+         */   
 
     //cout << ( map[3])[2] <<"\t" << (map[3])[3]<< endl;
 
+/*
     for(int i=0; i<strDigits.length();i++){
         cout << map[inputDigits[i]] <<"\t"<<map[inputDigits[i]].length() << endl;
         cout << map[inputDigits[i]][1] << endl;
@@ -204,9 +125,15 @@ int main(){
     temp.push_back(map[7][3]);
     temp.push_back('"');
     cout << temp << endl;
+  */
+
+    for(int i=0; i<solution.size(); i++)
+        cout << solution[i] << "\t"; 
+       
+     cout << endl;
 
     delete[] inputDigits;
-    delete[] mergedMap;
+    delete[] mergedmap;
         
     return 0;
 }
