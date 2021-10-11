@@ -4,11 +4,18 @@
 #include <vector>
 
 using namespace std;
+bool palPal(string x);
 
-bool is_palindrome(int test){
-    int length = 0;
-    std::string str = std::to_string(test);
-      
+bool isPalindrome(int x){
+   // int length = 0;
+    std::string str = std::to_string(x);
+    return palPal(str);
+
+   
+}
+
+bool palPal(string str){
+    int length =0;
     switch (str.length()){
         case 1:
             return true;
@@ -17,17 +24,16 @@ bool is_palindrome(int test){
             if(str[0] == str[str.length()-1])
                 return true;
             else 
-                return false;
-    
-                break;
-            
+                return false;    
+                break;            
         default:
-            if(str[0] != str[str.length()-1]){
+            if((str[0] != str[str.length()-1]) || (str[1] != str[str.length()-2])){
                 return false;  //whenever this happens return false
             }
             else{
                 length = str.length()-2;
-                if (is_palindrome( atoi( str.substr(1,length).c_str() ) ) )
+               // if (isPalindrome( atoi( str.substr(1,length).c_str() ) ) )
+               if(palPal(str.substr(1,length)))
                     return true;
                 else 
                     return false;
@@ -37,19 +43,14 @@ bool is_palindrome(int test){
     }
 }
 
-/*
 int main(){
-    int x = 123221;
+    int x = 1000110001;
 
-    if (is_palindrome(x) )
+    if (isPalindrome(x) )
         cout << x << " is_palindrome" << endl;
     else
         cout << x << " is not palindrome"<< endl;
 
-    
-       
-
     return 0;
 
 }
-*/
