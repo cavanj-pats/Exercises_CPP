@@ -10,17 +10,21 @@ using namespace std;
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
-        vector<int> idx;
+        vector<int> idx; //this is a vector of the only possible indexes in nums that might be a solution
         vector<int> ans;
-        int a1;
         bool solutionFound = false;
+       /*
         for(int i=0; i<nums.size(); i++){
-            if(nums[i]<= target) 
+            //if(nums[i]<= target)  cannot use for negative numbers
                 idx.push_back(i);
         }
-        
-        for(int i=0; i<idx.size(); i++){
-            for(int j=0; j<idx.size(); j++)
+        */
+
+        ans.clear();
+
+       
+        for(int i=0; i<nums.size(); i++){
+            for(int j=0; j<nums.size(); j++)
                 if((j!=i && nums[i]+ nums[j] == target) && !solutionFound){
                     ans.push_back(i);
                     ans.push_back(j);
@@ -36,17 +40,25 @@ public:
 int main (){
     Solution sol;
     
-    vector<int> nums, ans;
+    vector<int> nums;
+    vector<int> ans;
 
-    nums.push_back(0);
-    nums[1]=3;
-    nums[2]=4;
-    nums[3]=0;
+    nums.push_back(-3);
+    nums.push_back(4);
+    nums.push_back(3);
+    nums.push_back(90);
+
+   // cout << nums.size() << endl;
+    ans.clear();
 
     ans = sol.twoSum(nums, 0);
 
-    for(int i=0; ans.size(); i++)
-        cout << ans[i] << ", " ;
+    for(int i=0; i<ans.size(); i++){
+        if(i<ans.size()-1) 
+            cout << ans[i] << ", " ;
+        else
+            cout << ans[i];
+    }
     
      cout << endl;
 
