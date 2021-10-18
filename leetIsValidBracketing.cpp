@@ -25,7 +25,6 @@ public:
     bool isValid(string s) {
         int pos=0;
         
-
         return isValidHelper(s, pos);
             
         }
@@ -38,11 +37,7 @@ public:
         return false;
     }
     
-    bool isClosed(char c){
-        if(c==')' || c=='}' || c == ']') return true;
-        return false;
-    }
-
+    
 
 bool isValidHelper(string s, int pos){
    bool correctClose = false;
