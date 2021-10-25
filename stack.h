@@ -34,7 +34,7 @@ bool Stack::push(int x){
     
 
 }
-/*
+
 int Stack::pop(){
     if(top<0){return 0;}
     int temp;
@@ -51,4 +51,3 @@ int Stack::peek(){
     return a[0];
 }
 
-*/
