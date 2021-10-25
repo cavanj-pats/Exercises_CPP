@@ -15,7 +15,7 @@ class Solution {
 public:
     vector<string> generateParenthesis(int n) {
         vector<string> ans;
-        string str;
+        string str ;
         genParenHelper(n,0, str,  ans);
         return ans;
     }
@@ -39,13 +39,15 @@ void genParenHelper(int n, int pos, string str,  vector<string> &ans){
     //if ne is even,  there will be n*2 pairs
    
     //if(n%2 !=0) oddPairs=true;
+
+   
     
     if(pos == n*2){
         if(isValidHelper(  str,0)) 
             ans.push_back( str);
     }
     else{
-        if(str.length()==pos)
+        if(str.length()<pos+1)
             str.push_back( '(');//can't assign a position in string that does not exist
         else 
             str[pos]='(';
@@ -160,7 +162,7 @@ bool isValidHelper(string s, int pos){
 
 int main(){
     vector<string> ans;
-    int num=4;
+    int num=1;
     Solution sol;
     ans = sol.generateParenthesis(num);
     cout << "num= "<< num << endl;
