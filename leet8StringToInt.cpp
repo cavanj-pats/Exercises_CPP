@@ -22,9 +22,24 @@ long long int number(string, int);
 int sign (string, int);
 
 int whitespace(string s, int start){
-    for( int i=start; i<s.length(); i++)
-        if(s[i]!=' ')
-            return sign(s, i);
+    for( int i=start; i<s.length(); i++){
+        if(s[i]==' '){
+            //do nothing
+        }
+        else{
+            switch(s[i]-48){
+                case 0:case 1: case 2: case 3: case 4: case 5: case 6:
+                case 7: case 8: case 9:
+                    return sign(s, i);
+                    break;
+
+                default:
+                    if(s[i]=='-' || s[i]=='+') return sign(s,i);
+                    return 0;
+            }
+        }
+    }
+            
 
 
     return 0;  //empty string was rec'd
@@ -60,6 +75,7 @@ long long int number(string s, int start){
     bool val = false;
     bool stop = false;
     string num="";
+    /*
     switch(s[start]-48){
         case 0:case 1: case 2: case 3: case 4: case 5: case 6:
         case 7: case 8: case 9:
@@ -68,6 +84,7 @@ long long int number(string s, int start){
         default:
             return 0;
     }
+    */
     for(int i=start; i<s.length(); i++){
         if(s[i]-48 >0 && !val) val=true;
 
@@ -111,7 +128,7 @@ int main(){
     Solution sol;
 
    // int x = sol.myAtoi("   0002147483648");
-    int x = sol.myAtoi("2147483646");
+    int x = sol.myAtoi("  w -2147483646");
     cout << x << endl;
 
     return 0;
