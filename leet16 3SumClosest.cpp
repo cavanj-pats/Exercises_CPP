@@ -32,19 +32,22 @@ public:
             
             int z = nums.size();
             for (int i = 0; i<z-2; i++){
-                for (int j = i+1; j<z-1; j++){
+                for (int j = i+1; j<z-1; j++){;
                     for (int k= j+1; k<z; k++){
                         if(i==0 && j ==1 && k==2){
                             temp = nums[i] + nums[j] + nums[k];
                         }
                         else{
                             temp2 = nums[i] + nums[j] + nums[k];
-                            if(target <0)
+                            if(abs(target-temp) > abs(target-temp2)) temp = temp2;
+                            /*
+                            if(target <0){
                                 if ((target-temp) < (target - temp2)) temp = temp2;
-                            else
-                                 if ((target-temp) > (target - temp2)) temp = temp2;
-
-                            
+                            }
+                            else { 
+                                if (abs(target-temp) > abs(target - temp2)) temp = temp2;
+                            }
+                            */
                         }
                     }
                 }
@@ -109,8 +112,10 @@ int main(){
     //vector <int> a = {0,0,0,0};
     //vector <int> a = {-2,0,1,1,2};
     //vector <int> a = {-1,0,1,2,-1,-4,-2,-3,3,0,4};
-    vector <int> a = {1, 1,1,0};
-    int target = -100;
+    vector <int> a = {0,2,1,-3};
+   // vector <int> a = {-3,-2,-5,3,-4};
+
+    int target = 1;
     int ans;
     Solution sol;
     ans = sol.threeSumClosest(a, target);
