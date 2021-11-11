@@ -2,7 +2,7 @@
 
 #include <iostream>
 #include <vector>
-#include <bits/stdc++.h> //needed to use sort function.
+#include <algorithm> //needed to use sort function.
 #include <cmath>
 #include <math.h>
 
