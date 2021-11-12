@@ -3,39 +3,49 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+using namespace std;
+
+void combineAll_rec(vector<int>&, int , int , int , vector<vector<int>>& ,vector<int>& );
 
 class Solution {
 public:
     vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
 
-        int size=candidates.size();
-        int t;
-        int balance = target;
-        vector<int> temp;
-        vector<vector<int> ans;
+        vector<vector<int>> output;
+        vector<int> result;
+    
+        //sort(candidates.begin(), candidates.end());
 
-
-        sort (candidates.begin(),candidates.end());
-
-        for (int i = 0 ; i<size; ++i){
-            t=candidates[i];
-            if (t == 0) continue;
-            while (balance > 0){
-                temp.push_back(t);
-                if (balance -t >= 0){
-                    balance -=t;
-                }
-                if (balance = 0) ans.push_back(temp);
-            }
-//i think recursion will be better  like two loops and recursion or something 
-
-            if (t == 1 ){
-                for (int j=0; j<target; ++j) {temp.push_back(1);}
-                ans.push_back(temp);
-            }
-
-
-        }
-        
+        combineAll_rec(candidates, target, 0,0,output,result);
+        return output;
     }
 };
+
+void combineAll_rec(vector<int> &nums, int target, int start, int runningSum, 
+        vector<vector<int>>& output,vector<int>& result    ){    
+    
+    int currSum=runningSum;
+
+    if (runningSum == target){
+        output.push_back(result);
+    }
+    else if (runningSum > target){
+        return;   //never gets here
+    }
+    else {
+        for (int i = start; i<nums.size(); ++i){
+            currSum =currSum + nums[i];
+            if (currSum <= target){
+                result.push_back(nums[i]);
+                combineAll_rec(nums, target,i,currSum,output,result);
+                result.pop_back();
+                currSum = runningSum;
+
+            }
+            else{
+                currSum = currSum - nums[i];
+                //return;
+            }
+        }
+    }
+}

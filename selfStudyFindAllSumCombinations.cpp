@@ -15,6 +15,7 @@ use of duplicate numbers is accepted   i.e. nums {2, 3, 5,8} target =8  one sol'
 
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -27,13 +28,19 @@ void combineAll_rec(vector<int>&, int , int , int , vector<vector<int>>& ,vector
 vector<vector<int>> allSumCombos(vector<int> nums, int target){
     vector<vector<int>> output;
     vector<int> result;
-    
+   
+    //i needed to add this as my code only works when sorted
+    //sort(nums.begin(), nums.end());
+
+
     combineAll_rec(nums, target, 0,0,output,result);
     return output;
 };
 
 
-
+    //recursively go through the source vector for sums
+    //recursion works perfect to make sure all values are covered
+    //it is really quite clever how this works.  need to really think about it
  void combineAll_rec(vector<int> &nums, int target, int start, int runningSum, 
         vector<vector<int>>& output,vector<int>& result    ){    
     
@@ -65,7 +72,7 @@ vector<vector<int>> allSumCombos(vector<int> nums, int target){
 
 
 int main(){
-    vector<int> nums = {1,2,3,5,8};
+    vector<int> nums = {4,2,3,5,8};
     int target = 8;
     vector<vector<int>> ans = allSumCombos(nums, target);
 
