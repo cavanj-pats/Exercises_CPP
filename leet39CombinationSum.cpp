@@ -37,13 +37,15 @@ void combineAll_rec(vector<int> &nums, int target, int start, int runningSum,
             currSum =currSum + nums[i];
             if (currSum <= target){
                 result.push_back(nums[i]);
+                //if below was i+1 the value of i would not repeat
+                //if i>..size, then loop would not run
                 combineAll_rec(nums, target,i,currSum,output,result);
                 result.pop_back();
                 currSum = runningSum;
 
             }
             else{
-                currSum = currSum - nums[i];
+                currSum = currSum - nums[i];//see if perhaps there is another solution
                 //return;
             }
         }

@@ -57,13 +57,16 @@ vector<vector<int>> allSumCombos(vector<int> nums, int target){
             currSum =currSum + nums[i];
             if (currSum <= target){
                 result.push_back(nums[i]);
+                //if below was i+1 the value of i would not repeat
+                //if i>..size, then loop would not run
                 combineAll_rec(nums, target,i,currSum,output,result);
                 result.pop_back();
                 currSum = runningSum;
 
             }
             else{
-                return;
+                 currSum = currSum - nums[i];//see if perhaps there is another solution
+                //return;
             }
         }
     }
@@ -72,7 +75,7 @@ vector<vector<int>> allSumCombos(vector<int> nums, int target){
 
 
 int main(){
-    vector<int> nums = {4,2,3,5,8};
+    vector<int> nums = {10,1,2,7,6,1,5};
     int target = 8;
     vector<vector<int>> ans = allSumCombos(nums, target);
 
