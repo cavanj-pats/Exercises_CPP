@@ -15,15 +15,24 @@ using namespace std;
       ListNode(int x, ListNode *next) : val(x), next(next) {}
   };
 
-void oneRight(ListNode*, ListNode*, ListNode*, int k);
+void oneRight(ListNode*, ListNode*, ListNode*);
 
 class Solution {
 public:
     ListNode* rotateRight(ListNode* head, int k) {
         ListNode* temp = head;
         ListNode* newHead = new ListNode;
-
-        oneRight(head, temp, newHead, k);
+        if (head == nullptr || head->next == nullptr) return head;
+        if (k <= 0) return head;
+        while (k>0){
+            oneRight(head, temp, newHead);
+            k--;
+            if (k==0) break;
+            temp = newHead;
+            head = newHead;
+            newHead = new ListNode;
+            
+    }
 
         return newHead;
 
@@ -31,29 +40,17 @@ public:
 };
 
 
-void oneRight(ListNode* head, ListNode* temp, ListNode* newHead, int k){
+void oneRight(ListNode* head, ListNode* temp, ListNode* newHead){
        
     if (temp->next->next == nullptr ){
-        
         newHead->val = temp->next->val;
         newHead->next = head;
-        
         temp->next = nullptr;
-        head = newHead;
-        temp=newHead;
-        ;
-      
-    }
-     
-       
-        
+        return;      
+    }     
            
-            oneRight(head, temp->next, newHead, k);
-            
-        
-        
-    
-      
+    oneRight(head, temp->next, newHead);
+                 
     return;
 
 }
@@ -82,7 +79,7 @@ int main(){
 
     cout << endl<< "After two rotations: " << endl;
 
-    temp = sol.rotateRight(head, 2);
+    temp = sol.rotateRight(head, 3);
 
     while (temp != nullptr){
         cout << temp->val << ", " ;
