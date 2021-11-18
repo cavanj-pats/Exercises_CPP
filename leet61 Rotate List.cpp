@@ -41,6 +41,7 @@ public:
         if (k == NODECOUNT) return head;
 
         if (k>NODECOUNT)  k=k%NODECOUNT;  //i think this will recalculate k in terms of list position for rotation
+        
         //the below line is a little dangerous is it could create a circular list.
         temp->next = head;   //since we are swapping at least one node this has to point to the old head
         temp = head;
@@ -137,7 +138,7 @@ int main(){
 
     cout << endl<< "After two rotations: " << endl;
 
-    temp = sol.rotateRight(head, 5);
+    temp = sol.rotateRight(head, 3);
 
     while (temp != nullptr){
         cout << temp->val << ", " ;
