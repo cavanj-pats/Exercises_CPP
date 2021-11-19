@@ -1,5 +1,6 @@
 //leet61 Rotate Right
 // rotate a linked list to the right k times
+//recursive solution ran slower than iterative solution
 
 #include <iostream>
 
@@ -55,14 +56,13 @@ ListNode* oneRight(ListNode* head, ListNode* temp, int counter, int k){
         return head;
         }
     else{
-        if (k>NODECOUNT) k = k%NODECOUNT;
+        if (k>NODECOUNT) k = k%NODECOUNT;  //the previous calculation occured in the recursion at the tail.
+                                        //the above occurs at the rotation point
+                                        //NODECOUNT is not known until the tail is reached.
 
         if (counter ==NODECOUNT- k - 1){
-        
             t = temp->next;
-            //t->next = temp->next;
             temp->next = nullptr;
-            //head = newHead
             return t;    
         }
     }
@@ -96,7 +96,7 @@ int main(){
 
     cout << endl<< "After two rotations: " << endl;
 
-    temp = sol.rotateRight(head, 2);
+    temp = sol.rotateRight(head, 100001);
 
     while (temp != nullptr){
         cout << temp->val << ", " ;
