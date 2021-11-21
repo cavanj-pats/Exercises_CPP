@@ -25,8 +25,7 @@ public:
         ListNode* temp = new ListNode;
         ListNode* t;
         temp = head;    
-        t = rotateGroup(head, temp, k);
-        
+        t = rotateGroup(head, temp, k);        
         return t;
     }
 };
