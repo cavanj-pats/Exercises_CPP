@@ -45,80 +45,34 @@ ListNode* rotateGroup(ListNode* head, ListNode* temp, int k){
         nodeStack.push_back(temp);
         counter++;
         if (counter%k == 0){    
-            t1 = temp;    //even if this is nullptr should be ok
+            t1 = temp;   
             if(temp->next != nullptr){
             //if clearing stack
-                nodeStack[0]->next = temp->next;  //when temp->next is nullptr it flushes list
+                nodeStack[0]->next = temp->next;  //when temp->next is nullptr it flushes list                                                
             }
             else{
                 isNextNull = true;
             }
-           // nodeStack[counter-k]->next = temp->next;   //the old head now points to the next group
-          // temp->next = nodeStack.back()->next;    //this should position temp at the last node of the reversed group
-            
-
-          //********************************************
-           //if clearing stack
-           for (int i=nodeStack.size()-1; i>0; --i){
-               nodeStack[i]->next = nodeStack[i-1];
-           }
-            
            
-            if (isNextNull){           
-                nodeStack.front()->next = nullptr;
-                //temp = t1;
-            }
-
-             temp = nodeStack.front();
-
-
-           //if NOT clearing stack
-            // for(int i = counter-1; i>counter-k; --i){
-            //     nodeStack[i]->next = nodeStack[i-1];
-            // }
-            //******************************************
+            //reverse pointers
+            for (int i=nodeStack.size()-1; i>0; --i) nodeStack[i]->next = nodeStack[i-1];
+                                   
+            if (isNextNull)  nodeStack.front()->next = nullptr;  //front of stack is now the last node after reverse
+             
+            temp = nodeStack.front();   //now this is the last pointer in the reverserd group
            
-           if (counter == k){ 
-               t2=nodeStack.back();
-               t3=nodeStack.front();
-               
-           }
-           
-           if (counter > k ){
-                t3->next = nodeStack.back();
+            if (counter == k){ 
+                t2=nodeStack.back();  //this sets the new head of the reversed list.
                 t3=nodeStack.front();
-
-           }      
-           // t1->next = nodeStack.back();
-           
-           
-            
-            
-            
-            //for(int i = nodeStack.size()-1; i>0 ; --i){
-            // for(int i = counter-1; i>counter-k; --i){
-            //     nodeStack[i]->next = nodeStack[i-1];
-            // }
-
-            
-            // nodeStack[counter-k]->next = temp->next;   //the old head now points to the next group
-           // nodeStack.pop_back();
-           //t1=nodeStack.back();
-            nodeStack.clear();
-
-            
+            }            
+            if (counter > k ){
+                    t3->next = nodeStack.back();//previous group last node point to this group first node
+                    t3=nodeStack.front();  //reset t3 to be the last node of this group
+            }      
+            nodeStack.clear();            
         }
-
-
-
-        temp = temp->next;
-        }
-        
-
-
-
-    
-
+    temp = temp->next;
+    }        
     return t2;
 }
 
@@ -148,7 +102,7 @@ int main(){
 
     cout << endl<< "After two rotations: " << endl;
 
-    temp = sol.reverseKGroup(head, 6);
+    temp = sol.reverseKGroup(head, 4);
 
     while (temp != nullptr){
         cout << temp->val << ", " ;
