@@ -59,7 +59,7 @@ ListNode* rotateGroup(ListNode* head, ListNode* temp, int k){
                                    
             if (isNextNull)  nodeStack.front()->next = nullptr;  //front of stack is now the last node after reverse
              
-            temp = nodeStack.front();   //now this is the last pointer in the reverserd group
+            temp = nodeStack.front();   //now this is the last pointer in the reversed group
            
             if (counter == k){ 
                 t2=nodeStack.back();  //this sets the new head of the reversed list.
