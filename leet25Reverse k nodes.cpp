@@ -5,8 +5,6 @@
 
 using namespace std;
 
-
-
 //Definition for singly-linked list
   struct ListNode {
       int val;
@@ -34,7 +32,6 @@ public:
 ListNode* rotateGroup(ListNode* head, ListNode* temp, int k){
     
     vector<ListNode*> nodeStack;
-    ListNode* t1 = new ListNode;
     ListNode* t2 = new ListNode;
     ListNode* t3 = new ListNode;
     bool isNextNull = false;
@@ -43,10 +40,9 @@ ListNode* rotateGroup(ListNode* head, ListNode* temp, int k){
     while (temp != nullptr){
         nodeStack.push_back(temp);
         counter++;
-        if (counter%k == 0){    
-            t1 = temp;   
+
+        if (counter%k == 0){               
             if(temp->next != nullptr){
-            //if clearing stack
                 nodeStack[0]->next = temp->next;  //when temp->next is nullptr it flushes list                                                
             }
             else{
@@ -101,7 +97,7 @@ int main(){
 
     cout << endl<< "After two rotations: " << endl;
 
-    temp = sol.reverseKGroup(head, 4);
+    temp = sol.reverseKGroup(head, 3);
 
     while (temp != nullptr){
         cout << temp->val << ", " ;
