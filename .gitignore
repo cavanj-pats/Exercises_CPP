@@ -17,6 +17,8 @@
 .vscode/launch.json
 .vscode/tasks.json
 a.exe
+a.out
+*.dSYM
 
 # User-specific files
 *.rsuser
