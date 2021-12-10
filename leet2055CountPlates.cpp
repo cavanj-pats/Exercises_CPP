@@ -9,7 +9,7 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> platesBetweenCandles(string s, vector<vector<int>>& queries) {
+    vector<int> platesBetweenCandles(string s, vector<vector<int> >& queries) {
         //i've studied the idea of a prefix sum where a mapping is created
         //of the plate quantity at each index in string.
         int n = s.size();
@@ -67,7 +67,7 @@ int main(){
     //string s = "**|**|***|";
     string s = "***|**|*****|**||**|*";
 
-    vector<vector<int>> queries = {{1,17},{4,5},{14,17},{5,11},{15,16}};  //{{2,5},{5,9}};
+    vector<vector<int> > queries = {{1,17},{4,5},{14,17},{5,11},{15,16}};  //{{2,5},{5,9}};
     Solution sol;
     
     vector<int> pos;
