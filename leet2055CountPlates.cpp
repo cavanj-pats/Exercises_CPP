@@ -22,8 +22,8 @@ public:
         int first;
         int last;
         string temp;
-        int plateCount=0;
-        int candleCount=0;
+       // int plateCount=0;
+        //int candleCount=0;
 
         for(int i=0; i<n; ++i){
             prevCandle[i] = (s[i] == '*') ? ((i == 0) ? prevCandle[i] : prevCandle[i-1]) : i;
@@ -76,6 +76,8 @@ int main(){
     for(int i=0 ; i<pos.size(); ++i){
         cout << pos[i] << ",";
     }
+
+    cout << endl;
 
     return 0;
 

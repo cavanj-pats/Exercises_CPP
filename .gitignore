@@ -19,6 +19,7 @@
 a.exe
 a.out
 *.dSYM
+a
 
 # User-specific files
 *.rsuser
