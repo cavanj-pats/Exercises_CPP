@@ -10,23 +10,20 @@ using namespace std;
 class Solution {
 public:
     int jump(vector<int>& nums) {
+       //code pasted after struggling for about an hour
+       //https://leetcode.com/problems/jump-game-ii/discuss/18019/10-lines-C%2B%2B-(16ms)-Python-BFS-Solutions-with-Explanations
        
-        vector <int> prefixSum (nums.size()-1,0);
-        int ans =0;
-
-        
-        for(int i=0; i<nums.size(); ++i){
-            if (i==0) 
-                prefixSum[i] = nums[i];
-            else
-                prefixSum[i]= prefixSum[i-1]+nums[i];
-
-            ans++;    
-            if(prefixSum[i]>=nums.size()-1) break;
-            
-        }       
-
-        return ans;
+        int i = 0, n = nums.size(), step = 0, end = 0, maxend = 0;
+        while (end < n - 1) {
+        	step++;
+            for (;i <= end; i++) {
+            	maxend = max(maxend, i + nums[i]);
+                if (maxend >= n - 1) return step;
+            }
+            if(end == maxend) break;
+            end = maxend;
+        }
+        return n == 1 ? 0 : -1;
 
     }
 };
