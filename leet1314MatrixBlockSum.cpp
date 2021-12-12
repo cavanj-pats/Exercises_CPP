@@ -12,6 +12,12 @@ class Solution {
 public: 
     int sizeX, sizeY;
     int extractSum(int i, int j, const vector<vector<int> >& sum) {
+        //this limits the code to only valid cells
+        //when calculating the prefix sum,  there could be negative i or j.  
+        //this hanldes that.
+        //when retrieving the presum for the solution,  this handles invalid ranges of i and j that can occur when 
+        // k is added or subtracted from the index.
+        
         if (i < 0 || j < 0) return 0;
         if (i >= sizeX) i = sizeX - 1;
         if (j >= sizeY) j = sizeY - 1;
@@ -28,6 +34,9 @@ public:
         for (int i = 0; i < sizeX; i++) {
             for (int j = 0; j < sizeY; j++) {
                 //from the defined math for prefix sum of Matrix
+                //click on the link below and you can understand the below line of code.
+                //essentially add up the element and all elements to the left and above the element
+                //subtract out elements "double dipped"
                 //https://tutorialspoint.dev/algorithm/dynamic-programming-algorithms/prefix-sum-2d-array
                 sum[i][j] = mat[i][j] + extractSum(i-1, j, sum) + extractSum(i, j-1, sum) - extractSum(i-1, j-1, sum);
             }
@@ -38,6 +47,8 @@ public:
         for (int i = 0; i < sizeX; i++) {
             for (int j = 0; j < sizeY; j++) {
                 //the way to calculate the answer is given in the problem
+                //sum is the presum vector
+                //again this adds up and subtracts out "double dipped" data or data counted twice.
                 ans[i][j] = extractSum(i+K, j+K, sum) - extractSum(i+K, j-K-1,sum) - extractSum (i-K-1, j+K, sum) + extractSum(i-K-1, j-K-1, sum);
             }
         }
