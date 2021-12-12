@@ -31,7 +31,7 @@ public:
 
 int main(){
     Solution sol;
-    vector<int> nums = {3,2,1,0,4};
+    vector<int> nums = {3,1,2,0,4};
     cout << "Min Jumps: " << sol.jump(nums) << endl;
 
     return 0;
