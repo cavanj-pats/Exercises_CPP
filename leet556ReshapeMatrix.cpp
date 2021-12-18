@@ -14,12 +14,12 @@ public:
         int n = mat[0].size() ;  //number of columns
 
         vector<int> temp;
-        vector<int> t;
+        
         
 
         if (m * n != r * c) return mat;   //
-
-        vector<vector<int>> ans(r,c,0);
+        vector<int> t(c,0);
+        vector<vector<int>> ans(r,t);//intialize to zeroess
 
         for (int i = 0; i<m; ++i){
             for(int j = 0; j<n; ++j){
@@ -28,29 +28,41 @@ public:
         }
 
         for (int i=0; i<temp.size(); ++i){
+            ans[i/c][i%c]=temp[i];
 
         }
         
+        return ans;
     }
 };
 
 
 int main(){
-    vector<int> nums1 = {2,0};
-    vector<int> nums2 = {1};
-    int n = 1;
-    int m = 1;
-
+    vector<int> nums1 = {1,2};
+    vector<int> nums2 = {3,4};
+    vector<vector<int>> mat;
+    int r = 2;
+    int c = 4;
+    mat.push_back(nums1);
+    mat.push_back(nums2);
+    vector<vector<int>> ans;
     Solution sol;
 
-    sol.merge(nums1, m, nums2, n);
-    cout << "[";
-    for(int n:nums1){
-         cout << n ;
-        if (n != nums1.back()) cout << ", ";
-       
-    }
-    cout <<"]";
+    ans = sol.matrixReshape(mat,r,c);
+
+   
+    for(vector<int> t:ans){
+         cout << "[";
+        for(int n=0; n<t.size(); ++n){
+            cout << t[n] ;
+            if (n != t.size()-1) cout << ", ";
+        
+        }
+    if(t == ans.back()) 
+        cout <<"]";
+    else
+        cout << "],";
+}
 
     return 0;
 
