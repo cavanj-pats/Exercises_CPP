@@ -13,8 +13,8 @@ public:
     bool isValidSudoku(vector<vector<char>>& board) {
         map <char, int> myMap = {{'1',1},{'2',2},{'3',3},{'4',4},{'5',5},{'6',6},{'7',7},{'8',8},{'9',9} };
         int n = 9;
-        map<char,int> trow, tcol, tgrid;
-        vector<vector<map<char, int>>> gridVector;
+        map<char,int> trow, tcol;
+        
         vector<map<char, int>> tempGrid(9);
         vector<int> gridCounter(9,0);
        
@@ -28,8 +28,8 @@ public:
                     tcol.insert(std::pair<char, int> (board[i][j],myMap[board[i][j]]));
                     colCounter++;
 
-                    tempGrid[3*i/3+j/3].insert(std::pair<char, int> (board[i][j],myMap[board[i][j]]));
-                    gridCounter[3*i/3+j/3]+=1;
+                    tempGrid[3*(i/3)+(j/3)].insert(std::pair<char, int> (board[i][j],myMap[board[i][j]]));
+                    gridCounter[3*(i/3)+(j/3)]+=1;
 
                     
                 }
