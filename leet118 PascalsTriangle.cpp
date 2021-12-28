@@ -54,7 +54,7 @@ public:
 int main(){
     vector<vector<int>> ans;
     Solution sol;
-    ans = sol.generate(45);
+    ans = sol.generate(8);
 
     for(vector<int> t:ans){
          cout << "[";

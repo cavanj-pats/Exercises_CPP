@@ -18,7 +18,7 @@ public:
         while (i<strSize){
             if (s[i] != '*'){
                 found = s.substr(i+1, strSize-(i+1)).find_first_of(s[i], 0);
-                if ((found == -1)){
+                if (found == -1){
                     return i;
                     break;
                 } else
