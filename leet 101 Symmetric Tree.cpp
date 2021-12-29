@@ -31,20 +31,26 @@ struct TreeNode {
 
 class Solution {
 public:
-    int NODECOUNT;
+    
     bool isSymmetric(TreeNode* root) {
         //I believe if I determine the height and node count on each subtree and if they are equal return TRUE    
-        NODECOUNT = 0;
-        int leftDepth = maxDepth(root->left);
-        int leftCount = NODECOUNT;
-        NODECOUNT = 0;
-        int rightDepth = maxDepth(root->right);
-        int rightCount =  NODECOUNT;
+        
+       bool ans = symmetricHelper(root->left, root->right);
 
-        if (leftDepth == rightDepth && leftCount == rightCount) return true;
+        return ans;
 
+    }
+
+    bool symmetricHelper(TreeNode* left,  TreeNode* right){
+        if (!left && !right){
+            return true;
+        }
+        else{
+            if((!left && right) || (left && !right)) return false;  //unbalanced tree
+            if( symmetricHelper (left->left, right->right) && symmetricHelper(left->right, right->left)) return true;
+        }
+        
         return false;
-
     }
     
     int maxDepth(TreeNode* root) {
@@ -53,7 +59,7 @@ public:
         if(root == NULL){
             return 0;
         } else{
-            NODECOUNT++;
+            
             int leftHeight = maxDepth(root->left); 
             int rightHeight = maxDepth(root->right);
             if ( leftHeight > rightHeight)
@@ -149,7 +155,7 @@ int main()
 
     cout << "height: " << sol.maxDepth(root) << endl;
     cout << "Symmetric Tree: " << sol.isSymmetric(root) << endl;
-    
+
 	
 	return 0;
 	}
