@@ -20,6 +20,9 @@ a.exe
 a.out
 *.dSYM
 a
+#turn these off later if I want
+*.plist
+treetester
 
 # User-specific files
 *.rsuser

@@ -69,6 +69,7 @@ int main()
 	TreeNode node(3);
     node.left = new TreeNode (9);
     node.right = new TreeNode (20);
+    node.left->right = new TreeNode (11);
     node.right->left = new TreeNode (15);
     node.right->right = new TreeNode (7);
 
