@@ -22,16 +22,15 @@ public:
         ListNode* t1 = head ;
         int val;
 
-        while (!t1->next){
-            if (t1->val == t1->next->val){
+        while (t1->next){
+            if (t1->val == t1->next->val)
                 t1->next = t1->next->next;
-            }
-            else{
-                t1 = t1->next;
-            }
+             
+          if(t1->next) t1 = t1->next;
+
         }
 
-        return t1;
+        return head;
     }
 };
 
@@ -47,12 +46,13 @@ int main(){
     head->next->next->next = new ListNode ;
     head->next->next->next->val = 4;
     head->next->next->next->next = new ListNode ;
-    head->next->next->next->next->val = 5 ;
+    head->next->next->next->next->val = 6 ;
     head->next->next->next->next->next = new ListNode;
     head->next->next->next->next->next->val = 6;
 
     ListNode* temp = head;
 
+    while (temp != nullptr){
          temp->next == nullptr ? cout << temp->val :cout << temp->val << ", " ;
         temp = temp->next;
     }
