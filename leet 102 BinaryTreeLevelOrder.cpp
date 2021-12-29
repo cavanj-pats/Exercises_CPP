@@ -40,18 +40,33 @@ public:
         vector<int> levelNodes;
         vector<vector<int> > result;
 
-        //if (!root) return result;   //*** I don't think this is needed
+        if (!root) return {};   //*** I don't think this is needed
         que.push(root);
-        
+        int count = 1;
 
         while (!que.empty()){
             TreeNode* q = que.front();
-            levelNodes.push_back(q->val);
-            que.pop();            
-            result.push_back(levelNodes);
-            //levelNodes.clear();
             if (q->left) que.push(q->left);
             if (q->right) que.push(q->right);
+            levelNodes.push_back(q->val);            
+            que.pop();
+            
+            //I was very much on teh right track
+            //i missed what keeping track of "count" would do.
+            //notice how count is still being indexed even though the expression may be false
+            //when the expression evaluates as true,  the results are pushed and the level or row vector is cleared.
+            //THEN the count is recalculated to be the size of the next level or row.
+            if(--count == 0){
+                result.push_back(levelNodes);
+                levelNodes.clear();
+                count = que.size();
+                //https://www.geeksforgeeks.org/level-order-traversal-line-line-set-3-using-one-queue/
+                //https://leetcode.com/problems/binary-tree-level-order-traversal/discuss/33709/Short-8ms-C%2B%2B-solution-with-queue4
+
+            }
+                            
+                
+            
 
             
         }
