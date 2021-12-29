@@ -24,13 +24,14 @@ public:
         data.erase(data.begin());
         return d;
     }
-s
+
     int peek() {
         return data.front();
     }
     
     bool empty() {
-        return data.size();
+        if (data.size() == 0) return true;
+        return false;
     }
 };
 
