@@ -1,4 +1,4 @@
-//leet 144. Binary Tree Preorder traversal
+//leet 94. Binary Tree InOrder traversal
 
 
 #include <iostream>
@@ -28,11 +28,12 @@ struct TreeNode {
 
 class Solution {
 public:
-    vector<int> preorderTraversal(TreeNode* root) {
+    vector<int> inorderTraversal(TreeNode* root) {
         if (root != nullptr){
+            
+            inorderTraversal(root->left);
             ans.push_back(root->val);
-            preorderTraversal(root->left);
-            preorderTraversal(root->right);
+            inorderTraversal(root->right);
             
 
         }
