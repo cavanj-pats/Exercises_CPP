@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <vector>
+#include <queue>
 
 //for math library some people in discussion are saying
 //the define, and two includes
@@ -34,32 +35,62 @@ public:
         //3. traverse left(?)  don't print this node but GOTO 2.
         //4. traverser right  don't print this node but GOTO 2.
         //5. repeat 3 and 4 recursively
-    }
-};
 
-class Solution {
-public:
-    vector<int> inorderTraversal(TreeNode* root) {
-        if (root != nullptr){
-            
-            inorderTraversal(root->left);
-            ans.push_back(root->val);
-            inorderTraversal(root->right);
-            
+        queue<TreeNode*> que;
+        vector<int> levelNodes;
+        vector<vector<int> > result;
 
+        //if (!root) return result;   //*** I don't think this is needed
+        que.push(root);
+        
+
+        while (!que.empty()){
+            TreeNode* q = que.front();
+            levelNodes.push_back(q->val);
+            que.pop();            
+            result.push_back(levelNodes);
+            //levelNodes.clear();
+            if (q->left) que.push(q->left);
+            if (q->right) que.push(q->right);
+
+            
         }
-        return ans;
+
+        return result;
     }
-    
-    vector<int> ans;
 };
+
 
 
 
 
 int main()
 {
-	
+	TreeNode node(3);
+    node.left = new TreeNode (9);
+    node.right = new TreeNode (20);
+    node.right->left = new TreeNode (15);
+    node.right->right = new TreeNode (7);
+
+    TreeNode* root = &node;
+    Solution sol;
+    vector<vector<int> > ans = sol.levelOrder(root);
+    
+    for(vector<int> t : ans){
+         cout << "[";
+        for(int n=0; n<t.size(); ++n){
+            cout << t[n] ;
+            if (n != t.size()-1) cout << ", ";
+        
+        }
+    if(t == ans.back()) 
+        cout <<"]";
+    else
+        cout << "],";
+
+    cout << endl; 
+
+    }
 	
 	return 0;
 	}
