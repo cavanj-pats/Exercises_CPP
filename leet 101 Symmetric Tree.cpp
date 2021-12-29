@@ -53,6 +53,10 @@ public:
         return false;
     }
     
+
+
+
+
     int maxDepth(TreeNode* root) {
         int height = 0;
 
@@ -72,6 +76,10 @@ public:
 
 
     }
+    
+
+
+
     
     
     vector<vector<int> > levelOrder(TreeNode* root) {
@@ -131,7 +139,7 @@ int main()
     node.right = new TreeNode (20);
     node.left->right = new TreeNode (11);
     node.right->left = new TreeNode (15);
-    node.right->right = new TreeNode (7);
+    //node.right->right = new TreeNode (7);
 
     TreeNode* root = &node;
     Solution sol;
