@@ -13,12 +13,7 @@ public:
         vector<int> idx; //this is a vector of the only possible indexes in nums that might be a solution
         vector<int> ans;
         bool solutionFound = false;
-       /*
-        for(int i=0; i<nums.size(); i++){
-            //if(nums[i]<= target)  cannot use for negative numbers
-                idx.push_back(i);
-        }
-        */
+       
 
         ans.clear();
 
