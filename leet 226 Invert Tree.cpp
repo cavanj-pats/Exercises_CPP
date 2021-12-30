@@ -1,6 +1,6 @@
-//leet 104. Max Depth Binary Tree 
-//leet 104MaxDepth BinaryTree.cpp
-
+//leet 226.Invert Binary Tree 
+//leet 226 Invert Tree.cpp
+//2021-12-29
 
 
 #include <iostream>
@@ -31,7 +31,25 @@ struct TreeNode {
 
 class Solution {
 public:
-    
+    TreeNode* invertTree(TreeNode* root) {
+        
+
+        invertHelper(root);
+
+        return root;
+    }
+
+    void invertHelper(TreeNode* root){
+        TreeNode* temp = root->left;
+        root->left = root->right;
+        root->right = temp;
+
+        if (root->left) invertHelper(root->left);
+        if (root->right) invertHelper(root->right);
+
+        return;
+    }
+
     bool isSymmetric(TreeNode* root) {
         //I believe if I determine the height and node count on each subtree and if they are equal return TRUE    
         
@@ -145,6 +163,8 @@ int main()
     Solution sol;
     vector<vector<int> > ans = sol.levelOrder(root);
     
+    TreeNode* swapped = sol.invertTree(root);
+
     for(vector<int> t : ans){
          cout << "[";
         for(int n=0; n<t.size(); ++n){
@@ -162,7 +182,7 @@ int main()
     }
 
     cout << "height: " << sol.maxDepth(root) << endl;
-    cout << "Symmetric Tree: " << (bool) sol.isSymmetric(root) << endl;
+    cout << "Symmetric Tree: " <<  sol.isSymmetric(root) << endl;
 
 	
 	return 0;
