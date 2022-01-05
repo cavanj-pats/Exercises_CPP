@@ -22,11 +22,19 @@ public:
         ListNode* t1 = head ;
         int val;
 
+        if (!t1) return head;
+
         while (t1->next){
-            if (t1->val == t1->next->val)
-                t1->next = t1->next->next;
+            if (t1->val == t1->next->val){
+                t1->next = t1->next->next;  
+                continue;
+            }else
+            {
+              if(t1->next) t1 = t1->next;
+            }
+            
              
-          if(t1->next) t1 = t1->next;
+          
 
         }
 
@@ -40,9 +48,9 @@ int main(){
     ListNode* head = new ListNode ;
     head->val = 1;
     head->next = new ListNode ;
-    head->next->val = 2;
+    head->next->val = 1;
     head->next->next = new ListNode  ;
-    head->next->next->val = 2;
+    head->next->next->val = 1;
     head->next->next->next = new ListNode ;
     head->next->next->next->val = 4;
     head->next->next->next->next = new ListNode ;
