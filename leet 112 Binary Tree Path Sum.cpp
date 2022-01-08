@@ -32,6 +32,8 @@ struct TreeNode {
 class Solution {
 public:
      bool hasPathSum(TreeNode* root, int targetSum) {
+         
+         if (!root) return root;
 
          map<bool, int> response;
          //map<bool, int> &response = r;
@@ -40,20 +42,23 @@ public:
         
         inorderSum (root, 0, targetSum, response);
 
+      
         return response[true] > 0;
 
     }
     
     void inorderSum(TreeNode* root, int runningSum, int target, map<bool, int> &response) {
-        if (root != nullptr){
-            runningSum += root->val;
-            inorderSum(root->left, runningSum, target, response);
-                   
-            inorderSum(root->right, runningSum, target, response);
+        runningSum += root->val;
+        if (root->left == nullptr && root -> right == nullptr){
+            if (runningSum == target ) 
+                response[true]++;            
             
         } else{
-            if (runningSum == target) 
-                response[true]++;
+            
+            if (root->left) inorderSum(root->left, runningSum, target, response);
+                   
+            if (root->right) inorderSum(root->right, runningSum, target, response);
+            
         }
 
         response[false]++;
@@ -181,17 +186,17 @@ public:
 
 int main()
 {
-	TreeNode node(3);
-    node.left = new TreeNode (9);
-    node.right = new TreeNode (20);
-    node.left->right = new TreeNode (11);
-    node.right->left = new TreeNode (15);
-    node.right->right = new TreeNode (7);
+	TreeNode node(1);
+    //node.left = new TreeNode (9);
+    node.right = new TreeNode (2);
+    //node.left->right = new TreeNode (11);
+    //node.right->left = new TreeNode (15);
+    //node.right->right = new TreeNode (7);
 
     TreeNode* root = &node;
     Solution sol;
     
-    cout << "Path Sum = 30: "<< sol.hasPathSum(root, 30 )<< endl<<endl;
+    cout << "Path Sum = 1: "<< sol.hasPathSum(root, 1 )<< endl<<endl;
     
     vector<vector<int> > ans = sol.levelOrder(root);
     
