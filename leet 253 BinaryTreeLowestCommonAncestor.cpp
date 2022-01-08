@@ -6,7 +6,7 @@
 #include <vector>
 #include <queue>
 #include <map>
-#include <algorithm>>
+#include <algorithm>
 
 //for math library some people in discussion are saying
 //the define, and two includes
@@ -35,12 +35,43 @@ public:
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
         
         TreeNode* temp = root;
-        vector<int> pPath;
-        vector<int> qPath;
+        vector<TreeNode*> pPath;
+        vector<TreeNode*> qPath;
+        int minLength=0;
 
         if (!root) return root;
 
-        
+
+        //qpath
+        while (temp->val != q->val){
+            qPath.push_back(temp);
+            if(temp->val < q->val)
+                temp = temp->right;
+            else
+                temp = temp->left;            
+        }
+        qPath.push_back(temp);
+        temp = root;
+
+        //pPath
+        while (temp->val != p->val){
+            pPath.push_back(temp);
+            if(temp->val < p->val)
+                temp = temp->right;
+            else
+                temp = temp->left;            
+        }
+        pPath.push_back(temp);
+
+        minLength = min(pPath.size(),qPath.size());
+
+        for(int i=0; i<minLength-1; ++i){
+            if (pPath[i+1]->val != qPath[i+1]->val) return pPath[i];
+        }
+
+        return root;
+
+    
 
     }
 //};
@@ -259,15 +290,16 @@ public:
 
 int main()
 {
-	TreeNode node(3);
+	TreeNode node(12);
     node.left = new TreeNode (9);
     node.right = new TreeNode (20);
     node.left->right = new TreeNode (11);
     node.right->left = new TreeNode (15);
-    node.right->right = new TreeNode (7);
+    node.right->right = new TreeNode (25);
 
     TreeNode* root = &node;
     Solution sol;
+    cout << "Lowest Common Node of 15, 17 should be 20: "<<  (sol.lowestCommonAncestor(&node,node.right->left, node.right->right))->val << endl;
     
     cout << "Path Sum = 30: "<< sol.hasPathSum(root, 30 )<< endl<<endl;
     
