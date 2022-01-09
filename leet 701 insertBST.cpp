@@ -36,6 +36,7 @@ public:
         
         
         if (root == nullptr) {
+            root = new TreeNode;
             root-> val = val;
             return root;
         }
