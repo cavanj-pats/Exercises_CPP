@@ -1,6 +1,6 @@
 //leet 112 Binary Tree Path SUm
 // leet 112 Binary Tree Path Sum.cpp
-
+//submitted and accepted by LEETCODE
 
 #include <iostream>
 #include <vector>
@@ -65,11 +65,11 @@ public:
 
         minLength = min(pPath.size(),qPath.size());
 
-        for(int i=0; i<minLength-1; ++i){
-            if (pPath[i+1]->val != qPath[i+1]->val) return pPath[i];
+        for(int i=1; i<minLength; ++i){
+            if (pPath[i]->val != qPath[i]->val) return pPath[i-1];
         }
 
-        return root;
+        return pPath[minLength-1];
 
     
 
@@ -290,16 +290,16 @@ public:
 
 int main()
 {
-	TreeNode node(12);
-    node.left = new TreeNode (9);
-    node.right = new TreeNode (20);
-    node.left->right = new TreeNode (11);
-    node.right->left = new TreeNode (15);
-    node.right->right = new TreeNode (25);
+	TreeNode node(6);
+    node.left = new TreeNode (2);
+    node.right = new TreeNode (8);
+    node.left->right = new TreeNode (4);
+    node.right->left = new TreeNode (7);
+    node.right->right = new TreeNode (9);
 
     TreeNode* root = &node;
     Solution sol;
-    cout << "Lowest Common Node of 15, 17 should be 20: "<<  (sol.lowestCommonAncestor(&node,node.right->left, node.right->right))->val << endl;
+    cout << "Lowest Common Node of 15, 17 should be 2: "<<  (sol.lowestCommonAncestor(&node,node.left, node.left->right))->val << endl;
     
     cout << "Path Sum = 30: "<< sol.hasPathSum(root, 30 )<< endl<<endl;
     
