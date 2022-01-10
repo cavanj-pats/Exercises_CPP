@@ -5,6 +5,7 @@
 #include <iostream>
 #include <vector>
 #include <queue>
+#include <map>
 
 //for math library some people in discussion are saying
 //the define, and two includes
@@ -32,37 +33,110 @@ class Solution {
 public:
    bool isValidBST(TreeNode* root) {
         
-        if (root == nullptr) return true;
-        if (root->left != nullptr) {
-            if (root->left->val < root->val){
-                return isValidBST(root->left);
-            }
-            else{
-                return false;
-            }
-        }
-        else{
-            return true;
-        }
         
-        if (root->right != nullptr){
-            if(root->right->val > root-> val){
-                return isValidBST(root->right);
-            }
-            else{
-                return false;
-            }
-        }
-        else
-        {
-            return true;
-        }
+        if (!root) return true;
+        int rootVal = root->val;
+
+        //the problem is defined such that the values of the left subtree are less than root
+        //and values of right subtree are greater than right subtree
+
+        map<bool, int> response;
+         //map<bool, int> &response = r;
+         response.insert(response.begin(), std::pair<bool, int> (false,0)  );
+         response.insert(response.begin(), std::pair<bool, int>(true, 0) );
+        /*
+        BSTValidLeft(root->left, response, rootVal);
+        if (response[false] > 0 ) return false;
+        BSTValidRight(root->right, response, rootVal);
+        if (response[false] > 0 ) return false;
+
+        isValidBSTHelper( root, response);
+        */
+
+        isValidBSTPre(root, response, rootVal);
+
+        if(response[false] > 0) return false;
+        return true;
+
+        
         
         
     }
+
+   void isValidBSTPre(TreeNode* root, map<bool, int> &response, int rootVal){
+       //if root left exist and is smaller than root
+       // if root right exists and is greater than rootval
+
+        if(!root) return;
+        if(!root->left){
+
+        } 
+        else {
+            if(root->left->val < root->val){
+                BSTValidLeft (root->left, response, root->val);
+                isValidBSTPre(root->left, response, root->val);
+            }
+            else{
+                response[false]++;
+            }
+        }
+
+        if (!root->right){
+
+        }
+        else{
+            if(root->right->val > root->val){
+                BSTValidRight(root->right, response, root->val);
+                isValidBSTPre(root->right, response, root->val);
+            }
+            else{
+                response[false]++;
+            }
+        }
+
+   } 
    
+   void isValidBSTHelper(TreeNode *root, map<bool, int> &response){
+       if (root == nullptr) response[true]++;
+        if (root->left != nullptr) {
+            if (root->left->val < root->val){
+                 isValidBSTHelper(root->left, response);
+            }
+            else{
+                response[false]++;
+            }
+        }
+        //else{
+        //    return true;
+        //}
+        
+        if (root->right != nullptr){
+            if(root->right->val > root-> val){
+                isValidBSTHelper(root->right, response);
+            }
+            else{
+                response[false]++;
+            }
+        }
+       // else
+        //{
+        //    return true;
+        //}
+   }
    
-   
+   void BSTValidLeft(TreeNode* root, map<bool, int> &response,  int rootVal){
+       if (!root) return;
+       if (root->val >= rootVal) response[false]++;
+       BSTValidLeft(root->left, response, rootVal);
+       BSTValidLeft(root->right, response, rootVal);
+   }
+
+   void BSTValidRight(TreeNode *root, map <bool, int> &response, int rootVal){
+       if(!root) return;
+       if (root->val <= rootVal) response[false]++;
+       BSTValidRight(root->left, response, rootVal);
+       BSTValidRight(root->right, response, rootVal);
+   }
    
    
    
