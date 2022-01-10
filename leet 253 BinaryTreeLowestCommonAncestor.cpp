@@ -1,4 +1,4 @@
-//leet 112 Binary Tree Path SUm
+//leet 253 Lowest Common Ancestor
 // leet 112 Binary Tree Path Sum.cpp
 //submitted and accepted by LEETCODE
 
