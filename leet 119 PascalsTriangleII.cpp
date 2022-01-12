@@ -1,22 +1,22 @@
-//leet 118 valid pascals triangle
+//leet 119 Pascal's Triangle
+//
+//   1/11/2022
 
-
-//this code absolutely generates a pascal triangle perfectly.
-//but numbers start to get very very large at n>=25
-
-
-#include <iostream>
-#include <vector>
-
-using namespace std;
-
-
-
-
+//acceted by leetcode.  Ran faster than 100% and used less than 31% of memory compared to other submissions.
 
 
 class Solution {
 public:
+    vector<int> getRow(int rowIndex) {
+
+        vector<vector<int>> pt = generate(rowIndex+1);
+
+        return pt[rowIndex];
+        
+    }
+
+
+
     vector<vector<int>> generate(int numRows) {
         vector<int> temp;
         vector<vector<int>> ans;
@@ -43,38 +43,3 @@ public:
         return ans;
     }
 };
-
-
-
-
-
-
-
-
-int main(){
-    vector<vector<int>> ans;
-    Solution sol;
-    ans = sol.generate(3);
-
-    for(vector<int> t:ans){
-         cout << "[";
-        for(int n=0; n<t.size(); ++n){
-            cout << t[n] ;
-            if (n != t.size()-1) cout << ", ";
-        
-        }
-    if(t == ans.back()) 
-        cout <<"]";
-    else
-        cout << "],";
-
-    cout << endl; 
-
-    }
-    
-
-    return 0;
-    
-    
-
-}
