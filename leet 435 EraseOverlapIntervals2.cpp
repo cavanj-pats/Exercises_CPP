@@ -36,6 +36,7 @@ public:
         //set the previous item
         prev[0] = intervals[0][0];
         prev[1] = intervals[0][1];
+       
 
         for (int i = 1; i<iSize ; ++i){
             if (intervals[i][0] >= prev[1]){
