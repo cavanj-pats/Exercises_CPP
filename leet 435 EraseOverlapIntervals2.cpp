@@ -1,6 +1,8 @@
 //leet 435 Remove NonOverlapping Intervals
 
 //use Greedy Algorithm approach
+//submited and accepted by leetcode
+
 
 #include <iostream>
 #include <vector>
