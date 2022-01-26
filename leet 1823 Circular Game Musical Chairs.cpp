@@ -1,4 +1,4 @@
-//
+//leet 1823 Find the Winner
 
 #include <unordered_map>
 #include <vector>
@@ -8,28 +8,12 @@
 class Solution {
 public:
     int findTheWinner(int n, int k) {
-        int i = n;
-        int j = 0;
-        int pos=0;
-        std::vector <int> player;
-
-        for (int j=0; j<n; ++j) player.push_back(j+1);
-
-        //use modular or clock arithmetic to remove players
-
-
-        do{
-            j += k;
-            pos = (j < i ? j : j%i)-1;
-            std::cout << player[pos] << ", ";
-            player.erase(player.begin()+pos);
-            --i;
-            j++;
+        int res = 0;
+        for (int i = 1; i <= n; ++i)
+            res = (res + k) % i;
             
-        }while (i>1);
-        std::cout << std::endl;
-
-        return player[0];
+        return res + 1;
+    
     }
 };
 
