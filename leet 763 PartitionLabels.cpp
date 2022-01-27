@@ -82,12 +82,12 @@ public:
 
 
 int main(){
-    std::string  s = "abcdefahwijkuopl";
+    std::string  s = "ababcbacadefegdehijhklij";
     Solution sol;
     std::vector <int> result = sol.partitionLabels(s) ;
 
     std::cout << s << endl;
-    
+
     for (auto v : result){
         std::cout << v << ", ";
     }
