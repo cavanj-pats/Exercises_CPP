@@ -32,19 +32,19 @@ Output: [10]
 struct partition{
     int start;
     int length;
-    string str;
-}
+    std::string str;
+};
 
 class Solution {
 public:
-    vector<int> partitionLabels(string s) {
-        unordered_map <char, int> charPartitionMap(s.size(),0);
-        vector<int> result;
+    std::vector<int> partitionLabels(std::string s) {
+        std::unordered_map <char, int> charPartitionMap(s.size(),0);
+        std::vector<int> result;
         int numPartitions = s.size();  //to start with
         
 
         for (int i=0; i<numPartitions; ++i){
-            
+            charPartitionMap[s[i]] = i;//store the max position
         }
 
 
