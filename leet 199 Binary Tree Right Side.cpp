@@ -36,6 +36,12 @@ public:
 
         mapNodeValAndHeightToVectors(val, height, root, h);
 
+        for(int i = 0; i<val.size(); ++i){
+            cout << "[" << val[i] << " " << height[i] << "], " ;
+        }
+        cout <<endl;
+
+
         if(!temp) return ans;
         ans.push_back(temp->val);
         
