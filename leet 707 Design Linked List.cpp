@@ -68,11 +68,13 @@ public:
         
         t->next = temp;  //new node points to insertion point
        
-        if (index ==0 ) 
+        if (index ==0 ) {
             head = t;
-        else
+        }
+        else{
             previous->next = t;  //temp become t but previous node is not pointing to t
-            
+        }
+        
         ++size;
     }
     
@@ -115,9 +117,9 @@ int main(){
     obj->deleteAtIndex(2);
     obj->addAtHead(6);
     obj->addAtTail(4);
-    std::cout << obj->get(4) << std::endl;
+    std::cout << obj->get(0) << std::endl;
     
-    obj->addAtIndex(1,2);
+   // obj->addAtIndex(1,2);
     
 
     std::cout << "Size: " << obj->size << std::endl;
