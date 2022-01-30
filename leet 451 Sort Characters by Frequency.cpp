@@ -6,7 +6,12 @@ Details
 Runtime: 12 ms, faster than 82.19% of C++ online submissions for Sort Characters By Frequency.
 Memory Usage: 8.5 MB, less than 43.12% of C++ online submissions for Sort Characters By Frequency.
 */
+#include <unordered_map>
+#include <iostream>
+#include <vector>
+#include <algorithm>
 
+using namespace std;
 
 template <typename T1, typename T2>
 struct gt_second {
