@@ -1,4 +1,7 @@
+//leet 199 binary tree right side
 
+//accepted at Leetcode
+//i was on teh right track but as normal,  teh actual code was much simpler than what i was thinking
 
 #include <iostream>
 #include <vector>
@@ -26,37 +29,26 @@ public:
         //that are visible from the right side.
         
         vector<int> ans;
+
+        if (root == NULL) return ans;
+        
         vector<int> val;
         vector<int> height;
 
-        TreeNode* temp = root;
-        int lh, rh, h = 0;
-        lh = getHeight(temp->left);
-        rh = getHeight(temp->right);
+        
+        int h = 1;
+        //lh = getHeight(temp->left) +1;  //teh plus one normalizes the height with the height vector
+        //rh = getHeight(temp->right) +1;
 
         mapNodeValAndHeightToVectors(val, height, root, h);
 
-        for(int i = 0; i<val.size(); ++i){
-            cout << "[" << val[i] << " " << height[i] << "], " ;
-        }
-        cout <<endl;
-
-
-        if(!temp) return ans;
-        ans.push_back(temp->val);
         
-        while(1){
-            if(temp->right){
-                temp = temp->right;
-            } else if (temp->left){
-                temp = temp->left;
-            } else{
-                break;
-            }
-            
-           ans.push_back(temp->val);
-        }
-        return ans;
+
+
+
+
+
+        return val;
     }
     
 private:
@@ -87,17 +79,16 @@ private:
   
     void mapNodeValAndHeightToVectors(vector<int> &val, vector<int> &height, TreeNode* root, int h){
         
-        if (root == nullptr){
-            return;
-        }else{
-            //inorder traversal is required
-            mapNodeValAndHeightToVectors(val, height, root->left, h++);
-            val.push_back(root->val);
-            val.push_back(h);
-            mapNodeValAndHeightToVectors(val, height, root->right, h++);
+        if (root == nullptr) return;
+        
+        if (val.size()<h) val.push_back(root->val);
+            
+            height.push_back(h);
 
-        }
-
+            mapNodeValAndHeightToVectors(val, height, root->right, h+1);
+                        
+            mapNodeValAndHeightToVectors(val, height, root->left, h+1);
+            
     }
 
 
@@ -105,18 +96,25 @@ private:
 
 
 int main(){
-    TreeNode* n = new TreeNode(1);
-    n->left = new TreeNode(2);
-    n->left->right = new TreeNode(5);
-    n->right = new TreeNode(3);
-    n->right->right = new TreeNode(4);
-    n->left->right->right = new TreeNode(6);
+    TreeNode* n = new TreeNode(5);
+    n->left = new TreeNode(1);
+    n->left->right = new TreeNode(3);
+   // n->left->left = new TreeNode(4);
+    n->right = new TreeNode(6);
+    // n->right->right = new TreeNode(4);
+     n->left->right->right = new TreeNode(4);
+     n->left->right->left = new TreeNode(2);
 
     Solution sol;
     vector<int> ans;
 
     ans = sol.rightSideView(n);
 
+    for (auto a: ans){
+        cout << a <<"," ;
+    }
+    
+    cout << endl;
     cout << "done" << endl;
 
     return 0;
