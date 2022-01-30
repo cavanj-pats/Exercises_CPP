@@ -10,6 +10,13 @@ Example 1:
 
 Input: strs = ["eat","tea","tan","ate","nat","bat"]
 Output: [["bat"],["nat","tan"],["ate","eat","tea"]]
+
+
+Success
+Details 
+Runtime: 32 ms, faster than 85.67% of C++ online submissions for Group Anagrams.
+Memory Usage: 20.7 MB, less than 34.21% of C++ online submissions for Group Anagrams.
+
 */
 
 class Solution {
