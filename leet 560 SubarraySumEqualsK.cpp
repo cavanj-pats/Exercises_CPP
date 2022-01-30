@@ -83,6 +83,12 @@ public:
 
 */
 
+
+/*
+Runtime: 170 ms, faster than 16.21% of C++ online submissions for Subarray Sum Equals K.
+Memory Usage: 44.5 MB, less than 7.97% of C++ online submissions for Subarray Sum Equals K.
+*/
+
 //from leetcode site.
 //i can't follow this
 class Solution {
