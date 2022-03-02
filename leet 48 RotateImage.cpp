@@ -24,7 +24,7 @@ void refswap(int &x, int &y){
 
 class Solution {
 public:
-    void rotate(vector<vector<int>>& matrix) {
+    void rotate(vector<vector<int> >& matrix) {
 
         int a = 0;
         int b = matrix[0].size()-1;
@@ -53,7 +53,7 @@ void printIntVector(std::vector<int> v){
 
 int main(){
 
-    vector<vector<int>> nums = {{1,2,3},{4,5,6},{7,8,9}};
+    vector<vector<int> > nums = {{1,2,3},{4,5,6},{7,8,9}};
     Solution sol;
 
     cout << "[";
