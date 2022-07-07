@@ -65,6 +65,8 @@ int main(){
     printIntVector(nums);
     std::cout << endl;
 
+    std::cout << endl;
+
 
     return 0;
 }
