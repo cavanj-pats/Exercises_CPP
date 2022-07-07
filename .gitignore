@@ -23,6 +23,7 @@ a
 #turn these off later if I want
 *.plist
 treetester
+*.DS_Store
 
 # User-specific files
 *.rsuser
