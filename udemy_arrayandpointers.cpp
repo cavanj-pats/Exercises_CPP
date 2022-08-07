@@ -4,6 +4,7 @@
 //pointers can access data in a file.  pointer to a file.
 //really anything external to a program.
 /* pointers allow access to heap, "resources", and passing parameters */
+/* every pointer takes the same amount of memory */
 
 
 #include <iostream>
