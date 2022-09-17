@@ -21,8 +21,16 @@ int area (struct rectangle r){
 
 int main(){
     struct rectangle r1;
+    int l=0, b=0;
 
-    initialize(r1, 4,5);  //wont' work if pass by value.s
+    
+    cout << "Enter length: " ;
+    cin >> l ;
+    cout <<"Enter breadth: " ;
+    cin >> b ;
+    cout << endl;
+
+    initialize(r1, l, b);  //wont' work if pass by value.s
 
     printf ("Area= %d \n", area(r1));
 
