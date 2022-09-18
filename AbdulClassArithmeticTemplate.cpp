@@ -4,30 +4,32 @@
 
 using namespace std;
 
+template<class T>
 class Arithmetic{
     private:
-        int a;
-        int b;
+        T a;
+        T b;
     public:
-        Arithmetic(int a, int b);
-        int add();
-        int sub();
+        Arithmetic(T a, T b);
+        T add();
+        T sub();
         
 };
-
-Arithmetic::Arithmetic(int a, int b){
+template<class T>
+Arithmetic<T>::Arithmetic(T a, T b){
     this->a = a;
     this->b = b;
 }
 
-int Arithmetic::add(){
-    int c;
+template<class T>
+T Arithmetic<T>::add(){
+    T c;
     c = a+b;
     return c;
 }
-
-int Arithmetic::sub(){
-    int c;
+template<class T>
+T Arithmetic<T>::sub(){
+    T c;
     c = a-b;
     return c;
 }
@@ -35,7 +37,7 @@ int Arithmetic::sub(){
 
 
 int main(){
-    Arithmetic ar(9,7);
+    Arithmetic<int> ar(9,7);
 
     cout << "Add: " << ar.add() << endl;
     cout << "Sub: " << ar.sub() << endl;
