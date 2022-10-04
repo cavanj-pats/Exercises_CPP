@@ -15,5 +15,8 @@ void fun(int n){
 
 int main(){
     fun(3);
+    printf("\n");
+    
+    
     return 0;
 }
