@@ -18,8 +18,8 @@ int fastpow(int m, int n){
     if (n%2 == 0)
         return fastpow(m*m, n/2);
     else  
-        return m*fastpow(m*m, n/2);  
-
+        return m*fastpow(m*m, n/2);  //im assuning integer division of odd number will be correct
+                                    // 5/2 = 2  same as (5-1)/2
 }
 
 int main(){
