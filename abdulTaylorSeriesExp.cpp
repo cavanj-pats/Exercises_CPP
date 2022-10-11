@@ -7,7 +7,7 @@ using namespace std;
 
 
 
-int fastpow(int m, int n){
+long int fastpow(int m, int n){
     if (n==0)
         return 1;
     
@@ -18,7 +18,7 @@ int fastpow(int m, int n){
                                     // 5/2 = 2  same as (5-1)/2
 }
 
-int factorialN(int n){
+long int factorialN(int n){
     if (n>1){
         return n*factorialN(n-1);
     
@@ -27,11 +27,11 @@ int factorialN(int n){
     }
 }
 
-double e_to_x(int x, int numTerms){
+double  e_to_x(int x, int numTerms){
     //****   USES LOOP ****
-    int p = 0;
-    int f = 0;
-    static double val = 0.0;
+    long int p = 0;
+    long int f = 0;
+    double val = 0.0;
 
     for (int i=0; i<=numTerms; i++){
         p = fastpow(x,i);
@@ -42,28 +42,32 @@ double e_to_x(int x, int numTerms){
 }
 
 double taylorApproximation (int x, int numTerms){
-    //static double val = 0;
-    //val = fastpow(x,numTerms) / factorialN(numTerms);
-    //static int currTerm;
-
+    double val = 0;
+    static long int n;
+    static long int d;
+    
     if(numTerms == 0)
         return 1.0; 
     
-
-    long int n = fastpow(x,numTerms);
-    long int d = factorialN(numTerms);
+    val = taylorApproximation(x, numTerms-1);
+    n = fastpow(x,numTerms);  //if you assign the value here it is important for static variable
+    d = factorialN(numTerms);
+    return val + (double) n /(double) d;
+   
     
-    return  fastpow(x,numTerms) / factorialN(numTerms) + taylorApproximation(x,numTerms-1);
+    
 
 }
 
 
 int main(){
-    int terms = 8;
-    int power = 3;
+    int terms = 48;
+    int power = 5;    
     double exp = e_to_x(power,terms);
+    double r = taylorApproximation(power, terms);
 
     printf("e raised to %d:=%f\n",power,exp);
+    printf("E raised to the %d power = %f\n", power, r);
 
     return 0;
 }
