@@ -61,7 +61,7 @@ double taylorApproximation (int x, int numTerms){
 
 
 int main(){
-    int terms = 48;
+    int terms = 10;
     int power = 5;    
     double exp = e_to_x(power,terms);
     double r = taylorApproximation(power, terms);

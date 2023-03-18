@@ -43,14 +43,14 @@ int fun1(int n){
 int main(){
     int x1 = 5;
 
-    printf("fun1(%d)= %d", x1, fun1(x1));
-    cout << endl;
+    printf("fun1(%d)= %d \n", x1, fun1(x1));
+    //std::cout << endl;
 
     printf ("Static run #1 %d\n", fun(x1));
-    printf ("Static run #2 %d\n", fun(x1));
-    cout << endl;
+    printf ("Static run #2 %d\n\n", fun(x1));
+    //std::cout << endl;
     printf ("Global run #1 x1: %d = %d\n", x1,fung(x1));
-    printf ("Global run #2 x1: %d = %d\n", x1,fung(x1));
+    printf ("Global run #2 x1: %d = %d\n\n", x1,fung(x1));
 
 
     return 0;

@@ -16,6 +16,7 @@ void fun(int n){
 
 int main(){
     fun(3);
-    cout << endl;
+    //cout << endl;
+    printf("\n");
     return 0;
 }

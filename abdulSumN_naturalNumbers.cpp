@@ -17,9 +17,26 @@ int sumN(int n){
     }
 }
 
+int Isum(int n)
+{
+    int s=0;
+    for (int i=1; i<=n; i++)
+        s+=i;
+
+    return s;
+}
+
+int Csum(int n)
+{
+    return (n*(n+1))/2;
+}
+
 int main(){
     int x =8;
     printf("Sum N:%d  = %d\n", x, sumN(x));
+    printf("Isum N:%d = %d\n",x,Isum(x));
+    printf("Csum N:%d = %d\n",x,Csum(x));
+
 
     return 0;
 }
