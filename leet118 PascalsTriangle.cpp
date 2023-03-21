@@ -17,9 +17,9 @@ using namespace std;
 
 class Solution {
 public:
-    vector<vector<int>> generate(int numRows) {
+    vector <vector<int> > generate(int numRows) {
         vector<int> temp;
-        vector<vector<int>> ans;
+        vector <vector <int> > ans;
         
         for (int i=0; i<numRows; ++i){
             if (i==0) {
@@ -52,7 +52,7 @@ public:
 
 
 int main(){
-    vector<vector<int>> ans;
+    vector<vector<int> > ans;
     Solution sol;
     ans = sol.generate(3);
 
@@ -64,7 +64,7 @@ int main(){
         
         }
     if(t == ans.back()) 
-        cout <<"]";
+        cout <<  "]";
     else
         cout << "],";
 
