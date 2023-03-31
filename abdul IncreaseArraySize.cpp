@@ -3,11 +3,12 @@
 
 
 
-//#include <stdlib.h>
-//#include <stdio.h>
-#include <iostream>   //want to do c++ an c
-#include <cstdio>
-#include <iomanip>
+#include <stdlib.h>
+#include <stdio.h>
+#include <cmath>
+//#include <iostream>   
+//#include <cstdio>
+//#include <iomanip>
 
 
 
@@ -25,10 +26,11 @@ int main()
     p[3]=2; 
     p[4]=1;
     for(int i=0; i<5; i++){
-        cout << p[i] << " " ;
+       printf("%d ", p[i]) ;
     }
 
-   cout << endl;
+   //cout << endl;
+    printf("\n");
 
     int * q = new int[10];
     for(int i = 0; i<5; i++)
@@ -37,16 +39,19 @@ int main()
         q[i+5] = 0;
     }
 
-    delete [] p;  //delete and free the old p
+    delete[] p;  //delete and free the old p
     p = q;  //assign p to the new, larger array 
     q = NULL;  //free the old pointer so to speak
 
     for (int i=0; i<10; i++)
      {   
-        std::cout<< p[i];
+        //cout<< p[i];
+        printf("%d ",p[i]);
      }
 
-    std::cout << std::endl;
+    //cout << endl;
+    printf("\n");
+
     
     
     return 0;
