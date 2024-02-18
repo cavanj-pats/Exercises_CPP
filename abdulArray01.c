@@ -13,13 +13,13 @@ struct Array
 };
 
 
-void Print_Array(Array arr)
+void Print_Array(struct Array arr)
 {
-    printf("Array Elements Are:\n")
-    {
+    printf("Array Elements Are:\n");
+
         for(int i=0; i<arr.length; i++)
             printf("%d, ", arr.A[i]);
-    }
+    
     printf("\n");
     return;
 
@@ -49,7 +49,7 @@ int main()
     Print_Array(arr);
 
 
-    free arr;
+    free(arr.A);  //free the memory on the heap that was created by malloc.
     return 0;
 
 
