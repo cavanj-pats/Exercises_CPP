@@ -437,6 +437,116 @@ void arrDifference(struct Array arr1, struct  Array arr2,struct Array *arr3)
 
 // also included using search but he did not code it.  would have to go back and watch white board review.
 
+//find missing elements.  First in sorted arrays (two methods) then in unsorted arrays.
+//arrays of integers.  Once min element is found, print any missing elements until max element
+//example   1,2,4     3 is missing
+void findMissingSorted1(struct Array arr)
+{
+    //find missing based on Array element value differences.
+    int currval = arr.A[0];
+    for(int i = 1; i<arr.length; i++)
+    {
+        //the first element and the last element are not missing :)
+        //this will catch two consecutive missing elements
+        if(arr.A[i]-currval == 1)
+        {
+            currval = arr.A[i]; //move currval to the found elements
+        } else
+        {
+            while(arr.A[i]- currval>1)
+                printf("%d, ", ++currval);   
+        
+            currval = arr.A[i];
+        }
+        
+
+    }
+    printf("\n");
+}
+
+void findMissingSorted2(struct Array arr)
+{
+    //use the difference between the first element value and index
+    int diff = arr.A[0];
+    for(int i = 1; i<arr.length; i++)
+    {
+        while(diff<arr.A[i]-i)
+        {
+            printf("%d, ",diff+i);
+            diff++;
+        }
+
+    }
+    printf("\n");
+
+
+}
+void findMissingUnsorted(struct Array arr)
+{
+    int minval = min(arr);
+    int maxval = max(arr);
+
+    int *p = (int *) malloc(maxval+1);
+    for(int i=0; i<maxval+1;i++){
+        p[i]=0;
+    }
+    for(int j = 0; j<arr.length; j++)
+    {
+        p[arr.A[j]]++;  //this is a counter for how many times an element is present.
+        //same code can be used to find duplicates or more than one occurance of an element
+    }
+    for(int k=minval;k<maxval+1;k++)
+    {
+        if(p[k] ==0)
+            printf("%d, ",k);
+    }
+    printf("\n");
+
+}
+
+void findDuplicatesSorted1(struct Array arr)
+{
+    //array is sorted
+    //items can be duplicated more than two times
+    int item=arr.A[0];
+    int priordup = 0;
+    for(int i = 1; i<arr.length; i++)
+    {
+        if(item ==  arr.A[i] && item != priordup)
+        {
+            printf("%d, ",arr.A[i]);
+            priordup = arr.A[i];
+            
+        }
+        item = arr.A[i];
+    }
+}
+
+
+
+
+void findDuplicatesUnsorted(struct Array arr)
+{
+    int minval = min(arr);
+    int maxval = max(arr);
+
+    int *p = (int *) malloc(maxval+1);
+    for(int i=0; i<maxval+1;i++){
+        p[i]=0;
+    }
+    for(int j = 0; j<arr.length; j++)
+    {
+        p[arr.A[j]]++;  //this is a counter for how many times an element is present.
+        //same code can be used to find duplicates or more than one occurance of an element
+    }
+    for(int k=minval;k<maxval+1;k++)
+    {
+        if(p[k]>1)  //p[k] will actually count occurances of an element
+            printf("%d, ",k);
+    }
+    printf("\n");
+
+}
 
 int main()
 {
@@ -444,10 +554,10 @@ int main()
     arr.size = 10;
     //initialize the memory for the  array in the structs
     arr.A = (int *)malloc(arr.size * sizeof(int));
-    arr.A[0] = 2;
-    arr.A[1] = 4;
+    arr.A[0] = 4;
+    arr.A[1] = 1;
     arr.A[2] = 6;
-    arr.A[3] = -8;
+    arr.A[3] = 5;
     arr.length = 4;
 
     struct Array arr1;   //cannot initiate like Abdul
@@ -461,6 +571,15 @@ int main()
     arr1.A[4] = 9;
     arr1.size = 10;
     arr1.length = 5;
+
+    arrDisplay(arr1);
+    findMissingSorted1(arr1);
+    findMissingSorted2(arr1);
+    findMissingUnsorted(arr1);
+    printf("\n");
+    arrDisplay(arr);
+    findMissingUnsorted(arr);
+    printf("\n");
 
     arr2.A = (int *) malloc(10 * sizeof(int));
     arr3.A = (int *) malloc(20 * sizeof(int));
