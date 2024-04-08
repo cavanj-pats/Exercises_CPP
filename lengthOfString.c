@@ -20,8 +20,8 @@ int main()
     char s[10];
     char a[] = "How are you?";
 
-    //gets(s);  //gets reports warnings
-    scanf("%s",s);  
+    fgets(s,10,stdin);  //gets reports warnings
+    //scanf("%s",s);  
 
     int i;
     int vcount = 0;
@@ -34,7 +34,7 @@ int main()
     }
     printf("\n%s length is =:%d\n",s,i);
 
-    //reverse case
+    //reverse case.  Change Case.
     for(i=0; s[i]!='\0';i++)
     {
         if(s[i]>='A' && s[i]<=90)
@@ -68,7 +68,7 @@ int main()
     //valid numbers are 48-57
     
     printf("validity check of a: ");
-    printf( isValid(a) ? "True" : "False");
+    printf( isValid(s) ? "True" : "False");
     printf("\n");
 
 
