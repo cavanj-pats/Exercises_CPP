@@ -467,13 +467,25 @@ void findMissingSorted1(struct Array arr)
 void findMissingSorted2(struct Array arr)
 {
     //use the difference between the first element value and index
+    // 1, 5, 5, 7, 9   elements
+    // 0, 1, 2, 3, 4   index
+    //this code will not work for duplicate elements adjacent to each other
+    //which they must be because this is a sorted array
+
     int diff = arr.A[0];
     for(int i = 1; i<arr.length; i++)
     {
-        while(diff<arr.A[i]-i)
+        if(arr.A[i] == arr.A[i-1]) 
         {
-            printf("%d, ",diff+i);
-            diff++;
+            diff--;  //there is a duplicate so we need to adjust diff down
+        }
+        else
+        {
+            while(diff < arr.A[i]-i)
+            {
+                printf("%d, ",diff+i);
+                diff++;  //there is a missing element, for each one we need to adjust diff
+            }
         }
 
     }
@@ -483,8 +495,10 @@ void findMissingSorted2(struct Array arr)
 }
 void findMissingUnsorted(struct Array arr)
 {
-    int minval = min(arr);
-    int maxval = max(arr);
+    int minval = min(arr);  //use function I already made
+    int maxval = max(arr);   //use previously made function
+    //since the above functions each traverse the array, we could build a local function
+    //to traverse the loop once and determine both min and maxval
 
     int *p = (int *) malloc(maxval+1);
     for(int i=0; i<maxval+1;i++){
@@ -516,14 +530,63 @@ void findDuplicatesSorted1(struct Array arr)
         {
             printf("%d, ",arr.A[i]);
             priordup = arr.A[i];
-            
         }
         item = arr.A[i];
     }
+    printf("\n");
 }
 
+void findCountDuplicatesSorted(struct Array arr)
+{
+    int j=0;
+    for(int i=0; i<arr.length-1; i++)
+    {
+        if(arr.A[i] ==  arr.A[i+1]){
+            j = i+1;
+            while(arr.A[i]==arr.A[j]) 
+                j++;
+
+            printf("%d found %d time(s).\n",arr.A[i], j-i);
+            i=j-1;  //ok to index i as we don't need to traverse elements that we know were duplicates
+        }
+        
+    }
+}
+
+//Abdul also had a nested loop techinique for finding duplicates
+//he flagged teh duplicate in teh array with a -1.  
+//probably teh best way to do that wouidl be to make a copy of the array so that 
+//you aren't messing up the orginal values.
+
+void findDuplicatesUnsorted1(struct Array arr)
+{
+    int *p = (int *)malloc(arr.length*sizeof(int));
+    int count=0;
+
+    for(int i = 0; i<arr.length; i++)
+        p[i] = 0;  //initialize
+
+    for(int i=0; i<arr.length-1; i++)
+    {
+        count = 1;
+
+        for(int j=i+1; j<arr.length; j++){
+            
+            if(arr.A[i] == arr.A[j] && p[j] !=-1)
+            {
+                count++;
+                p[j]=-1;
+            }
 
 
+        }
+        if (count > 1)
+            printf("%d occured %d times.\n", arr.A[i], count);
+    }
+
+    free(p) ;
+
+}
 
 void findDuplicatesUnsorted(struct Array arr)
 {
@@ -548,6 +611,89 @@ void findDuplicatesUnsorted(struct Array arr)
 
 }
 
+
+void findSumPairEqualsK(struct Array arr, int k)
+{
+    //make a hash table
+    int maxVal = max(arr);
+    int *h = (int *) malloc((maxVal+1) * sizeof(int));
+    for(int i = 0; i<maxVal+1; i++)
+    {
+        h[i]= 0;
+    }
+    for (int j= 0 ; j<arr.length; j++)
+    {
+        h[arr.A[j]]++;
+    }
+    for (int i = 0; i<maxVal+1; i++)
+    {
+        if(h[i] !=0 && h[k-i] !=0)   
+        {
+            //we have a match,  print it
+            printf("%d and %d total %d.\n", i, k-i, k);
+
+            //this will find 1,9 and 9,1 for example.  So duplicate results.
+        }
+    }
+
+
+    free(h);
+
+}
+
+void findSumPairEqualK2(struct Array arr, int k)
+{
+    //i beleive this is only goign to work for a sorted array
+    int i =0;
+    int j = arr.length-1;
+
+    while (i<j)
+    {
+        if (arr.A[i]+arr.A[j]==k)
+        {
+            printf("%d, and %d = %d\n", arr.A[i], arr.A[j], k);
+            i++;
+            j--;
+        }
+        if (arr.A[i]+arr.A[j]>k) j--;
+        if (arr.A[i]+arr.A[j]<k) i++;
+
+    }
+}
+
+
+void minMax(struct Array arr)
+{
+    int i = 0;
+    int j = arr.length-1;
+    int min = arr.A[i];
+    int max = arr.A[j];
+    i++;
+    j--;
+    
+    while (i<j)
+    {
+        if (arr.A[i]<min) 
+        {
+            min = arr.A[i];
+            i++;
+            
+        }
+        if (arr.A[j]<min)
+        {
+            min = arr.A[j];
+            j--;
+        }
+
+
+    }
+
+
+}
+
+
+
+
 int main()
 {
     struct Array arr;
@@ -565,20 +711,31 @@ int main()
     struct Array arr3;
     arr1.A = (int *)malloc(10 * sizeof(int));
     arr1.A[0] = 1;
-    arr1.A[1] = 4;
+    arr1.A[1] = 5;
     arr1.A[2] = 5;
     arr1.A[3] = 7;
     arr1.A[4] = 9;
     arr1.size = 10;
     arr1.length = 5;
 
+    printf("arr1:\n");
     arrDisplay(arr1);
+    printf("FindMissing in arr1:\n");
     findMissingSorted1(arr1);
+    //printf(" Find Missing Sorted Algorithm 1\n");
     findMissingSorted2(arr1);
     findMissingUnsorted(arr1);
-    printf("\n");
+    printf("\n Display arr:\n");
     arrDisplay(arr);
+    printf("\nFind Missing Unsorted:");
     findMissingUnsorted(arr);
+    printf("\nDuplicates in arr1:\n");
+    findDuplicatesSorted1(arr1);
+    findCountDuplicatesSorted(arr1);
+    findDuplicatesUnsorted1(arr1);
+    printf("\n");
+    findSumPairEqualsK(arr1, 10);
+    findSumPairEqualK2(arr1, 10);
     printf("\n");
 
     arr2.A = (int *) malloc(10 * sizeof(int));
