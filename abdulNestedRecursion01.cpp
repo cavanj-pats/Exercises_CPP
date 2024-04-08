@@ -16,7 +16,7 @@ int fun(int n){
 
 
 int main(){
-    printf ("%d", fun(82));
+    printf ("%d\n", fun(82));
 
     return 0;
     
