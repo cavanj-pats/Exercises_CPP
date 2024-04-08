@@ -664,29 +664,23 @@ void findSumPairEqualK2(struct Array arr, int k)
 
 void minMax(struct Array arr)
 {
-    int i = 0;
-    int j = arr.length-1;
-    int min = arr.A[i];
-    int max = arr.A[j];
-    i++;
-    j--;
     
-    while (i<j)
+    int min = arr.A[0];
+    int max = min;
+    
+    for(int i=0; i<arr.length; i++)
     {
         if (arr.A[i]<min) 
         {
             min = arr.A[i];
-            i++;
-            
+            break;
         }
-        if (arr.A[j]<min)
-        {
-            min = arr.A[j];
-            j--;
-        }
-
+        if (arr.A[i]>max)
+            max = arr.A[i];
 
     }
+    printf("Min:= %d\n", min);
+    printf("Max:= %d\n", max);
 
 
 }
@@ -736,6 +730,8 @@ int main()
     printf("\n");
     findSumPairEqualsK(arr1, 10);
     findSumPairEqualK2(arr1, 10);
+    printf("\n");
+    minMax(arr1);
     printf("\n");
 
     arr2.A = (int *) malloc(10 * sizeof(int));
