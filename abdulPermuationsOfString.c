@@ -3,14 +3,9 @@
 
 #include "stdio.h"
 
+void cswap(char*, int , int );
 
-void cswap(char *s, int i, int l)
-{
-    char temp = s[i];
-    s[i]=s[l];
-    s[l]=temp;
 
-}
 void perm(char *s, int k)
 {
     static int A[10]={0};
@@ -56,6 +51,14 @@ void permS(char *s, int l, int h)
 
         }
     }
+}
+
+void cswap(char *s, int i, int l)
+{
+    char temp = s[i];
+    s[i]=s[l];
+    s[l]=temp;
+
 }
 
 int main()
