@@ -63,11 +63,11 @@ void cswap(char *s, int i, int l)
 
 int main()
 {
-    char s[]={'A', 'B', 'C', 'D'};
+    char s[]={'A', 'B', 'C'};
 
-    perm(s,0);
-    printf("\n");
-    permS(s,0,3 );
+    //perm(s,0);
+    //printf("\n");
+    permS(s,0,2 );
 
     return 0;
 }
