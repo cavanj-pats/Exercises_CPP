@@ -51,12 +51,12 @@ int Diagonal::Get(int i, int j)
 
 void Diagonal::Display()
 {
-    for(int i = 0; i<this->n; i++)
+    for(int i = 1; i<=n; i++)
     {
-        for(int j=0; j<this->n; j++)
+        for(int j=1; j<=n; j++)
         {    
             if(i == j) 
-                cout << this->A[i] << "  ";
+                cout << A[i-1] << "  ";
             else
                 cout << "0  ";
         }
@@ -74,7 +74,6 @@ int main()
 
     m.Display();
 
-    m.~Diagonal();
 
 
 
