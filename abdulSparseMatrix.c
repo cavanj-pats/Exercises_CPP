@@ -22,13 +22,13 @@ void create(struct Sparse *s)
 {
     int i;
     
-    printf("Enter Dimensions");
+    printf("Enter Dimensions: ");
     scanf("%d%d",&s->m,&s->n);
-    printf("Number of non-zero");
+    printf("Number of non-zero: ");
     scanf("%d",&s->num);
     
     s->e=(struct Element *)malloc(s->num*sizeof(struct Element));
-    printf("Enter the non-zero Elements");
+    printf("Enter the non-zero Elements in order from lowest to highest row, lowest to highest column: ");
     for(i=0;i<s->num;i++)
         scanf("%d%d%d",&s->e[i].i,&s->e[i].j,&s->e[i].x);
 };
@@ -48,7 +48,8 @@ void display( struct Sparse s)
         }
         printf("\n");
     }
-}
+};
+
 int main()
 {
     struct Sparse s;
