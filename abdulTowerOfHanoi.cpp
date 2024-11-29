@@ -18,7 +18,7 @@ void TOH (int n, int A, int B, int C)
 
 int main()
 {
-    int n = 1;
+    int n = 3;
     TOH(n,1,2,3);
 
 
