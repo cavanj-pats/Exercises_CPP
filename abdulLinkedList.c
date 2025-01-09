@@ -8,18 +8,20 @@
 struct Node{
     int data;
     struct Node *next;
-}*first=NULL;
+}*first=NULL, *last=NULL;
 //the above is a way to create a global Node struct called "first"
 
 void create(int A[], int n){
     int i;
-    struct Node *t, *last;
+    struct Node *t;
     //temp node and 
 
     first = (struct Node *) malloc(sizeof(struct Node));
+    last = (struct Node *) malloc(sizeof(struct Node));
     first->data = A[0];
     first->next = NULL;   //we can change later as we complete the list
-    last = first;
+   // last = first;
+   
 
     for(i=1 ;i<n; i++)
     {
@@ -28,6 +30,8 @@ void create(int A[], int n){
         t->next = NULL;
         last->next=t;
         last = t;
+        if (i==1)
+            first->next = t;
     }
 }
 
@@ -98,7 +102,7 @@ int Rsum(struct Node *p)
 
 int max(struct Node *p)
 {
-    int m = INT8_MIN;
+    int m = INT_MIN;
     while (p)
     {
         if (m<p->data)
@@ -114,7 +118,7 @@ int Rmax(struct Node *p)
     int x;
     //recursive max
     if(!p)
-        return INT8_MIN;
+        return INT_MIN;
     
     x=Rmax(p->next);
 
@@ -174,6 +178,7 @@ void Insert(struct Node * p, int index, int x)
     }
     else
     {
+        //will insert anywhere in a linked list but after a given position
         for(i=1; i<index-1;i++)
             p=p->next;
         t->next=p->next;
@@ -181,6 +186,53 @@ void Insert(struct Node * p, int index, int x)
     }
 
     return;
+}
+
+
+void InsertLast(int x)
+{
+    struct Node *t;
+    t = (struct Node *)malloc(sizeof(struct Node));
+    t->data = x;
+    t->next = NULL;
+
+    if (first == NULL)
+    {
+        first = last = t;
+        return;
+    } else{
+        last->next = t;
+        last = t;
+    }
+
+}
+
+void SortedInsert(struct Node *p, int x)
+{
+    struct Node* t, *q=NULL;
+    t = (struct Node *) malloc(sizeof(struct Node));
+    t->data = x;
+   
+    if(first == NULL)
+    {
+        first = t;
+    }
+    else{
+        while (p && p->data < x)
+        {
+            q=p;
+            p = p->next;
+        }
+        if(p==first)
+        {
+            t->next = first;
+            first=t;
+        }
+        else{
+            t->next= q->next;
+            q->next = t;
+        }
+    }
 }
 
 int main()
@@ -193,6 +245,9 @@ int main()
     printf("\n");
     displayR(first);
     printf("\n");
+    SortedInsert(first, 16);
+    display(first);
+    /*
     printf("count is: %d\n", count(first));
     printf("Rcount is: %d \n", Rcount(first));
     printf("Sum is: %d\n",sum(first));
@@ -211,6 +266,11 @@ int main()
    Insert(first,3,92);
    display(first);
     
+    InsertLast(31);
+    printf("\n");
+    display(first);
+    */
+
 
 
     return 0;
