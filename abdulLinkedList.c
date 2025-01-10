@@ -189,6 +189,70 @@ void Insert(struct Node * p, int index, int x)
 
     return;
 }
+
+void SortedInsert(struct Node *p,int x)
+{
+    struct Node *t,*q=NULL;
+ 
+    t=(struct Node*)malloc(sizeof(struct Node));
+    t->data=x;
+    t->next=NULL;
+    if(first==NULL)
+        first=t;
+    else
+    {
+        while(p && p->data<x)
+        {
+            q=p;
+            p=p->next;
+        }
+        if(p==first)
+        {
+            t->next=first;
+            first=t;
+        }
+        else
+        {
+            t->next=q->next;
+        }
+        q->next=t;
+    }
+}
+
+int Delete(struct Node *p, int index)
+{
+    //remove the node by using its index and return the deleted node's data
+    //first check for valid index
+    int x = -1;
+    struct Node * q = NULL;
+
+    if (p && index > 0)
+    {
+        
+        if(index == 1)
+            {
+                x = p->data;
+                first = p->next;
+                free(p);
+                
+             }
+        else 
+        {
+            for(int i = 0; i<index-1 && p;i++)    //see the confimation that p is valid not null
+            {
+                q = p;
+                p=p->next;
+            }
+            q->next = p->next;   //links node before deleted node to node after 
+            x = p->data;
+            free(p);
+        
+        }
+        return x;
+    }
+    return 
+}
+
 int isSorted(struct Node * p)
 {
     while(p->next)
@@ -201,10 +265,11 @@ int isSorted(struct Node * p)
     return 0;
 }
 
+
 int main()
 {
    
-    int A[]={3,5,11,10,15};
+    int A[]={3,5,9,11,15};
     struct Node * temp;
 
     create(A, 5);
