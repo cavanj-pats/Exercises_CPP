@@ -225,32 +225,31 @@ int Delete(struct Node *p, int index)
     //first check for valid index
     int x = -1;
     struct Node * q = NULL;
-
-    if (p && index > 0)
+    if(!p || (index < 1 || index > count(p)))
+        return -1;
+    if (index == 1)
     {
-        
-        if(index == 1)
-            {
-                x = p->data;
-                first = p->next;
-                free(p);
-                
-             }
-        else 
-        {
-            for(int i = 0; i<index-1 && p;i++)    //see the confimation that p is valid not null
-            {
-                q = p;
-                p=p->next;
-            }
-            q->next = p->next;   //links node before deleted node to node after 
-            x = p->data;
-            free(p);
-        
-        }
+        x = p->data;
+        first = p->next;
+        free(p);
         return x;
     }
-    return -1;
+    else 
+    {
+        for(int i = 0; i<index-1 && p;i++)    //see the confimation that p is valid not null
+        {
+            q = p;  
+            p=p->next;
+        }
+        q->next = p->next;   //links node before deleted node to node after 
+        x = p->data;
+        free(p);
+        return x;
+        
+    }
+        
+    
+    
 }
 
 int isSorted(struct Node * p)
@@ -301,7 +300,8 @@ int main()
    //SortedInsert(first,18);
    display(first);
    printf("\nIsSorted: %d\n",isSorted(first));
-
+    Delete(first,5);
+    display(first);
     
 
 
