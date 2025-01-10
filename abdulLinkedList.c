@@ -188,56 +188,10 @@ void Insert(struct Node * p, int index, int x)
     return;
 }
 
-
-void InsertLast(int x)
-{
-    struct Node *t;
-    t = (struct Node *)malloc(sizeof(struct Node));
-    t->data = x;
-    t->next = NULL;
-
-    if (first == NULL)
-    {
-        first = last = t;
-        return;
-    } else{
-        last->next = t;
-        last = t;
-    }
-
-}
-
-void SortedInsert(struct Node *p, int x)
-{
-    struct Node* t, *q=NULL;
-    t = (struct Node *) malloc(sizeof(struct Node));
-    t->data = x;
-   
-    if(first == NULL)
-    {
-        first = t;
-    }
-    else{
-        while (p && p->data < x)
-        {
-            q=p;
-            p = p->next;
-        }
-        if(p==first)
-        {
-            t->next = first;
-            first=t;
-        }
-        else{
-            t->next= q->next;
-            q->next = t;
-        }
-    }
-}
-
 int main()
 {
-    int A[]={3,5,7,10,15};
+   
+    int A[]={3,5,11,10,15};
     struct Node * temp;
 
     create(A, 5);
@@ -254,23 +208,21 @@ int main()
     printf("RSum is: %d\n",Rsum(first));
     printf("Max Element is: %d\n", max(first));
     printf("RMax Element is: %d\n", Rmax(first));
+
+    
+    /*
     temp = LSearch(first,7);
     if (temp)
         printf("Key found.\n");
     else    
         printf("Key not found.\n");
-
-    display(first);
-    printf("\n");
+*/
+  //  display(first);
+  //  printf("\n");
    // struct Node * t;
-   Insert(first,3,92);
+   SortedInsert(first,18);
    display(first);
     
-    InsertLast(31);
-    printf("\n");
-    display(first);
-    */
-
 
 
     return 0;
