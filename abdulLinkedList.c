@@ -102,7 +102,7 @@ int Rsum(struct Node *p)
 
 int max(struct Node *p)
 {
-    int m = INT_MIN;
+    int m = -65536;
     while (p)
     {
         if (m<p->data)
@@ -118,7 +118,7 @@ int Rmax(struct Node *p)
     int x;
     //recursive max
     if(!p)
-        return INT_MIN;
+        return -65536;
     
     x=Rmax(p->next);
 
@@ -158,6 +158,8 @@ struct Node * RSearch(struct Node * p, int key)
     return RSearch(p->next, key);
 }
 
+
+
 void Insert(struct Node * p, int index, int x)
 {
     struct Node * t;
@@ -187,6 +189,17 @@ void Insert(struct Node * p, int index, int x)
 
     return;
 }
+int isSorted(struct Node * p)
+{
+    while(p->next)
+    {
+        if(p->data>p->next->data)
+            return -1;
+        
+        p = p->next;
+    }
+    return 0;
+}
 
 int main()
 {
@@ -199,8 +212,8 @@ int main()
     printf("\n");
     displayR(first);
     printf("\n");
-    SortedInsert(first, 16);
-    display(first);
+    //SortedInsert(first, 16);
+    //display(first);
     /*
     printf("count is: %d\n", count(first));
     printf("Rcount is: %d \n", Rcount(first));
@@ -210,7 +223,7 @@ int main()
     printf("RMax Element is: %d\n", Rmax(first));
 
     
-    /*
+    
     temp = LSearch(first,7);
     if (temp)
         printf("Key found.\n");
@@ -220,8 +233,10 @@ int main()
   //  display(first);
   //  printf("\n");
    // struct Node * t;
-   SortedInsert(first,18);
+   //SortedInsert(first,18);
    display(first);
+   printf("\nIsSorted: %d\n",isSorted(first));
+
     
 
 
