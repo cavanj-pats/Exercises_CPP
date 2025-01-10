@@ -250,7 +250,7 @@ int Delete(struct Node *p, int index)
         }
         return x;
     }
-    return 
+    return -1;
 }
 
 int isSorted(struct Node * p)
