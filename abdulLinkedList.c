@@ -386,7 +386,9 @@ void Merge(struct Node *p, struct Node *q)
                 last->next=NULL;
         }
     }
-    if(p)last->next=p;
+    //one list is at the end.  all that needs to be done is connect last node to first node
+    //or remainining list.
+    if(p)last->next=p;  
     if(q)last->next=q;
 
 }
