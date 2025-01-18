@@ -159,7 +159,6 @@ struct Node * RSearch(struct Node * p, int key)
 }
 
 
-
 void Insert(struct Node * p, int index, int x)
 {
     struct Node * t;
@@ -245,15 +244,14 @@ int Delete(struct Node *p, int index)
         x = p->data;
         free(p);
         return x;
-        
-    }
-        
-    
-    
+    }        
 }
+
 
 int isSorted(struct Node * p)
 {
+    //if there are duplicates adjacent to each other they should be ignored.
+    
     while(p->next)
     {
         if(p->data>p->next->data)
@@ -264,16 +262,39 @@ int isSorted(struct Node * p)
     return 0;
 }
 
+void RemoveDuplicates(struct Node * p)
+{
+    //list must be sorted
+    struct Node *q = p->next;
+
+    while (q!=NULL)
+    {
+        if(p->data != q->data)
+        {
+            p=q;
+            q=q->next;
+        }
+        else
+        {
+            p->next = q->next;
+            free(q);
+            q=p->next;
+        }
+    }
+}
+
 
 int main()
 {
    
-    int A[]={3,5,9,11,15};
+   // int A[]={3,5,9,11,15};
+   //for testing remove duplicates
+   int A[]={3,3,5,8,8};
     struct Node * temp;
 
     create(A, 5);
     display(first);
-    printf("\n");
+    printf("\nDisplay Reversed:\n");
     displayR(first);
     printf("\n");
     //SortedInsert(first, 16);
@@ -298,12 +319,19 @@ int main()
   //  printf("\n");
    // struct Node * t;
    //SortedInsert(first,18);
+   
+   /*
+   //testing isSorted and Delete
    display(first);
    printf("\nIsSorted: %d\n",isSorted(first));
     Delete(first,5);
     display(first);
-    
+    */
 
+    //testing Remove Duplicates
+    RemoveDuplicates(first);
+    printf("Remove Duplicates:\n");
+    display(first);
 
     return 0;
 }
