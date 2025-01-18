@@ -316,9 +316,9 @@ void ReverseListRec(struct Node * q, struct Node * p)
 int main()
 {
    
-   // int A[]={3,5,9,11,15};
+    int A[]={3,5,9,11,15};
    //for testing remove duplicates
-   int A[]={3,3,5,8,8};
+   //int A[]={3,3,5,8,8};
     struct Node * temp;
 
     create(A, 5);
@@ -360,6 +360,12 @@ int main()
     //testing Remove Duplicates
     RemoveDuplicates(first);
     printf("Remove Duplicates:\n");
+    display(first);
+
+    //reverse list
+    
+    ReverseListRec(NULL,first);
+    printf("\nReverse List:\n");
     display(first);
 
     return 0;
