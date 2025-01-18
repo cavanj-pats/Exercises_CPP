@@ -8,7 +8,7 @@
 struct Node{
     int data;
     struct Node *next;
-}*first=NULL, *last=NULL;
+}*first=NULL, *last=NULL, *second=NULL, *third=NULL;
 //the above is a way to create a global Node struct called "first"
 
 void create(int A[], int n){
@@ -33,8 +33,31 @@ void create(int A[], int n){
         if (i==1)
             first->next = t;
     }
-}
+} //create
 
+void create2(int A[], int n){
+    int i;
+    struct Node *t;
+    //temp node and 
+
+    second = (struct Node *) malloc(sizeof(struct Node));
+    last = (struct Node *) malloc(sizeof(struct Node));
+    second->data = A[0];
+    second->next = NULL;   //we can change later as we complete the list
+   // last = first;
+   
+
+    for(i=1 ;i<n; i++)
+    {
+        t=(struct Node *) malloc(sizeof(struct Node));   //have to create a new memory address for each element
+        t->data = A[i];
+        t->next = NULL;
+        last->next=t;
+        last = t;
+        if (i==1)
+            second->next = t;
+    }
+}//create2
 
 void display(struct Node * p)
 {
@@ -317,12 +340,17 @@ int main()
 {
    
     int A[]={3,5,9,11,15};
+    int B[]={20,30,40,50,60};
    //for testing remove duplicates
    //int A[]={3,3,5,8,8};
     struct Node * temp;
 
     create(A, 5);
+    create2(B,5);
+
     display(first);
+    printf("\nDisplay Second:\n");
+    display(second);
     printf("\nDisplay Reversed:\n");
     displayR(first);
     printf("\n");
