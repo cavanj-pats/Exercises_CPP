@@ -352,7 +352,43 @@ void Concat(struct Node * p, struct Node * q)
 
 void Merge(struct Node *p, struct Node *q)
 {
-    
+    struct Node *last;
+    //establish the first node of the merged list "third"
+    if(p->data < q->data)
+    {
+        third=last=p;
+        p=p->next;
+        third->next=NULL;
+    }
+    else
+    {
+        third=last=q;
+        q=q->next;
+        third->next=NULL;
+    }
+
+    //loop through the list and take the smaller value
+    //until we get to the end of one of the lists
+    while(p && q)
+    {
+        if(p->data < q->data)
+            {
+                last->next=p;
+                last=p;
+                p=p->next;
+                last->next=NULL;
+            }
+            else
+            {
+                last->next=q;
+                last=q;
+                q=q->next;
+                last->next=NULL;
+        }
+    }
+    if(p)last->next=p;
+    if(q)last->next=q;
+
 }
 
 
