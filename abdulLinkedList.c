@@ -336,6 +336,27 @@ void ReverseListRec(struct Node * q, struct Node * p)
     }
 }
 
+void Concat(struct Node * p, struct Node * q)
+{
+    //add q onto the end of p and make it the third list
+    //move to last node of p and have it point to first node of q which is second
+    third = p;
+
+    while (p->next !=NULL)
+    {
+        p = p->next;
+    }
+    p->next = q;
+    //i think this also changes "first" LList.
+}
+
+void Merge(struct Node *p, struct Node *q)
+{
+    
+}
+
+
+
 int main()
 {
    
@@ -353,6 +374,7 @@ int main()
     display(second);
     printf("\nDisplay Reversed:\n");
     displayR(first);
+
     printf("\n");
     //SortedInsert(first, 16);
     //display(first);
