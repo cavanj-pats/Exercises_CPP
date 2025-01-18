@@ -299,6 +299,20 @@ void ReversList(struct Node * p)
 
 }
 
+void ReverseListRec(struct Node * q, struct Node * p)
+{
+    //reverse list using recursion
+
+    if(p!=NULL)
+    {
+        ReverseListRec(p, p->next);
+        p->next = q;
+    }
+    else{
+        first = q;
+    }
+}
+
 int main()
 {
    
