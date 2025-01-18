@@ -283,6 +283,21 @@ void RemoveDuplicates(struct Node * p)
     }
 }
 
+void ReversList(struct Node * p)
+{
+    struct Node* q=NULL, *r=NULL;
+    while (p != NULL)
+    {
+        //slide along the list
+        r= q;
+        q = p;
+        p = p->next;
+        //reverse by making this assignment
+        q->next = r;
+    }
+    first = q;  
+
+}
 
 int main()
 {
