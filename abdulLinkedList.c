@@ -393,6 +393,23 @@ void Merge(struct Node *p, struct Node *q)
 
 }
 
+int IsLoop(struct Node * f)
+{
+    struct Node *p, *q;
+    p = q = f;
+    
+    do
+    {
+        p=p->next;
+        q=q->next;
+        //now conditionally move q
+        q = q?q->next:q;  //if q is not null move it, if it is null leave it alone
+    } while(p && q && p!=q);
+    if(p==q) 
+        return 1;
+    else
+        return 0;
+}
 
 
 int main()
@@ -455,6 +472,16 @@ int main()
     ReverseListRec(NULL,first);
     printf("\nReverse List:\n");
     display(first);
+
+
+    //test IsLoop
+    struct Node * t1 = first->next->next;   //second node
+    struct Node * t2 = first->next->next->next->next;  //fifth node
+    //t2->next = t1;   // forms a loop
+
+    printf("\nIsLoop:\n");
+    printf("%d\n",IsLoop(first));
+    
 
     return 0;
 }
