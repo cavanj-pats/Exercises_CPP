@@ -35,6 +35,9 @@ void create(int A[], int n){
     }
 } //create
 
+
+//create2 allows for a program that has to LLists  one at first the other at second.
+//second list is created below.
 void create2(int A[], int n){
     int i;
     struct Node *t;
