@@ -145,6 +145,44 @@ void Insert(struct Node * p, int index, int x)
 }//Insert
 
 
+// Delete from Circular Doubly Linked List
+int Delete(struct Node *p, int index)
+{
+    int x = -1;//intial value for the return variable
+    int i;
+
+    if(index <1 || index >length(p))
+        return x;  //index is out of range
+
+    if(index == 1)
+    {
+        //need to delete the head node and re-assign it
+        p=head;
+        p->prev->next = p->next;
+        p->next->prev = p->prev;
+        x = p->data;
+        head = p->next;
+        free(p);
+        return x;
+
+    }
+    else
+    {
+        for (i=1; i<index; i++)
+            p=p->next;
+        
+        if(p)
+        {
+            p->prev->next = p->next;
+            p->next->prev = p->prev;
+            x = p->data;
+            free(p);
+            return x;
+        }
+    }
+    
+    return -1;   //no node to delete
+}
 
 
 
@@ -157,11 +195,13 @@ int main()
     display(head);
     printf("\nLength of list: %d\n",length(head));
 
-    Insert(head,5,11);
+    Insert(head,1,11);
     display(head);
     printf("\nLength of list: %d\n",length(head));
 
-   // printf("Deleted Node: %d\n",Delete(first,3));
+    printf("Deleted Node: %d \n", Delete(head,6));
+    display(head);
+    printf("\nLength of list after remove node: %d\n",length(head));
     //Reverse(first);
     //printf("After Reverse: ");
     //display(first);
