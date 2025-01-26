@@ -99,13 +99,19 @@ int count(struct Node * p)
     
 }
 
+int Length( struct Node * p)
+{
+    return count(p);
+}
+
+
 //insert a not at index containing data x
 void Insert(struct Node * p, int index, int x)
 {
     struct Node * t;
     int i;
     
-    if(p==NULL || index > count(p) || index < 0)
+    if(index > count(p) || index < 0)
     {
         //there is no list or the requested insert postion is beyond the current list
         return;
@@ -115,19 +121,35 @@ void Insert(struct Node * p, int index, int x)
     //ok now we need t
     t=(struct Node *)malloc(sizeof(struct Node));
     t->data = x;
-
+    
+    
     if(index==0)
     {
-        t->next = head;
-        head = t;
+        //check and see if LList is empty
+        if(head == NULL)
+        {
+            head = t;
+            head->next = head;
+            //return;
+        }
+        else
+        {
+            //i don't know why we have to move to head. 
+            while(p->next!=head) 
+                p = p->next;   //move to head
+            p->next=t;
+            t->next = head;
+            head = t;
+        }
     }
     else
     {
         //will insert anywhere in a linked list but after a given position
         for(i=1; i<index-1;i++)
             p=p->next;
-        t->next=p->next;
         p->next = t;
+        t->next = head;
+        head = t;
     }
 
     return;
