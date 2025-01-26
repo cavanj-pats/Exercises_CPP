@@ -85,6 +85,53 @@ void Rdisplay(struct Node * h)
         printf("\n");  //just print a newline
 }
 
+int count(struct Node * p)
+{
+    struct Node * q = p;  //set a node for starting point
+    int c = 0;
+    do
+    {
+        c++;
+        p=p->next;
+    } while (p != q);
+
+   return c;
+    
+}
+
+//insert a not at index containing data x
+void Insert(struct Node * p, int index, int x)
+{
+    struct Node * t;
+    int i;
+    
+    if(p==NULL || index > count(p) || index < 0)
+    {
+        //there is no list or the requested insert postion is beyond the current list
+        return;
+    }
+    
+
+    //ok now we need t
+    t=(struct Node *)malloc(sizeof(struct Node));
+    t->data = x;
+
+    if(index==0)
+    {
+        t->next = head;
+        head = t;
+    }
+    else
+    {
+        //will insert anywhere in a linked list but after a given position
+        for(i=1; i<index-1;i++)
+            p=p->next;
+        t->next=p->next;
+        p->next = t;
+    }
+
+    return;
+}
 
 
 int main()
@@ -93,6 +140,10 @@ int main()
     create(A,5);
     Rdisplay(head);
     display(head);
+    printf("\n%d\n",count(head));
+    Insert(head,4,7);
+    display(head);
+    printf("\n%d\n",count(head));
 
 
     return 0;
