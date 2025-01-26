@@ -66,6 +66,9 @@ int length(struct Node * p)
 
 void Insert(struct Node * p, int index, int x)
 {
+    //if index = 0 node will become first
+    //if index is any other value less than length the new node will be inserted after node at index
+    
     struct Node * t;
     int i;
     if(p==NULL || index > length(p))
@@ -88,7 +91,7 @@ void Insert(struct Node * p, int index, int x)
     else
     {
         //will insert anywhere in a linked list but after a given position
-        for(i=1; i<index-1;i++)
+        for(i=0; i<index-1;i++)  //start at zero and traverse links not nodes I guess....
             p=p->next;
         t->next=p->next;
         t->prev = p;
@@ -110,6 +113,9 @@ int main()
     display(first);
     printf("\nLength of list: %d\n",length(first));
 
+    Insert(first,1,11);
+    display(first);
+    printf("\nLength of list: %d\n",length(first));
 
 
 
