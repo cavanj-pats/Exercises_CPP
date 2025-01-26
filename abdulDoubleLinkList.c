@@ -68,7 +68,7 @@ void Insert(struct Node * p, int index, int x)
 {
     //if index = 0 node will become first
     //if index is any other value less than length the new node will be inserted after node at index
-    
+
     struct Node * t;
     int i;
     if(p==NULL || index > length(p))
@@ -103,7 +103,34 @@ void Insert(struct Node * p, int index, int x)
     return;
 }  //Insert
 
+int Delete(struct Node *p, int index)
+{
+    int data = p->data;
+    int i;
+    if(index<1 || index>length(p))
+        return -1;
 
+    if(index ==1)
+    {
+        first = p->next;
+        free(p);  //free the memory p was in
+        if(first)
+            first->prev = NULL;  //first exists so we can set its previous
+        return data;
+    }
+    else
+    {
+        for (i=0;i<index-1;i++)   //start at 0 as i want to land at the node at index
+            p=p->next;
+        if(p->next)
+            p->next->prev = p->prev;    
+        p->prev->next = p->next;   //is fine even if p->next is null
+        free(p);
+        return data;
+    }
+
+    
+} //delete
 
 
 int main()
@@ -117,7 +144,9 @@ int main()
     display(first);
     printf("\nLength of list: %d\n",length(first));
 
+    printf("Deleted Node: %d\n",Delete(first,2));
 
+    display(first);
 
 
     return 0;
