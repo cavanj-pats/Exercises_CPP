@@ -466,7 +466,26 @@ int findMiddleNode3(struct Node* p){
 }//middleNode3
 
 
+//from the quiz
+void rearrange (struct Node *list)
+{
 
+    struct Node *p, *q;
+    int temp;
+    if (!list || !list -> next) return;
+    p = list;
+    q = list -> next;
+
+    while (q)
+    {
+        temp = p-> data;
+        p -> data = q -> data;
+        q -> data = temp;
+        p = q ->next;
+        q = p ? p -> next : 0;
+    }
+
+}//rearrange from quiz
 
 int main()
 {
@@ -484,10 +503,14 @@ int main()
     display(first);
     printf("\nDisplay Second:\n");
     display(second);
-    
+//rearrange is from the quiz
+    //rearrange(first);
+   // printf("\nAfter Rearrange: \n");
+    //display(first);
+   // 
     printf("\nFind MIddle List A: %d\n",findMiddleNode(first));
     printf("\nFind MIddle List A 1: %d\n",findMiddleNode1(first));
-    printf("\nFind MIddle List A 1: %d\n",findMiddleNode3(first));
+    printf("\nFind MIddle List A 3: %d\n",findMiddleNode3(first));
     printf("\nFind Middle List B: %d\n", findMiddleNode(second));
     
     printf("\nDisplay Reversed:\n");
