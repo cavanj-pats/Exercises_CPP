@@ -414,6 +414,23 @@ int IsLoop(struct Node * f)
         return 0;
 }
 
+int findMiddleNode(struct Node *p)
+{
+    struct Node *q;
+    q = p;
+    //traverse the list using p at twice the speed of q
+    //once the end is reached q will be in the middle
+    while(p)
+    {
+        p = p->next;
+        if(p) 
+            p=p->next;
+        if (p) 
+            q = q->next;
+    }
+    return q->data;
+}
+
 
 int main()
 {
@@ -427,9 +444,14 @@ int main()
     create(A, 5);
     create2(B,5);
 
+    printf("Display First:\n");
     display(first);
     printf("\nDisplay Second:\n");
     display(second);
+    
+    printf("\nFind MIddle List A: %d\n",findMiddleNode(first));
+    printf("\nFind Middle List B: %d\n", findMiddleNode(second));
+    
     printf("\nDisplay Reversed:\n");
     displayR(first);
 
