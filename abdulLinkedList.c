@@ -3,6 +3,9 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
+#include <stack.h>
+//#include "iostream.h"
 
 
 struct Node{
@@ -429,7 +432,17 @@ int findMiddleNode(struct Node *p)
             q = q->next;
     }
     return q->data;
-}
+} //findMiddleNode  traverse two pointers one at double speed
+
+int findMiddleNode1(struct Node* p)
+{
+    int i;
+    int mid = (int) ceil(count(p)/2);
+    for(i=0; i<mid;i++)
+        p=p->next;
+
+    return p->data;
+}  //findMiddleNode1
 
 
 int main()
@@ -450,6 +463,7 @@ int main()
     display(second);
     
     printf("\nFind MIddle List A: %d\n",findMiddleNode(first));
+    printf("\nFind MIddle List A 1: %d\n",findMiddleNode1(first));
     printf("\nFind Middle List B: %d\n", findMiddleNode(second));
     
     printf("\nDisplay Reversed:\n");
