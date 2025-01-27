@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-//#include <stack.h>
+#include <cstack.h>  //home made stack in C
 //#include "iostream.h"
 
 
@@ -443,6 +443,28 @@ int findMiddleNode1(struct Node* p)
 
     return p->data;
 }  //findMiddleNode1
+
+
+void findMiddleNode3(struct Node* p){
+    struct Stack  *s;
+    int length = 0;
+    int value =0;
+    while (p){
+        push(s, p);
+        length++;
+        p = p->next;
+    }
+    
+    int popLength = (int)(floor(length/2.0));
+    while (popLength){
+        value = pop(s);
+        popLength--;
+    }
+    printf("Middle Element (Method-III): %d", peek(s));
+
+}//middleNode3
+
+
 
 
 int main()
