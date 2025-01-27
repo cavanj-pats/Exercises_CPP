@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-#include <cstack.h>  //home made stack in C
+#include "cstack.h"  //home made stack in C
 //#include "iostream.h"
 
 
@@ -445,12 +445,12 @@ int findMiddleNode1(struct Node* p)
 }  //findMiddleNode1
 
 
-void findMiddleNode3(struct Node* p){
+int findMiddleNode3(struct Node* p){
     struct Stack  *s;
     int length = 0;
     int value =0;
     while (p){
-        push(s, p);
+        push(s, p->data);
         length++;
         p = p->next;
     }
@@ -460,7 +460,8 @@ void findMiddleNode3(struct Node* p){
         value = pop(s);
         popLength--;
     }
-    printf("Middle Element (Method-III): %d", peek(s));
+    //printf("Middle Element (Method-III): %d", peek(s));
+    return peek(s);
 
 }//middleNode3
 
@@ -486,6 +487,7 @@ int main()
     
     printf("\nFind MIddle List A: %d\n",findMiddleNode(first));
     printf("\nFind MIddle List A 1: %d\n",findMiddleNode1(first));
+    printf("\nFind MIddle List A 1: %d\n",findMiddleNode3(first));
     printf("\nFind Middle List B: %d\n", findMiddleNode(second));
     
     printf("\nDisplay Reversed:\n");
