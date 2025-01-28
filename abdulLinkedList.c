@@ -447,6 +447,8 @@ int findMiddleNode1(struct Node* p)
 
 int findMiddleNode3(struct Node* p){
     struct Stack  *s;
+    initStack(s);
+
     int length = 0;
     int value =0;
     while (p){
@@ -455,13 +457,14 @@ int findMiddleNode3(struct Node* p){
         p = p->next;
     }
     
-    int popLength = (int)(floor(length/2.0));
+    int popLength = (int)((length/2.0));   //(int)floor(length/2.0))
     while (popLength){
         value = pop(s);
         popLength--;
     }
     //printf("Middle Element (Method-III): %d", peek(s));
-    return peek(s);
+    value = peek(s);
+    return value;
 
 }//middleNode3
 
