@@ -450,7 +450,7 @@ int findMiddleNode3(struct Node* p){
     initStack(s);
 
     int length = 0;
-    int value =0;
+    int v =0;
     while (p){
         push(s, p->data);
         length++;
@@ -459,12 +459,12 @@ int findMiddleNode3(struct Node* p){
     
     int popLength = (int)((length/2.0));   //(int)floor(length/2.0))
     while (popLength){
-        value = pop(s);
+        v = pop(s);
         popLength--;
     }
     //printf("Middle Element (Method-III): %d", peek(s));
-    value = peek(s);
-    return value;
+    v = peek(s);
+    return v;
 
 }//middleNode3
 
@@ -512,8 +512,8 @@ int main()
     //display(first);
    // 
     printf("\nFind MIddle List A: %d\n",findMiddleNode(first));
-    printf("\nFind MIddle List A 1: %d\n",findMiddleNode1(first));
-    printf("\nFind MIddle List A 3: %d\n",findMiddleNode3(first));
+    printf("\nFind Middle List A 1: %d\n",findMiddleNode1(first));
+    printf("\nFind MIiddle List A 3: %d\n", findMiddleNode3(first));
     printf("\nFind Middle List B: %d\n", findMiddleNode(second));
     
     printf("\nDisplay Reversed:\n");
