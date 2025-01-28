@@ -18,6 +18,11 @@ struct Sparse
     struct Element *e;
 };  //struct Sparse
 
+//Node struct so that we can also create an array of linked lists of Elements
+struct Node{
+    int data;
+    struct Node *next;
+}*first=NULL;
 
 //this is an array based sparse matrix
 void create(struct Sparse *s)
@@ -36,7 +41,6 @@ void create(struct Sparse *s)
     for(i=0;i<s->num;i++)
         scanf("%d%d%d",&s->e[i].i,&s->e[i].j,&s->e[i].x);
 };
-
 
 void display( struct Sparse s)
 {
