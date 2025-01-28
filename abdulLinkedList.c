@@ -444,8 +444,9 @@ int findMiddleNode1(struct Node* p)
     return p->data;
 }  //findMiddleNode1
 
-
-int findMiddleNode3(struct Node* p){
+/*
+int findMiddleNode3(struct Node* p)
+{
     struct Stack  *s;
     initStack(s);
 
@@ -467,7 +468,23 @@ int findMiddleNode3(struct Node* p){
     return v;
 
 }//middleNode3
+*/
 
+int findMidNode3(struct Node* p)
+{
+    int A[100];
+    int length=0;
+    int popLength = 0;
+    
+    while(p)
+    {
+        A[length]=p->data;
+        length++;  //will have the number of nodes which is 1 more than Array index
+        p=p->next;
+    }
+    popLength = (int)((length/2.0)); //this is about the middle node from the stack stored in the array
+    return A[length-popLength-1];
+}
 
 //from the quiz
 void rearrange (struct Node *list)
@@ -513,8 +530,10 @@ int main()
    // 
     printf("\nFind MIddle List A: %d\n",findMiddleNode(first));
     printf("\nFind Middle List A 1: %d\n",findMiddleNode1(first));
-    printf("\nFind MIiddle List A 3: %d\n", findMiddleNode3(first));
+   // printf("\nFind MIiddle List A 3: %d\n", findMiddleNode3(first));
+    printf("\nFind MIiddle List A 3: %d\n", findMidNode3(first));
     printf("\nFind Middle List B: %d\n", findMiddleNode(second));
+    printf("\nFind MIiddle List B 3: %d\n", findMidNode3(second));
     
     printf("\nDisplay Reversed:\n");
     displayR(first);
