@@ -110,8 +110,11 @@ void create(struct Sparse *s)
 
         }
         else{
+            //sort of a modified InsertSort or SortedInsert function
+            
             q = &s->p[mm];
-            //should q become the first node
+
+            //should q become the first node if t col < q col
             if(t->col < q->col)
             {
                 t->next = q;
@@ -140,9 +143,7 @@ void create(struct Sparse *s)
                             q = q->next;
                         }
                     } 
-            
-            
-                    //SortedInsert(&s->p[mm], nn, data);
+        
                 }
             }
                  
