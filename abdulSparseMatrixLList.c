@@ -15,7 +15,7 @@ struct Sparse
     int m;
     int n;
     int num;
-    struct Node *p;
+    struct Node **p;
 };  //struct Sparse
 
 //Node struct so that we can also create an array of linked lists of Elements
@@ -39,9 +39,10 @@ void create(struct Sparse *s)
     
     printf("Enter Dimensions: ");
     scanf("%d%d",&s->m,&s->n);
+    
     //for initial testing
-    //s->m = 3;
-    //s->n = 3;
+   // s->m = 3;
+   // s->n = 3;
     
     printf("Enter the total Number of non-zero elements: ");
 
@@ -56,7 +57,7 @@ void create(struct Sparse *s)
     //create a one dimensional array to hold the lists. one array of lists
    // struct Node *A[s->m];
     //array declaration reserves the memory.
-    s->p = (struct Node*)malloc( s->m * sizeof(struct Node));
+    s->p = (struct Node**)malloc( s->m * sizeof(struct Node *));
     //when the above memory is reserved, the starting address is reserved and it can't be changed
     //
     
@@ -68,18 +69,20 @@ void create(struct Sparse *s)
 
     printf("Enter the non-zero Elements...\n");
     printf("\nEnter ROW COLUMN and data DATA (ex. 0 1 2):\n");
-    for(i=0; i<s->num;i++)
-        s->p[i].first = NULL;  //initialize the array of pointers
+    //for(i=0; i<s->num;i++)
+      //  s->p[i].first = NULL;  //initialize the array of pointers
 
     for(i=0;i<s->num;i++)
     { 
         
       //using this procedure the nodes can be entered in any order and they'll be inserted into the correct list.  
       scanf("%d%d%d",&mm, &nn, &data);
-       // t->col = nn;
-        //t->data = data;
-        //t->next = NULL;   //change this later
-
+        /*
+        t->col = nn;
+        t->data = data;
+        t->next = NULL;   //change this later
+        */
+       
         /*
         if (i == 0)
         {   mm = 1, nn = 2, data = 9;}
@@ -97,28 +100,31 @@ void create(struct Sparse *s)
             t->first = t;  //just a holder for the individual NODE address
 
         
-        if(  s->p[mm].first == NULL)
+        if(  s->p[mm] == NULL)
         {
             //list for this row is empty
             
             
-            //s->p[mm]= t;
-            s->p[mm].col = nn;
-            s->p[mm].data = data;
-            s->p[mm].next = NULL;
-            s->p[mm].first = t; // s->p[mm].first;
+            s->p[mm]= t;
+            /*
+            s->p[mm]->col = nn;
+            s->p[mm]->data = data;
+            s->p[mm]->next = NULL;
+            s->p[mm]->first = t; // s->p[mm].first;
+            */
 
         }
         else{
             //sort of a modified InsertSort or SortedInsert function
             
-            q = &s->p[mm];
-
+            //q = &s->p[mm];
+            q = s->p[mm];
             //should q become the first node if t col < q col
             if(t->col < q->col)
             {
                 t->next = q;
-                s->p[mm].first = t;   //first will always point to first node
+                //s->p[mm].first = t;   //first will always point to first node
+                s->p[mm] = t;
             }
             else{
                 while(q->col < t->col)
@@ -137,7 +143,7 @@ void create(struct Sparse *s)
                         {
                             t->next = q->next;
                             q->next=t;
-                            q=q->next;   //will now make while false
+                            q=t->next;  //should move the pointer
                         }
                         else{
                             q = q->next;
@@ -159,7 +165,8 @@ void display( struct Sparse * s)
     struct Node *p;
     for(i=0;i<s->m;i++)
     {
-        p = s->p[i].first;   //this should be the first node of the list for the row
+        //p = s->p[i].first;   //this should be the first node of the list for the row
+        p = s->p[i];
         for (j=0; j<s->n;j++)
         {
             if(p)
