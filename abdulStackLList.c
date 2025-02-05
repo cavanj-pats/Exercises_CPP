@@ -51,3 +51,30 @@ void push(struct Stack * st, int value)
     st->top++;
 
 }
+
+int peek(struct Stack st, int pos)
+{
+    struct Node * p;
+    p =  st.s;
+}
+
+
+
+
+
+
+int main()
+{
+    struct Stack * st;
+    createStack(st, 10);
+    
+    push(st,17);
+    push(st, 9);
+    push(st, 1);
+
+    
+
+
+    return 0;
+
+}
