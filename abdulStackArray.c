@@ -98,7 +98,7 @@ int main()
     push(st,4);
     push(st,9);
     
-    printf("Peek at top value: %d\n", peek(st));
+    printf("Peek at top value: %d\n", peek(*st,1));
     printStack(st);
 
 
