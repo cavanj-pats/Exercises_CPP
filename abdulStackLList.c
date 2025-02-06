@@ -4,21 +4,25 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct Stack
+//abdul used only struct Node he did not use struct Stack.  
+// all functions were written based on Node but create teh stack interface
+
+/*
+struct Stack/
 {
     int size;
     int top;
     struct Node *s;
 };
-
+*/
 struct Node
 {
     int data;
     struct Node * next;
-} *head;
+} *top;
 
 
-
+/*
 void createStack(struct Stack * st, int size)
 {
     struct Node * head = NULL;
@@ -29,35 +33,75 @@ void createStack(struct Stack * st, int size)
     
 
 }
+*/
 
-void push(struct Stack * st, int value)
+void push(int value)
 {
     struct Node * p;
     p=(struct Node *) malloc(sizeof(struct Node));
-    p->data = value;
-    
-    
-    if(st->top == -1)
+    if(p == NULL)
+        printf("Data not pushed. Perhaps memory full.\n");
+    else
+    {    
+        p->data = value;
+        p->next = top;
+        top = p;
+    }
+
+}
+
+int pop()
+{
+    int x = -1;
+    struct Node *p;
+
+    if(top == NULL)
     {
-        p->next = NULL;
+        printf("Stack is emtpy!\n");
     }
     else
     {
-        p->next = head;
+        x = top->data;
+        p= top;
+        top = top->next;
+        delete p;
+        return x;
     }
 
-    head = p;
-    st->s = head;
-    st->top++;
+    return x;
 
 }
 
-int peek(struct Stack st, int pos)
+
+int peek(int pos)
 {
     struct Node * p;
-    p =  st.s;
+    p = top;
+    
+    for(int i = 0;p !=NULL && i<pos-1; i++ )
+        p = p->next;
+
+    if(p == NULL)
+        printf("No Node is present. \n");
+
+       return  p ? p->data : -1 ;
+
 }
 
+void display()
+{
+    struct Node * p;
+    p = top;
+
+    if (top == NULL)
+        printf("No Node Present.\n");
+
+    while (p)
+    {
+        printf("%d\n",p->data);
+        p = p->next;
+    }
+}
 
 
 
@@ -65,12 +109,24 @@ int peek(struct Stack st, int pos)
 
 int main()
 {
-    struct Stack * st;
-    createStack(st, 10);
+    //struct Node * st;
     
-    push(st,17);
-    push(st, 9);
-    push(st, 1);
+    
+    push(17);
+    push( 9);
+    push( 1);
+
+    printf("Peek at item position 2: %d\n", peek(2));
+    
+    display();
+
+    printf("Pop Top: %d\n\n", pop());
+
+
+    display();
+
+    
+
 
     
 
