@@ -6,7 +6,7 @@ using namespace std;
 
 
 
-main(){
+int main(){
     int x = 11;
     int *intPtr = &x;
 
