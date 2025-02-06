@@ -28,7 +28,7 @@ void create(struct Sparse *s)
     scanf("%d",&s->num);
     
     s->e=(struct Element *)malloc(s->num*sizeof(struct Element));
-    printf("Enter the non-zero Elements in order from lowest to highest row, lowest to highest column: ");
+    printf("Enter the non-zero Elements in order from lowest to highest row, lowest to highest column row col data: ");
     for(i=0;i<s->num;i++)
         scanf("%d%d%d",&s->e[i].i,&s->e[i].j,&s->e[i].x);
 };
