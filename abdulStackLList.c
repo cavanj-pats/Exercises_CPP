@@ -19,7 +19,7 @@ struct Node
 {
     int data;
     struct Node * next;
-} *top;
+} *top = NULL;
 
 
 /*
@@ -72,6 +72,19 @@ int pop()
 
 }
 
+int isEmpty()
+{
+    return top == NULL ? 1 : 0 ;
+}
+
+int isFull()
+{
+    struct Node * t;
+    t = (struct Node *) malloc(sizeof(struct Node));
+
+    return t == NULL ? 1 : 0 ;
+    
+}
 
 int peek(int pos)
 {
