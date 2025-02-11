@@ -1,6 +1,6 @@
 //LList based stack
-//abdulStackLListInfixPosfix2.c
-//use a Stack to convert an infix expression to Postfix using Abdul's process of 
+//abdulStackLListPosfixEvaluation.c
+//use a Stack to evaluate a Postfix expression
 //pushing and popping based on precedence
 //this version has parentheses and brackets and different precedence whether the item is 
 //in the stack or not.   
@@ -161,6 +161,60 @@ int precIn(char c)
 }
 
 
+int evalPostfix(char * postfix)
+{
+    //take a postfix expression.  Push operands onto stack.  WHen an operator
+    //is encounters pop two operands.  first pop is right hand side,  second pop is left hand side
+    //the operands will be character representations of integers
+    int opRight;
+    int opLeft;
+    int temp;
+    int i=0;
+
+
+    for(int i = 0; postfix[i] != '\0'; i++)
+    {
+        if(operand(postfix[i]))
+            push(postfix[i]);
+        else
+        {
+            opRight =(int) (pop() - '0');
+            opLeft = (int) (pop() - '0');
+            switch(postfix[i])
+            {
+                case '+':
+                    temp = opLeft + opRight;    
+                    push( (char) temp);
+                    break;
+                case '-':
+                    temp = opLeft - opRight;
+                    push( (char) temp);
+                    break;
+                case '*':
+                    temp = opLeft * opRight;
+                    push( (char) temp);
+                    break;
+                case '/':
+                    temp = opLeft / opRight;
+                    push( (char) temp);
+                    break;
+                case '^':
+                    temp = opLeft ^ opRight;
+                    push( (char) temp);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+       
+    }
+
+    return (int) pop();
+
+}  //evalPostfix
+
+// *******************************************stack functions
 void push(char value)
 {
     struct Node * p;
@@ -302,8 +356,9 @@ int isBalancedBracket(char *s)
 int main()
 {
     //struct Node * st;
-    //char * s = "a+b*c-d/e";
-    char * s = "a+b*(c+d)/f+d*e";
+    char * s = "a+b*c-d^e^f";
+    //char * s = "((a+b)*c)-d^e^f";
+    //char * s = "A+B*(C+D)/F+D*E";
     char * postfx;
     
     //push('a');
@@ -330,6 +385,9 @@ int main()
         printf("%c",postfx[i]);
 
     printf("\n");
+
+    printf("23^ evaluates to: %d", evalPostfix("23^"));
+
 
     
 
