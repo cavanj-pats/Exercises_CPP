@@ -12,7 +12,7 @@ struct queue
     int size;   //size of teh queue used to size array
     int front;  //"pointer" to front element in list
     int rear; //pointer to rear elment of list
-    int * Q;
+    int * Q;  //hello
 };
 
 void create(struct queue * q, int size)
