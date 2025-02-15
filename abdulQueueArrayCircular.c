@@ -19,8 +19,8 @@ void create(struct queue * q, int size)
 {
     q->size = size;
     q->Q = (int *) malloc(size * sizeof(int));
-    q->front = -1;
-    q->rear = -1;
+    q->front = 0;
+    q->rear = 0;
 }
 
 int isEmpty(struct queue * q)
@@ -65,12 +65,14 @@ int dequeue(struct queue * q)
 void display(struct queue q)
 {
     //don't want to modify the data
-    int x = (q.front + 1)%q.size;
+    //int x = (q.front + 1)%q.size;  //the value of q.front is managed by dequeue and enqueue.
+                                    //repeat the modular arithmetic here.
+    int x = q.front + 1;  //q.front will have no value.
     do
     {
         printf("%d", q.Q[x]);
         x = (x+1)%q.size;
-    } while (x != (q.front + 1)%q.size);
+    } while (x != (q.rear + 1)%q.size);  //I had q.front not q.rear originally.  got bad data on PC.
     printf("\n");
     
 }
