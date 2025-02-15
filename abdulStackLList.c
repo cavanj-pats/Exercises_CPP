@@ -64,7 +64,7 @@ int pop()
         x = top->data;
         p= top;
         top = top->next;
-        delete p;
+        free( p);
         return x;
     }
 
