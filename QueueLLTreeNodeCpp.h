@@ -10,16 +10,7 @@
 
 using namespace std;
 
-/*
-class TreeNode
-{
-    public:
-        TreeNode *left;
-        int value;
-        TreeNode *right;
-        TreeNode();
-};
-*/
+
 
 class Node
 {
@@ -137,31 +128,3 @@ void Queue::display() {
 }
 
 
-/*
-TreeNode::TreeNode()
-{
-    this->value = -1;
-    left = right = nullptr;
-
-}
-
-
-int main()
-{
-    Queue q;
-   q.dequeue();
-    q.enqueue(4);
-    q.enqueue(9);
-    q.enqueue(11);
-
-    q.display();
-
-    printf("Dequeue: %d\n",q.dequeue());
-    printf("Dequeue: %d\n",q.dequeue());
-    q.display();
-
-    return 0;
-
-
-}
-    */

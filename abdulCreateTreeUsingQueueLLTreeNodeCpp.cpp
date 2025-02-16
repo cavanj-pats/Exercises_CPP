@@ -92,12 +92,15 @@ int main() {
  
     createTree();
  
+    cout << "Preorder: " ;
     preorder(root);
     cout << endl;
     
+    cout << "Inorder: " ;
     inorder(root);
     cout << endl;
     
+    cout << "Postorder: " ;
     postorder(root);
     cout << endl;
  
