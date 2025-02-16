@@ -1,6 +1,6 @@
 //abdul Queue using LList
-//abdulQueueLList++.cpp     Jim Cavanaugh  2/15/2025
-
+//QueueLLIntCpp.h  Jim Cavanaugh  2/15/2025
+//C++ header file for a Queue based on a LinkedList to hold Integer Nodes
 
 #include <iostream>
 
@@ -110,6 +110,7 @@ void Queue::display() {
     cout << endl;
 }
 
+/*
 int main()
 {
     Queue q;
@@ -128,3 +129,4 @@ int main()
 
 
 }
+    */

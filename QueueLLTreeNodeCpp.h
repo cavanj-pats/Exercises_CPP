@@ -1,5 +1,8 @@
 //abdul Queue using LList
-//abdulQueueLList++.cpp     Jim Cavanaugh  2/15/2025
+//QueueLLIntCpp.h  Jim Cavanaugh  2/15/2025
+//C++ header file for a Queue based on a LinkedList to hold Integer Nodes
+/*  ***attempting to use the link list variant to make a queue of nodes where each node is a tree node
+ */
 
 
 #include <iostream>
@@ -7,12 +10,34 @@
 
 using namespace std;
 
+/*
+class TreeNode
+{
+    public:
+        TreeNode *left;
+        int value;
+        TreeNode *right;
+        TreeNode();
+};
+*/
+
 class Node
 {
     public:
     int data;
     Node * next;
+    Node * left;
+    Node * right;
+    Node();
 };
+
+Node::Node()
+{
+    data = -1;
+    next = nullptr;
+    left = nullptr;
+    right = nullptr;
+}
 
 class Queue
 {
@@ -23,8 +48,8 @@ class Queue
     public:
         Queue();
         ~Queue();
-        void enqueue(int x);
-        int dequeue();
+        void enqueue(Node * x);
+        Node * dequeue();
         bool isEmpty();
         void display();
 
@@ -55,16 +80,16 @@ bool Queue::isEmpty()
         return false;
 }
 
-void Queue::enqueue(int x)
+void Queue::enqueue(Node * t)
 {
-    Node * t = new Node;  //if t is nullptr then heap is full
+    //Node * t = new Node;  //if t is nullptr then heap is full
     if (t == nullptr)
         {
             cout << "Queue is Full/Overflow" << endl;
         }
     else
     {
-        t->data = x;
+       // t->data = x;
         t->next = nullptr;
         if(front == nullptr)
         {
@@ -80,18 +105,19 @@ void Queue::enqueue(int x)
 
 }
 
-int Queue::dequeue()
+Node * Queue::dequeue()
 {
-    int x = -1;
-    Node *p ;
+    Node * x ;
+    //Node *p ;
     if(isEmpty())
         cout << "Queue is empty!" << endl;
     else
     {
-        x = front->data;
-        p=front;
+        //x = (front->data);
+        //p=front;
+        x = front;
         front = front->next;
-        delete p;
+        //delete p;
     }
 
     return x;
@@ -109,6 +135,16 @@ void Queue::display() {
     }
     cout << endl;
 }
+
+
+/*
+TreeNode::TreeNode()
+{
+    this->value = -1;
+    left = right = nullptr;
+
+}
+
 
 int main()
 {
@@ -128,3 +164,4 @@ int main()
 
 
 }
+    */
