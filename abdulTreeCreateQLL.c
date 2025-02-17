@@ -101,7 +101,81 @@ void postorder(struct Node *p)
     }
 }
 
+//iterative Traversal
+/*
 
+void preorder(struct Node *t)
+{
+    struct Stack st;  //need to define this 
+
+    while( t != NULL || isEmpty(st))
+    {
+        if(t != NULL)
+        {
+            printf("%d", t->data);
+            push(&st, t);
+            t = t->left;
+        }
+        else
+        {
+            t = pop(&st);
+            t = t->right;
+        }
+    }
+}//preorder iterative
+
+
+void inorder(struct Node *t)
+{
+    struct Stack st;  //need to define this 
+
+    while( t != NULL || isEmpty(st))
+    {
+        if(t != NULL)
+        {
+            push(&st, t);
+            t = t->left;
+        }
+        else
+        {
+            t = pop(&st);
+            printf("%d", t->data);
+            t = t->right;
+        }
+    }
+}//inorder iterative
+
+void postorder(struct Node *t)
+{
+    struct Stack st;  //need to define this 
+    long int temp;    //when pushing an address for a second time change it's sign so you know why you pushed it
+    while( t != NULL || isEmpty(st))
+    {
+        if(t != NULL)
+        {
+            push(&st, t);
+            t = t->left;
+        }
+        else
+        {
+            temp = pop(&st);
+            if(temp > 0)
+            {
+                push(&st, -1*temp);
+                t = ((Node *)temp)->right;  //typcast the integer into an pointer
+            }
+            else
+            {
+                printf("%d", ((Node *) -1*temp))
+                t = NULL;   //not sure why this
+            }
+            
+        }
+    }
+}//postorder iterative
+
+
+*/
 
 
 int main() {
