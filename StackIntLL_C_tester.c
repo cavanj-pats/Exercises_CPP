@@ -21,12 +21,12 @@ int main()
 
     printf("Peek at item position 2: %d\n", peek(st, 2));
     
-    display(st);
+    displayStack(st);
 
     printf("Pop Top: %d\n\n", pop(st));
 
 
-    display(st);
+    displayStack(st);
 
         return 0;
 

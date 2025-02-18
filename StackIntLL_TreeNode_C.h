@@ -4,6 +4,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "QueueLLTreeNodeC.h"   //this allows Stack to use the same Node as Queue for use in Tree
 
 //abdul used only struct Node he did not use struct Stack.  
 // all functions were written based on Node but create teh stack interface
@@ -11,15 +12,11 @@
 
 
 
-struct stackNode
-{
-    int data;
-    struct stackNode * next;
-} ;//removed *top = NULL
+
 
 struct Stack
 {
-    struct stackNode *top;
+    struct Node *top;
 };
 
 
@@ -28,16 +25,17 @@ void createStack(struct Stack * st)
 {
     //invoke this to initialize the Stack
    
-    st->top= (struct stackNode *) malloc(sizeof(struct stackNode));
+    st->top= (struct Node *) malloc(sizeof(struct Node));
     st->top = NULL;
 
 }
 
 
-void push(struct Stack *st, int value)
+
+void push(struct Stack *st, long int value)
 {
-    struct stackNode * p;
-    p=(struct stackNode *) malloc(sizeof(struct stackNode));
+    struct Node * p;
+    p=(struct Node *) malloc(sizeof(struct Node));
     if(p == NULL)
         printf("Data not pushed. Perhaps memory full.\n");
     else
@@ -49,10 +47,10 @@ void push(struct Stack *st, int value)
 
 }
 
-int pop(struct Stack *st)
+long int pop(struct Stack *st)
 {
-    int x = -1;
-    struct stackNode *p;
+    long int x = -1;
+    struct Node *p;
 
     if(st->top == NULL)
     {
@@ -78,16 +76,16 @@ int isEmpty_stack(struct Stack *st)
 
 int isFull_stack()
 {
-    struct stackNode * t;
-    t = (struct stackNode *) malloc(sizeof(struct stackNode));
+    struct Node * t;
+    t = (struct Node *) malloc(sizeof(struct Node));
 
     return t == NULL ? 1 : 0 ;
     
 }
 
-int peek(struct Stack *st, int pos)
+long int peek(struct Stack *st, int pos)
 {
-    struct stackNode * p;
+    struct Node * p;
     p = st->top;
     
     for(int i = 0;p !=NULL && i<pos-1; i++ )
@@ -102,7 +100,7 @@ int peek(struct Stack *st, int pos)
 
 void displayStack(struct Stack *st)
 {
-    struct stackNode * p;
+    struct Node * p;
     p = st->top;
 
     if (st->top == NULL)

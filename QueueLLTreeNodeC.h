@@ -10,7 +10,7 @@
 
 struct Node{
     struct Node *left;
-    int data;
+    long int data;
     struct Node *right;
     struct Node *next;
 }*front = NULL, *rear = NULL;
@@ -45,7 +45,7 @@ int isEmpty()
 
 
 
-void enqueue(struct Node * t, int x)
+void enqueue(struct Node * t, long int x)
 {
     //struct Node *t;
     //t = (struct Node *)malloc(sizeof(struct Node));

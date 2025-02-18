@@ -4,7 +4,8 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "QueueLLTreeNodeC.h"
+#include "QueueLLTreeNodeC.h"  //queue holds the tree Nodes
+#include "StackIntLL_TreeNode_C.h"   //needs to be modified to hold tree nodes (I think)
 
 
 
@@ -107,6 +108,7 @@ void postorder(struct Node *p)
 void preorder(struct Node *t)
 {
     struct Stack st;  //need to define this 
+    createStack(&st);
 
     while( t != NULL || isEmpty(st))
     {
@@ -128,6 +130,7 @@ void preorder(struct Node *t)
 void inorder(struct Node *t)
 {
     struct Stack st;  //need to define this 
+    createStack(&st);
 
     while( t != NULL || isEmpty(st))
     {
@@ -144,16 +147,18 @@ void inorder(struct Node *t)
         }
     }
 }//inorder iterative
+*/
 
-void postorder(struct Node *t)
+void itpostorder(struct Node *t)
 {
     struct Stack st;  //need to define this 
+    createStack(&st);
     long int temp;    //when pushing an address for a second time change it's sign so you know why you pushed it
-    while( t != NULL || isEmpty(st))
+    while( t != NULL || !isEmpty_stack(&st))
     {
         if(t != NULL)
         {
-            push(&st, t);
+            push(&st, ((long int) t) ); //need to be able to hold tree nodes in this stack
             t = t->left;
         }
         else
@@ -161,12 +166,12 @@ void postorder(struct Node *t)
             temp = pop(&st);
             if(temp > 0)
             {
-                push(&st, -1*temp);
-                t = ((Node *)temp)->right;  //typcast the integer into an pointer
+                push(&st, -temp);
+                t = ((struct Node *)temp)->right;  //typcast the integer into an pointer
             }
             else
             {
-                printf("%d", ((Node *) -1*temp))
+                printf("%d", ((struct Node *) (-temp))->data);
                 t = NULL;   //not sure why this
             }
             
@@ -175,7 +180,7 @@ void postorder(struct Node *t)
 }//postorder iterative
 
 
-*/
+
 
 
 int main() {
@@ -192,6 +197,10 @@ int main() {
     
     printf ( "Postorder: " );
     postorder(root);
+    printf("\n");
+
+    printf ( "Postorder: " );
+    itpostorder(root);
     printf("\n");
  
     return 0;
