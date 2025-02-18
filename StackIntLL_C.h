@@ -1,6 +1,6 @@
 //LList based stack
 //
-//StackIntLL_c.h
+//StackIntLL_C.h
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -8,35 +8,33 @@
 //abdul used only struct Node he did not use struct Stack.  
 // all functions were written based on Node but create teh stack interface
 
-/*
-struct Stack/
-{
-    int size;
-    int top;
-    struct Node *s;
-};
-*/
+
+
+
 struct Node
 {
     int data;
     struct Node * next;
-} *top = NULL;
+} ;//removed *top = NULL
 
-
-/*
-void createStack(struct Stack * st, int size)
+struct Stack
 {
-    struct Node * head = NULL;
-    //size is the total size of the stack
-    st->size = size;
-    st->top = -1;
-    st->s = (struct Node *) malloc(size * sizeof(struct Node));
-    
+    struct Node *top;
+};
+
+
+
+void createStack(struct Stack * st)
+{
+    //invoke this to initialize the Stack
+   
+    st->top= (struct Node *) malloc(sizeof(struct Node));
+    st->top = NULL;
 
 }
-*/
 
-void push(int value)
+
+void push(struct Stack *st, int value)
 {
     struct Node * p;
     p=(struct Node *) malloc(sizeof(struct Node));
@@ -45,37 +43,37 @@ void push(int value)
     else
     {    
         p->data = value;
-        p->next = top;
-        top = p;
+        p->next = st->top;
+        st->top = p;
     }
 
 }
 
-int pop()
+int pop(struct Stack *st)
 {
     int x = -1;
     struct Node *p;
 
-    if(top == NULL)
+    if(st->top == NULL)
     {
         printf("Stack is emtpy!\n");
     }
     else
     {
-        x = top->data;
-        p= top;
-        top = top->next;
+        x = st->top->data;
+        p= st->top;
+        st->top = st->top->next;
         free( p);
-        return x;
+        
     }
 
     return x;
 
 }
 
-int isEmpty()
+int isEmpty(struct Stack *st)
 {
-    return top == NULL ? 1 : 0 ;
+    return st->top == NULL ? 1 : 0 ;
 }
 
 int isFull()
@@ -87,10 +85,10 @@ int isFull()
     
 }
 
-int peek(int pos)
+int peek(struct Stack *st, int pos)
 {
     struct Node * p;
-    p = top;
+    p = st->top;
     
     for(int i = 0;p !=NULL && i<pos-1; i++ )
         p = p->next;
@@ -102,50 +100,25 @@ int peek(int pos)
 
 }
 
-void display()
+void display(struct Stack *st)
 {
     struct Node * p;
-    p = top;
+    p = st->top;
 
-    if (top == NULL)
+    if (st->top == NULL)
         printf("No Node Present.\n");
 
     while (p)
     {
-        printf("%d\n",p->data);
+        printf("%d, ",p->data);
         p = p->next;
+
     }
+    
+    printf("\n");
 }
 
 
 
-/*
-
-int main()
-{
-    //struct Node * st;
-    
-    
-    push(17);
-    push( 9);
-    push( 1);
-
-    printf("Peek at item position 2: %d\n", peek(2));
-    
-    display();
-
-    printf("Pop Top: %d\n\n", pop());
 
 
-    display();
-
-    
-
-
-    
-
-
-    return 0;
-
-}
-    */
