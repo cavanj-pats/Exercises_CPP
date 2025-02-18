@@ -9,6 +9,7 @@
 #include "QueueLLTreeNodeC.h"  //queue holds the tree Nodes
 #include "StackIntLL_TreeNode_C.h"   //needs to be modified to hold tree nodes (I think)
                                      //stack incorporates QueueLLTreeNodeC.h
+#include "QueueLL_LongLongInt_C.h"  //this is a queue that can hold Node addresses as LongLongInt
 
 
 
@@ -187,6 +188,20 @@ void itpostorder(struct Node *t)
 //which are holding integer data/values
 //can't use uintptr_t as it is unsigned. i need to have a signed integer so i use long long int
 //64 bit machines use longer addresses
+
+/*
+void levelOrderTraversal(Node *p)
+{
+    //traverse a tree level by level
+    //use a queue to hold a root and left child right child addresses
+    struct Queue *q;
+    createQueue(q);
+
+    
+
+}
+*/
+
 
 
 int main() {

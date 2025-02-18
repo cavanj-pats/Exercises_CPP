@@ -1,48 +1,48 @@
 //circular queue array based.
 //don't implement non circular since it is inefficient
-//abdulQueueArrayCircular.c
-//QueueLLTreeNodeC.h
+
+//QueueLL_LongLongInt_C.h
 
 //queues - add items to rear and remove from the front. like a line
-
-/*
-                *******This Structure does not define a struct Queue. Only a struct Node and functions  *******
-*/
 
 #include <stdio.h>
 #include <stdlib.h>
 //#include <stdint.h>
 //#include <inttypes.h>
 
-struct Node{
-    struct Node *left;
-    int data;
-    struct Node *right;
-    struct Node *next;
-}*front = NULL, *rear = NULL;
+struct queueNode{
+    //struct Node *left;
+    long long int data;
+    //struct Node *right;
+    struct queueNode *next;
+};  //*front = NULL, *rear = NULL;
 //the above is a way to create a global Node struct called "first"
 
-/*
+
 struct Queue
 {
-    struct Node **Q;
-   // struct Node *front;
-    //struct Node *rear;
-};
-*/
-
-
-/*
-void create()
-{
+    struct queueNode *front;
+    struct queueNode *rear;
    
+};
+
+
+
+
+void createQueue(struct Queue * q)
+{
+   q->front = (queueNode *)malloc(sizeof(queueNode));
+   q->front = NULL;
+
+   q->rear = (queueNode *)malloc(sizeof(queueNode));
+   q->rear = NULL;
        
 }
-*/
 
-int isEmpty()
+
+int isEmpty(struct Queue *q)
 {
-    if (front == NULL)
+    if (q->front == NULL)
         return 1;
     else    
         return 0;
@@ -51,56 +51,54 @@ int isEmpty()
 
 
 
-void enqueue(struct Node * t, int x)
+void enqueue(struct Queue *q, long long int x)
 {
-    //struct Node *t;
-    //t = (struct Node *)malloc(sizeof(struct Node));
+    struct queueNode *t;
+    t = (struct queueNode *)malloc(sizeof(struct queueNode));
     if(t == NULL)
         printf("Queue Space is Full!\n");
     else 
     {   
-        if(front == NULL)
+        if(q->front == NULL)
         {
             //first element
             t->data = x;
             t->next = NULL;
-            t->left = NULL;
-            t->right = NULL;
-            front = rear =  t;
+            
+            q->front = q->rear =  t;
               
         }
         else
         {
             t->data = x;
             t->next = NULL;
-            t->left = NULL;
-            t->right = NULL;
-            rear->next = t;
-            rear = t;
+            
+            q->rear->next = t;
+            q->rear = t;
         }
     }
 }
 
-struct Node * dequeue()
+struct queueNode * dequeue(struct Queue *q)
 {
     //always deque from front
-   struct  Node * x;
-    if (front == NULL)
+   struct  queueNode * x;
+    if (q->front == NULL)
         //printf("Queue is empty!\n");
         x = NULL;   // when creating a tree there are times when the queue will be empty
     else
     {
-        x = front;
-        front = front->next;
+        x = q->front;
+        q->front = q->front->next;
     }
     
     return x;
 }
 
-void display()
+void display(struct Queue q)
 {
-    struct Node *t;
-    t = front;
+    struct queueNode *t;
+    t = q.front;
     if (t!=NULL)
     {
         do
