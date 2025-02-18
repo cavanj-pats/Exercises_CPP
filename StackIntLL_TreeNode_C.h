@@ -4,6 +4,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+
 #include "QueueLLTreeNodeC.h"   //this allows Stack to use the same Node as Queue for use in Tree
 
 //abdul used only struct Node he did not use struct Stack.  
@@ -32,7 +33,7 @@ void createStack(struct Stack * st)
 
 
 
-void push(struct Stack *st, long int value)
+void push(struct Stack *st, uintptr_t value)
 {
     struct Node * p;
     p=(struct Node *) malloc(sizeof(struct Node));
@@ -47,7 +48,7 @@ void push(struct Stack *st, long int value)
 
 }
 
-long int pop(struct Stack *st)
+uintptr_t pop(struct Stack *st)
 {
     long int x = -1;
     struct Node *p;
@@ -83,7 +84,7 @@ int isFull_stack()
     
 }
 
-long int peek(struct Stack *st, int pos)
+uintptr_t peek(struct Stack *st, int pos)
 {
     struct Node * p;
     p = st->top;

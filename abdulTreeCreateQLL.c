@@ -4,8 +4,11 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "QueueLLTreeNodeC.h"  //queue holds the tree Nodes
+//#include <stdint.h>
+//#include <inttypes.h>
+//#include "QueueLLTreeNodeC.h"  //queue holds the tree Nodes
 #include "StackIntLL_TreeNode_C.h"   //needs to be modified to hold tree nodes (I think)
+                                     //stack incorporates QueueLLTreeNodeC.h
 
 
 
@@ -153,12 +156,12 @@ void itpostorder(struct Node *t)
 {
     struct Stack st;  //need to define this 
     createStack(&st);
-    long int temp;    //when pushing an address for a second time change it's sign so you know why you pushed it
+    uintptr_t temp;    //when pushing an address for a second time change it's sign so you know why you pushed it
     while( t != NULL || !isEmpty_stack(&st))
     {
         if(t != NULL)
         {
-            push(&st, ((long int) t) ); //need to be able to hold tree nodes in this stack
+            push(&st, ((uintptr_t) t) ); //need to be able to hold tree nodes in this stack
             t = t->left;
         }
         else
