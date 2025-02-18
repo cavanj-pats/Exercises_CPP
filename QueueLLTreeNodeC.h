@@ -7,12 +7,12 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdint.h>
-#include <inttypes.h>
+//#include <stdint.h>
+//#include <inttypes.h>
 
 struct Node{
     struct Node *left;
-    uintptr_t data;
+    int data;
     struct Node *right;
     struct Node *next;
 }*front = NULL, *rear = NULL;
@@ -47,7 +47,7 @@ int isEmpty()
 
 
 
-void enqueue(struct Node * t, uintptr_t x)
+void enqueue(struct Node * t, int x)
 {
     //struct Node *t;
     //t = (struct Node *)malloc(sizeof(struct Node));

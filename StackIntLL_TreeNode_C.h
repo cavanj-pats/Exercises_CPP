@@ -4,20 +4,26 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdint.h>
+#include <inttypes.h>
 
-#include "QueueLLTreeNodeC.h"   //this allows Stack to use the same Node as Queue for use in Tree
+//#include "QueueLLTreeNodeC.h"   //this allows Stack to use the same Node as Queue for use in Tree
 
 //abdul used only struct Node he did not use struct Stack.  
 // all functions were written based on Node but create teh stack interface
 
 
-
+struct stackNode
+{
+    long long int data;
+    struct stackNode * next;
+} ;//removed *top = NULL
 
 
 
 struct Stack
 {
-    struct Node *top;
+    struct stackNode *top;
 };
 
 
@@ -26,17 +32,17 @@ void createStack(struct Stack * st)
 {
     //invoke this to initialize the Stack
    
-    st->top= (struct Node *) malloc(sizeof(struct Node));
+    st->top= (struct stackNode *) malloc(sizeof(struct stackNode));
     st->top = NULL;
 
 }
 
 
 
-void push(struct Stack *st, uintptr_t value)
+void push(struct Stack *st, long long int value)
 {
-    struct Node * p;
-    p=(struct Node *) malloc(sizeof(struct Node));
+    struct stackNode * p;
+    p=(struct stackNode *) malloc(sizeof(struct stackNode));
     if(p == NULL)
         printf("Data not pushed. Perhaps memory full.\n");
     else
@@ -48,10 +54,10 @@ void push(struct Stack *st, uintptr_t value)
 
 }
 
-uintptr_t pop(struct Stack *st)
+long long int pop(struct Stack *st)
 {
-    long int x = -1;
-    struct Node *p;
+    long long int  x = -1;
+    struct stackNode *p;
 
     if(st->top == NULL)
     {
@@ -77,16 +83,16 @@ int isEmpty_stack(struct Stack *st)
 
 int isFull_stack()
 {
-    struct Node * t;
-    t = (struct Node *) malloc(sizeof(struct Node));
+    struct stackNode * t;
+    t = (struct stackNode *) malloc(sizeof(struct stackNode));
 
     return t == NULL ? 1 : 0 ;
     
 }
 
-uintptr_t peek(struct Stack *st, int pos)
+long long int peek(struct Stack *st, int pos)
 {
-    struct Node * p;
+    struct stackNode * p;
     p = st->top;
     
     for(int i = 0;p !=NULL && i<pos-1; i++ )
@@ -101,7 +107,7 @@ uintptr_t peek(struct Stack *st, int pos)
 
 void displayStack(struct Stack *st)
 {
-    struct Node * p;
+    struct stackNode * p;
     p = st->top;
 
     if (st->top == NULL)
@@ -109,7 +115,7 @@ void displayStack(struct Stack *st)
 
     while (p)
     {
-        printf("%d, ",p->data);
+        printf("%d, ",p->data);    //need to be able to print uintptr_t data
         p = p->next;
 
     }
