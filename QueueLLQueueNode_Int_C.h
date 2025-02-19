@@ -11,9 +11,9 @@
 //#include <inttypes.h>
 
 struct queueNode{
-    //struct Node *left;
-    long long int data;
-    //struct Node *right;
+    struct queueNode *left;
+    int data;
+    struct queueNode *right;
     struct queueNode *next;
 };  //*front = NULL, *rear = NULL;
 //the above is a way to create a global Node struct called "first"
@@ -31,16 +31,19 @@ struct Queue
 
 void createQueue(struct Queue * q)
 {
-   q->front = (queueNode *)malloc(sizeof(queueNode));
+   q->front = (struct queueNode *) malloc(sizeof(struct queueNode));
    q->front = NULL;
 
-   q->rear = (queueNode *)malloc(sizeof(queueNode));
+   q->rear = (struct queueNode *)malloc(sizeof(struct queueNode));
    q->rear = NULL;
+
+   //q->next = (queueNode *)malloc(sizeof(queueNode));
+   //q->next = NULL;
        
 }
 
 
-int isEmpty(struct Queue *q)
+int isQueueEmpty(struct Queue *q)
 {
     if (q->front == NULL)
         return 1;
@@ -51,10 +54,10 @@ int isEmpty(struct Queue *q)
 
 
 
-void enqueue(struct Queue *q, long long int x)
+void enqueue(struct Queue *q, struct queueNode *t)
 {
-    struct queueNode *t;
-    t = (struct queueNode *)malloc(sizeof(struct queueNode));
+    //struct queueNode *t;
+    //t = (struct queueNode *)malloc(sizeof(struct queueNode));
     if(t == NULL)
         printf("Queue Space is Full!\n");
     else 
@@ -62,16 +65,16 @@ void enqueue(struct Queue *q, long long int x)
         if(q->front == NULL)
         {
             //first element
-            t->data = x;
-            t->next = NULL;
+            //t->data = x;
+            //t->next = NULL;
             
             q->front = q->rear =  t;
               
         }
         else
         {
-            t->data = x;
-            t->next = NULL;
+            // t->data = x;
+            // t->next = NULL;
             
             q->rear->next = t;
             q->rear = t;
@@ -79,10 +82,10 @@ void enqueue(struct Queue *q, long long int x)
     }
 }
 
-struct queueNode * dequeue(struct Queue *q)
+struct queueNode* dequeue(struct Queue *q)
 {
     //always deque from front
-   struct  queueNode * x;
+    struct queueNode * x;
     if (q->front == NULL)
         //printf("Queue is empty!\n");
         x = NULL;   // when creating a tree there are times when the queue will be empty

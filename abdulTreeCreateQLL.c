@@ -6,53 +6,56 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include <inttypes.h>
-#include "QueueLLTreeNodeC.h"  //queue holds the tree Nodes
+//#include "QueueLLTreeNodeC.h"  //queue holds the tree Nodes
 #include "StackIntLL_TreeNode_C.h"   //needs to be modified to hold tree nodes (I think)
                                      //stack incorporates QueueLLTreeNodeC.h
-#include "QueueLL_LongLongInt_C.h"  //this is a queue that can hold Node addresses as LongLongInt
+#include "QueueLLQueueNode_Int_C.h"  //this is a queue that can hold Node addresses as LongLongInt
 
 
 
-struct Node *root;
+struct queueNode *root;
 
 void createTree()
 {
-    int x;
-    struct Node *p;
-    struct Node *t;
-   // struct Queue *q;
+    int x;  //still stores the data value
+    struct queueNode *p;
+    struct queueNode *t;
+    //struct queueNode *root;
+    
+    struct Queue *q;
     
 
     printf("Enter Root Node Value (-1) to quit: ");
     scanf("%d", &x );
-    root = (struct Node *)malloc(sizeof(struct Node));
-    //q = (struct Node **)malloc(sizeof(Node*));
+   // root = (struct queueNode *)malloc(sizeof(struct queueNode));
+    q = (struct Queue *)malloc(sizeof(struct Queue));
     
-   // create(q, root);
+    createQueue(q);
     
     root->data = x;
     root->next = NULL;
     root->left = NULL;
     root->right = NULL;
 
-    enqueue(root, x);
-    p = root;
+    enqueue(q, root);
+    p = q->front;
 
-    while(!isEmpty(p))
+    while(!isQueueEmpty(q))
     {
-        p = dequeue();
+        p = (dequeue(q));    //cast as a queueNode
 
         printf("\n Enter Left Child of %d (-1) to terminate: ", p->data);
         scanf("%d", &x);
         if(x != -1)
         {
-            t = (struct Node *) malloc(sizeof(struct Node));
+            t = (struct queueNode *) malloc(sizeof(struct queueNode));
             t->data = x;
             t->left = NULL;
             t->right = NULL;
+            t->next = NULL;
             p->left = t;
 
-            enqueue(t,x);
+            enqueue(q, t);
 
         }
 
@@ -60,13 +63,14 @@ void createTree()
         scanf("%d", &x);
         if(x != -1)
         {
-            t = (struct Node *) malloc(sizeof(struct Node));
+            t = (struct queueNode *) malloc(sizeof(struct queueNode));
             t->data = x;
             t->left = NULL;
             t->right = NULL;
+            t->next = NULL;
             p->right = t;
             
-            enqueue(t ,x);
+            enqueue(q, t);
 
         }
 
@@ -79,7 +83,7 @@ void createTree()
 }
 
 
-void preorder(struct Node * p){
+void preorder(struct queueNode * p){
     if (p){
         printf("%d, ", p->data) ;
         preorder(p->left);
@@ -87,7 +91,7 @@ void preorder(struct Node * p){
     }
 }
 
-void inorder(struct Node * p){
+void inorder(struct queueNode * p){
     if (p){
         
         inorder(p->left);
@@ -96,7 +100,7 @@ void inorder(struct Node * p){
     }
 }
  
-void postorder(struct Node *p)
+void postorder(struct queueNode *p)
 {
     if(p)
     {
@@ -153,7 +157,7 @@ void inorder(struct Node *t)
 }//inorder iterative
 */
 
-void itpostorder(struct Node *t)
+void itpostorder(struct queueNode *t)
 {
     struct Stack st;  //need to define this 
     createStack(&st);
@@ -171,11 +175,11 @@ void itpostorder(struct Node *t)
             if(temp > 0)
             {
                 push(&st, -temp);
-                t = ((struct Node *)temp)->right;  //typcast the integer into an pointer
+                t = ((struct queueNode *)temp)->right;  //typcast the integer into an pointer
             }
             else
             {
-                printf("%d, ", ((struct Node *) (-temp))->data);
+                printf("%d, ", ((struct queueNode *) (-temp))->data);
                 t = NULL;   //not sure why this
             }
             
@@ -189,24 +193,51 @@ void itpostorder(struct Node *t)
 //can't use uintptr_t as it is unsigned. i need to have a signed integer so i use long long int
 //64 bit machines use longer addresses
 
-/*
-void levelOrderTraversal(Node *p)
+
+void levelOrderTraversal(struct queueNode *p)
 {
     //traverse a tree level by level
     //use a queue to hold a root and left child right child addresses
     struct Queue *q;
+    q = (struct Queue *) malloc(sizeof(struct Queue));
     createQueue(q);
+    
+    if(p)
+    {
+        printf("%d, ",p->data);
+        enqueue(q, p );
+    }
+    
+    
+
+    while(!isQueueEmpty(q))
+    {
+        p =  (dequeue(q));
+        if(p->left)
+        {
+            printf("%d, ", p->left->data);
+            enqueue(q, ((p->left)));            
+        }
+        if(p->right)
+        {
+            printf("%d, ", p->right->data);
+            enqueue(q, (p->right));
+        }
+    }
+    
 
     
 
 }
-*/
+
 
 
 
 int main() {
- 
-    createTree();
+    
+    root = (struct queueNode *)malloc(sizeof(struct queueNode));
+
+    createTree(); //defines root
  
     printf ( "Preorder: " );
     preorder(root);
@@ -223,6 +254,10 @@ int main() {
     printf ( "Postorder: " );
     itpostorder(root);
     printf("\n");
- 
+    
+    printf("Level Order Traversal:");
+    levelOrderTraversal(root);
+
+
     return 0;
 }
