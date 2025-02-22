@@ -225,11 +225,92 @@ void levelOrderTraversal(struct queueNode *p)
         }
     }
     
-
-    
-
 }
 
+
+//abdul made an even sipmler count function
+int count(struct queueNode * root)
+{
+    int x, y;
+    if(root)
+    {
+        x = count(root->left);
+        y = count(root->right);
+        return x+y+1;
+    }
+
+    return 0;
+}
+
+int abdulCount(struct queueNode *root)
+{
+    if (root)
+        return abdulCount(root->left) + abdulCount(root->right) + 1;
+
+    return 0;
+}
+
+
+//this appears to be returning the height of the tree
+int fun(struct queueNode * root)
+{
+    int x, y;
+    if(root)
+    {
+        x = fun(root->left);
+        y = fun(root->right);
+        if(x>y)
+            return x+1;
+        else
+            return y+1;
+    }
+
+    return 0;
+}
+
+int countLeaf(struct queueNode * root)
+{
+    int x, y;
+    if(root == NULL)
+    {
+       return 0;
+    }
+       
+    if(root->left == NULL && root->right == NULL)
+        return 1;
+
+    return countLeaf(root->left)+ countLeaf(root->right);
+        
+}
+
+ //the below was what he covered on whiteboard in lecture 
+ //these are degree zero nodes.  you can also count degree 1 and 2 nodes by changing if
+int abdulcount(struct queueNode * root)
+{
+    int x, y;
+    if(root)
+    {
+        x = abdulcount(root->left);
+        y = abdulcount(root->right);
+        if (root->left == NULL && root->right == NULL)
+        {
+            return x+y+1;
+        }
+        else
+            return x+y;
+        
+    }
+
+    return 0;
+}
+
+/*
+      degree 0     :  !left && !right    (aka leaf nodes)
+      degree 2     :   left && right
+      degree 1 or 2:   left || right
+      degree 1     :   if left && ! right  ||  !left && right   or you can use exclusive OR
+                      if (!left ^ !right)  //exclusive OR simplifies this expression greatly
+*/
 
 
 
@@ -257,6 +338,19 @@ int main() {
     
     printf("Level Order Traversal:");
     levelOrderTraversal(root);
+
+    printf("\n");
+    printf("Node Count: %d", count(root));
+
+    printf("\n");
+    printf("Abdul Count: %d", abdulCount(root));
+
+    printf("\n");
+    printf("Leaf Count: %d", countLeaf(root));
+
+    printf("\n");
+    printf("Function 'fun' output: %d", fun(root));
+
 
 
     return 0;
