@@ -115,7 +115,7 @@ void displayStack(struct Stack *st)
 
     while (p)
     {
-        printf("%d, ",p->data);    //need to be able to print uintptr_t data
+        printf("%lld, ",p->data);    //need to be able to print uintptr_t data
         p = p->next;
 
     }
