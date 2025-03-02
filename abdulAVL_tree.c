@@ -67,7 +67,8 @@ int nheight(struct Node * p)
 
 int NodeHeight(struct Node * p)
 {
-    int hl , hr;
+    int hl ; 
+    int hr ;
     hl = (p && p->lchild)?p->lchild->height:0;
     hr = (p && p->rchild)?p->rchild->height:0;
 
@@ -76,7 +77,8 @@ int NodeHeight(struct Node * p)
 
 int balanceFactor(struct Node * p)
 {
-    int hl , hr;
+    int hl ;
+    int hr ;
     hl = (p && p->lchild)?p->lchild->height:0;
     hr = (p && p->rchild)?p->rchild->height:0;
 
@@ -110,7 +112,6 @@ struct Node * LLRotate(struct Node * p)
     return pl;
 }
 
-
 struct Node * LRRotate(struct Node * p)
 {
 /*
@@ -141,7 +142,6 @@ struct Node * LRRotate(struct Node * p)
         
     return plr;
 }
-
 
 struct Node * RRRotate(struct Node * p)
 {
