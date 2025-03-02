@@ -17,6 +17,38 @@ struct Node
 //this appears to be returning the height of the tree
 //this is from binary tree and is fine. but he wrote a new function that is cool so i want to put it here.
 
+
+void Insert(int key)
+{
+    struct Node *t=root;
+    struct Node *r=NULL,*p;
+    if(root==NULL)
+    {
+        p=(struct Node *)malloc(sizeof(struct Node));
+        p->data=key;
+        p->height=1;
+        p->lchild=p->rchild=NULL;
+        root=p;
+        return;
+    }
+    while(t!=NULL)
+    {
+        r=t;
+        if(key<t->data)
+            t=t->lchild;
+        else if(key>t->data)
+            t=t->rchild;
+        else
+            return;
+    }
+    p=(struct Node *)malloc(sizeof(struct Node));
+    p->data=key;
+    p->lchild=p->rchild=NULL;
+    if(key<r->data) r->lchild=p;
+    else r->rchild=p;
+}
+
+
 int nheight(struct Node * p)
 {
     int x, y;
@@ -171,7 +203,7 @@ struct Node * RLRotate(struct Node * p)
 
 
 
-struct Node * BSTInsert_rec(struct Node* p, int key)
+struct Node * RInsert(struct Node* p, int key)
 {
     //takes a value and 1) Creates a new Node and 2)Inserts the new Node in the appropriate position.
     //need a trailing pointer
@@ -194,12 +226,12 @@ struct Node * BSTInsert_rec(struct Node* p, int key)
             
     if(key < p->data)
     {
-        p->lchild = BSTInsert_rec(p->lchild, key);
+        p->lchild = RInsert(p->lchild, key);
     }
     else if (key > p->data)
     {
         
-        p->rchild = BSTInsert_rec(p->rchild, key);
+        p->rchild = RInsert(p->rchild, key);
     }
     else if(key == p->data)
     {
@@ -210,11 +242,11 @@ struct Node * BSTInsert_rec(struct Node* p, int key)
 
     if(balanceFactor(p)==2 && balanceFactor(p->lchild)==1)
         return LLRotate(p);
-    else if (balanceFactor(p)==2 && balanceFactor(p->lchild == -1))
+    else if (balanceFactor(p)==2 && balanceFactor(p->lchild) == -1)
         return LRRotate(p);
-    else if (balanceFactor(p)==-2 && balanceFactor(p->rchild == -11))
+    else if (balanceFactor(p)==-2 && balanceFactor(p->rchild) == -1)
         return RRRotate(p);
-    else if (balanceFactor(p)==-2 && balanceFactor(p->rchild == 1))
+    else if (balanceFactor(p)==-2 && balanceFactor(p->rchild) == 1)
         return RLRotate(p);
 
 
@@ -222,4 +254,51 @@ struct Node * BSTInsert_rec(struct Node* p, int key)
 
 
     //return p;  
+}
+
+void inorder(struct Node * p){
+    if (p){
+        
+        inorder(p->lchild);
+        printf("%d, ", p->data) ;
+        inorder(p->rchild);
+    }
+}
+
+
+struct Node * Search(int key)
+{
+    struct Node *t=root;
+    while(t!=NULL)
+    {
+        if(key==t->data)
+        return t;
+    else if(key<t->data)
+        t=t->lchild;
+    else
+        t=t->rchild;
+    }
+    return NULL;
+}
+
+
+int main()
+{
+    struct Node *temp;
+    root = RInsert(root, 30);
+    RInsert(root,50);
+    RInsert(root,40);
+    RInsert(root,20);
+    RInsert(root,10);
+    RInsert(root,42);
+    RInsert(root,46);
+    
+    inorder(root);
+    
+    printf("\n");temp=Search(2);
+    if(temp!=NULL)
+        printf("element %d is found\n",temp->data);
+    else
+        printf("element is not found\n");
+    return 0;
 }
