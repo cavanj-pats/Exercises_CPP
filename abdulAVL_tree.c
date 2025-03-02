@@ -127,10 +127,11 @@ struct Node * LRRotate(struct Node * p)
     struct Node * pl = p->lchild;
     struct Node *plr = p->lchild->rchild;
 
-    plr->rchild = p;
-    plr->lchild = pl;
     pl->rchild = plr->lchild;
     p->lchild = plr->rchild;
+    plr->rchild = p;
+    plr->lchild = pl;
+    
 
     pl->height = NodeHeight(pl);
     plr->height = NodeHeight(plr);
@@ -189,7 +190,7 @@ struct Node * RLRotate(struct Node * p)
     p->rchild = prl->lchild;
     pr->lchild = prl->rchild;
     prl->lchild = p;
-    pr->rchild = pr;
+    prl->rchild = pr;
 
     p->height = NodeHeight(p);
     pr->height = NodeHeight(pr);
@@ -250,10 +251,7 @@ struct Node * RInsert(struct Node* p, int key)
         return RLRotate(p);
 
 
-
-
-
-    //return p;  
+    return p;  
 }
 
 void inorder(struct Node * p){
@@ -295,7 +293,7 @@ int main()
     
     inorder(root);
     
-    printf("\n");temp=Search(2);
+    printf("\n");temp=Search(42);
     if(temp!=NULL)
         printf("element %d is found\n",temp->data);
     else
