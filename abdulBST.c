@@ -186,8 +186,8 @@ struct Node * delete(struct Node *p, int key)
         {
             //replace deleted node with node from left subtree
             q = inPre(p->lchild);  //right most child of left subtree
-            p->data = q->data;
-            p->lchild = delete(p->lchild, q->data);
+            p->data = q->data;  //move data up to deleted node essentially deleting the node
+            p->lchild = delete(p->lchild, q->data);  //delete the node whose data was moved
             
         }else
         {
@@ -219,7 +219,7 @@ int main()
 
     inorder(root);
     printf("\n");
-    
+
     return 0;
 
 }
