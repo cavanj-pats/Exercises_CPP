@@ -14,6 +14,24 @@ struct Node
     struct Node * rchild;
 }*root = NULL;
 
+
+//this appears to be returning the height of the tree
+int height(struct Node * p)
+{
+    int x, y;
+    if(p)
+    {
+        x = height(p->lchild);
+        y = height(p->rchild);
+        if(x>y)
+            return x+1;
+        else
+            return y+1;
+    }
+
+    return 0;
+}  //height
+
 void BSTInsert(int value)
 {
     //takes a value and 1) Creates a new Node and 2)Inserts the new Node in the appropriate position.
@@ -90,9 +108,7 @@ struct Node * BSTInsert_rec(struct Node* p, int key)
         
         
     }
-    
-      
-        
+            
     if(key < p->data)
     {
         p->lchild = BSTInsert_rec(p->lchild, key);
@@ -106,9 +122,6 @@ struct Node * BSTInsert_rec(struct Node* p, int key)
     {
         return p;
     }
-
-
-    
 
     return p;   //I had return t but that is wrong. t only is defined if p is null
     //so this was a bug.  the only items that it was returning were 50 and 25  The first call after root 
@@ -127,6 +140,31 @@ void inorder(struct Node * p){
         inorder(p->rchild);
     }
 }
+
+struct Node * delete(struct Node *p, int key)
+{
+    //if it is a leaf node wiht no children
+    //delete the node.
+    //set the child of the predecessor node to null
+
+
+    if(key < p->data)
+        p->lchild = delete(p->lchild, key);
+    else if (key > p->data)
+        p->rchild = delete(p->rchild, key);
+    else
+    {
+        if (height(p->lchild) > height(p->rchild) )
+        {
+            // replace the deleted node from the higher subtree
+            
+        }
+
+    }    
+    if(p->lchild == NULL && p->rchild == NULL)
+    {
+
+    }
 
 
 
