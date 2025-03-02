@@ -141,6 +141,7 @@ void inorder(struct Node * p){
     }
 }
 
+/*
 struct Node * delete(struct Node *p, int key)
 {
     //if it is a leaf node wiht no children
@@ -163,9 +164,9 @@ struct Node * delete(struct Node *p, int key)
     }    
     if(p->lchild == NULL && p->rchild == NULL)
     {
-
+       
     }
-
+*/
 
 
 int main()
