@@ -140,14 +140,40 @@ void inorder(struct Node * p){
         inorder(p->rchild);
     }
 }
+struct Node * inPre(struct Node * p)
+{
+    while(p && p->rchild !=NULL)
+        p = p->rchild;
 
-/*
+    return p;
+}
+
+struct Node * inSucc(struct Node * p)
+{
+    while(p && p->lchild !=NULL)
+    p = p->lchild;
+
+return p;
+}
+
 struct Node * delete(struct Node *p, int key)
 {
     //if it is a leaf node wiht no children
     //delete the node.
     //set the child of the predecessor node to null
+    struct Node * q;
+    
+    if (p == NULL)
+        return NULL;
 
+    if(p->lchild == NULL && p->rchild == NULL)
+    {
+        //leaf node
+        if(p == root)   
+            root = NULL;
+        free(p);
+        return NULL;
+    }
 
     if(key < p->data)
         p->lchild = delete(p->lchild, key);
@@ -155,31 +181,45 @@ struct Node * delete(struct Node *p, int key)
         p->rchild = delete(p->rchild, key);
     else
     {
+        // replace the deleted node from the higher subtree
         if (height(p->lchild) > height(p->rchild) )
         {
-            // replace the deleted node from the higher subtree
+            //replace deleted node with node from left subtree
+            q = inPre(p->lchild);  //right most child of left subtree
+            p->data = q->data;
+            p->lchild = delete(p->lchild, q->data);
             
+        }else
+        {
+            //replace with node from right subtree
+            q=inSucc(p->rchild);
+            p->data = q->data;
+            p->rchild = delete(p->rchild, q->data);
         }
 
     }    
-    if(p->lchild == NULL && p->rchild == NULL)
-    {
-       
-    }
-*/
+    
+    return p;
+}
 
 
 int main()
 {
     root = NULL;
-    root = BSTInsert_rec(root, 30);
-    BSTInsert_rec(root, 50);
-    BSTInsert_rec(root, 20);
+    root = BSTInsert_rec(root, 50);
+    //BSTInsert_rec(root, 50);
     BSTInsert_rec(root, 10);
-    BSTInsert_rec(root, 25);
+    BSTInsert_rec(root, 40);
+    BSTInsert_rec(root, 20);
+    BSTInsert_rec(root, 30);
 
     inorder(root);
+    printf("\n");
+    delete(root,50);
 
+    inorder(root);
+    printf("\n");
+    
     return 0;
 
 }
