@@ -280,6 +280,85 @@ struct Node * Search(int key)
 }
 
 
+struct Node * inPre(struct Node * p)
+{
+    while(p && p->rchild !=NULL)
+        p = p->rchild;
+
+    return p;
+}
+
+struct Node * inSucc(struct Node * p)
+{
+    while(p && p->lchild !=NULL)
+    p = p->lchild;
+
+return p;
+}
+
+struct Node * delete(struct Node *p, int key)
+{
+    //if it is a leaf node wiht no children
+    //delete the node.
+    //set the child of the predecessor node to null
+    struct Node * q;
+    
+    if (p == NULL)
+        return NULL;
+
+    if(p->lchild == NULL && p->rchild == NULL)
+    {
+        //leaf node
+        if(p == root)   
+            root = NULL;
+        free(p);
+        return NULL;
+    }
+
+    if(key < p->data)
+        p->lchild = delete(p->lchild, key);
+    else if (key > p->data)
+        p->rchild = delete(p->rchild, key);
+    else
+    {
+        // replace the deleted node from the higher subtree
+        if (NodeHeight(p->lchild) > NodeHeight(p->rchild) )
+        {
+            //replace deleted node with node from left subtree
+            q = inPre(p->lchild);  //right most child of left subtree
+            p->data = q->data;  //move data up to deleted node essentially deleting the node
+            p->lchild = delete(p->lchild, q->data);  //delete the node whose data was moved
+            
+        }else
+        {
+            //replace with node from right subtree
+            q=inSucc(p->rchild);
+            p->data = q->data;
+            p->rchild = delete(p->rchild, q->data);
+        }
+
+    }    
+
+    p->height = NodeHeight(p);  //reset height
+
+    if(balanceFactor(p)==2 && balanceFactor(p->lchild)==1)
+        return LLRotate(p) ; //L1    (LL Rotation)
+    if(balanceFactor(p)==2 && balanceFactor(p->lchild)==-1)
+        return LRRotate(p);   //L -1 or (LR Rotation)
+    if(balanceFactor(p)==2 && balanceFactor(p->lchild)==0)
+        return LLRotate(p);   //L0 Rotate which is either LL or LR. Choose LL
+    if(balanceFactor(p)==-2 && balanceFactor(p->rchild)==-1)
+        return RRRotate(p) ; //R-1    (RR Rotation)
+    if(balanceFactor(p)==-2 && balanceFactor(p->rchild)==1)
+        return RLRotate(p);    //R1   RL Rotate
+    if(balanceFactor(p)==-22 && balanceFactor(p->rchild)==0)
+        return RRRotate(p);    //R0 which is RR or RL choose RR
+
+
+    return p;
+}
+
+
 int main()
 {
     struct Node *temp;
@@ -298,5 +377,10 @@ int main()
         printf("element %d is found\n",temp->data);
     else
         printf("element is not found\n");
+
+    delete(root,40);
+
+    inorder(root);
+
     return 0;
 }

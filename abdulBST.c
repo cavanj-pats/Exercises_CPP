@@ -140,6 +140,7 @@ void inorder(struct Node * p){
         inorder(p->rchild);
     }
 }
+
 struct Node * inPre(struct Node * p)
 {
     while(p && p->rchild !=NULL)
