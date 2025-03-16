@@ -5,6 +5,14 @@
 
 void insert(int H[], int n)
 {
+  //this function seems to depend on driver program to send the array first starting with 
+  //Node 2.  (the first element is in the heap.)  For Max Heap
+  //this first run:
+  //assigns Node 2 to temp.
+  //if temp > Node[1] then it assigns Node[1] to Node[2]
+  //the while loop then exits and Node[1] is assigned to temp
+  //if temp <=Node[1] then it reassignes Node[2] to temp (essentially does nothing)
+  //This funciton is really designed to add to Heap one element at a time.  
     int i = n, temp;
     temp = H[i];
 
@@ -46,6 +54,16 @@ int delete (int A[], int n)
     return val;
 }
 
+void createHeap(int A[], int nodeCount)
+{
+    int i;
+    for(i=2; i<=nodeCount; i++)
+    {
+        //inplace heap creation
+        insert(A,i);
+
+    }
+}
 
 int main()
 {
