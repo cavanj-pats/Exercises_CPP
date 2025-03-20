@@ -67,7 +67,7 @@ void createHeap(int A[], int nodeCount)
 
 int main()
 {
-    int H[]={0,10, 20, 30, 25, 5, 40, 35}  ;
+    int H[]={0, 10, 20, 30, 25, 5, 40, 35}  ;
     //above is simply an array.
     //once inserted in a Heap it becomes a Heap (or an array
     //organized in a Heap)
