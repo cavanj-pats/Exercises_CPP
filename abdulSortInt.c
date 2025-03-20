@@ -37,13 +37,20 @@ void bubbleSort(int A[], int n)
 
 void insertionSort(int A[], int n)
 {
-    int temp;
+    int temp, j;
     //first element is sorted
 
-    for (int i = 0; i<n-1; i++)
+    for (int i = 1; i<n; i++)
     {
-
-        for(int j = )
+        j = i-1;
+        temp = A[i];
+        while(j > -1 && A[j]>temp)
+        {
+            A[j+1] = A[j];
+            j--;
+        }
+        A[j+1] = temp;
+        
     }
 }
 
