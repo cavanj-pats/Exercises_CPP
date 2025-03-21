@@ -98,6 +98,17 @@ void itMergeSort(int A[], int n)
         merge(A,0,p/2-1,n);
 }
 
+void recMergeSort(int A[], int l, int h)
+{
+    int mid;
+    if(l<h)
+    {
+        mid = (l+h)/2;
+        recMergeSort(A, l, mid);
+        recMergeSort(A, mid+1, h);
+        merge(A,l, mid, h);
+    }
+}
 
 void display(int A[], int n)
 {
@@ -112,10 +123,13 @@ int main()
 {
     int A[]={8, 3, 7, 2, 9};
     int n = 5;
+    int l = 0;
+    int h = n-1;//h has to be last index
 
     display(A,n);
     //bubbleSort(A, n);
-    itMergeSort(A, n);
+    //itMergeSort(A, n);
+    recMergeSort(A, l, h);
     display(A,n);
 
     return 0;
