@@ -85,7 +85,7 @@ void itMergeSort(int A[], int n)
 
     for(p=2; p<=n; p=p*2)
     {
-        for(int i=0; i+p-1<n; i=i+p)
+        for(int i=0; i+p-1<n; i=i+p)   //cant to for(i = 0....) would assign i = 1.
         {
             l=i;   //crazy problem if i declare i at top of function and assign to 0 in for loop,  it got assigned 1 not zero.  I can't explain that.
             h=i+p-1;
