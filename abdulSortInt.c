@@ -87,7 +87,7 @@ void itMergeSort(int A[], int n)
     {
         for(int i=0; i+p-1<n; i=i+p)
         {
-            l=i;
+            l=i;   //crazy problem if i declare i at top of function and assign to 0 in for loop,  it got assigned 1 not zero.  I can't explain that.
             h=i+p-1;
             mid=(l+h)/2;
             merge(A,l,mid,h);
