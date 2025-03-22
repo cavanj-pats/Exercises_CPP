@@ -110,6 +110,49 @@ void recMergeSort(int A[], int l, int h)
     }
 }
 
+int findMax(int A[], int n)
+{
+    //find the max value in the array
+    int max = 0;
+    int i = 0;
+    int j = n-1;
+    while(i<j)
+    {
+        if(A[i] > max) max = A[i];
+        if(A[j] > max) max = A[j];
+        i++;
+        j--;
+    }
+    return max;
+}
+
+void countSort(int A[], int n)
+{
+    int max = findMax(A,n);
+    int B[max+1];
+    int k = 0;
+    //intitalize B
+    for(int i = 0; i<max+1; i++)
+    {
+        B[i]=0;
+    }
+    for(int i=0; i<n; i++)
+    {
+        B[A[i]]++;
+    }
+
+    
+        for(int j=0; j<max+1; j++)
+        {
+            while(B[j]>0)
+            {
+                A[k++]= j;
+                B[j]--;
+            }
+        }
+    
+}
+
 void display(int A[], int n)
 {
     for(int i = 0; i<n; i++)
@@ -121,7 +164,7 @@ void display(int A[], int n)
 
 int main()
 {
-    int A[]={8, 3, 7, 2, 9};
+    int A[]={7, 2, 8, 3, 9};
     int n = 5;
     int l = 0;
     int h = n-1;//h has to be last index
@@ -129,7 +172,9 @@ int main()
     display(A,n);
     //bubbleSort(A, n);
     //itMergeSort(A, n);
-    recMergeSort(A, l, h);
+    //recMergeSort(A, l, h);
+    countSort(A, n);
+
     display(A,n);
 
     return 0;
