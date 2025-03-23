@@ -329,8 +329,8 @@ int main()
     //recMergeSort(A, l, h);
     //countSort(A, n);
     //binSort(A,n);
-    //radixSort(A, n);
-    shellSort(A,n);
+    radixSort(A, n);
+    //shellSort(A,n);
     display(A,n);
 
     return 0;
