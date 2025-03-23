@@ -286,7 +286,26 @@ void radixSort(int A[], int n){
     free (bins);
 }
 
+void shellSort(int A[], int n)
+{
+    int gap, i, j, temp;
+    for(gap=n/2; gap>=1; gap/=2)
+    {
+        for(i=gap; i<n;i++)
+        {
+            temp=A[i];
+            j=i-gap;
+            while(j>=0 && A[j]>temp)
+            {
+                A[j+gap]=A[j];
+                j=j-gap;
 
+            }
+            A[j+gap]=temp;
+
+        }
+    }
+}
 
 void display(int A[], int n)
 {
@@ -299,7 +318,7 @@ void display(int A[], int n)
 
 int main()
 {
-    int A[]={7, 2, 8, 3, 9};
+    int A[]={701, 2, 80, 334, 9};
     int n = 5;
     int l = 0;
     int h = n-1;//h has to be last index
@@ -310,7 +329,8 @@ int main()
     //recMergeSort(A, l, h);
     //countSort(A, n);
     //binSort(A,n);
-    radixSort(A, n);
+    //radixSort(A, n);
+    shellSort(A,n);
     display(A,n);
 
     return 0;
