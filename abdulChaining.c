@@ -16,6 +16,13 @@ void InsertHash(struct Node *H[], int key)
     insertSorted(&H[index],key);
 }
 
+//i think i need tp us the delete function here.
+void deleteHash(struct Node *H[], int key)
+{
+    int index = indexFind(&H,key);
+    Delete(&H,index);
+}
+
 int main()
 {
     struct Node *HT[10];  //hash table
@@ -33,7 +40,7 @@ int main()
 
     
 
-    key = 22;
+    key = 12;
     // temp = Search(HT[hash(key)], key);
 
     // if(!temp)
@@ -42,8 +49,8 @@ int main()
     //     printf("Key %d found!\n", temp->data);
 
     //delete key 22
-    deleteKey(HT[hash(key)], key);
-
+    deleteHash(HT[hash(key)], key);
+    //printf ("%d is at index: %d (-1) for not found.\n",key,indexFind(HT[hash(key)], key));
 
     return 0;
 }

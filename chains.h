@@ -37,6 +37,22 @@ int count(struct Node * p)
     //could also make this recursive
 }
 
+int indexFind(struct Node * p, int key)
+{
+    int c = 1;  //index 1 is head or first node in our convention
+    if (!p) return -1;
+
+    while(p && p->data != key)
+    {
+        c++;
+        p=p->next;
+    }
+
+    return c;
+    //O(n)
+    //could also make this recursive
+}
+
 //rename SortedInsert to insertSorted
 // need to use double pointer because the has table will be filled with pointers to pointers
 void insertSorted(struct Node **H,int x)
@@ -95,7 +111,7 @@ void deleteKey(struct Node *p, int key)
     if (!temp)  return;   //key not found.  Tell user??
 
     struct Node *q;
-    
+    p = first;///move p to the first or head node
 
     while(p)
     {
@@ -103,7 +119,9 @@ void deleteKey(struct Node *p, int key)
         {
             if(p==first)
             {
+                
                 first = p->next;
+                
                 free(p);
                 return;
             }
