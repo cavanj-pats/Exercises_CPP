@@ -75,16 +75,19 @@ void insertSorted(struct Node **H,int x)
             q=p;
             p=p->next;
         }
+
         if(p==first)
         {
             t->next=first;
             first=t;
+            *H = t;
         }
         else
         {
             t->next=q->next;
+            q->next=t;
         }
-        q->next=t;
+        
     }
 }
 

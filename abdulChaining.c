@@ -24,8 +24,9 @@ void InsertHash(struct Node *H[], int key)
 //i think i need tp us the delete function here.
 void deleteHash(struct Node *H[], int key)
 {
-    int index = indexFind(&H,key);
-    Delete(&H,index);
+    int index = hash(key);
+    deleteKey(H[index],key);  //in chains.h customized delete function
+    H[index] = first;  //  re-assign the head node of the list just in case Key deleted the head node
 }
 
 int main()
@@ -54,8 +55,9 @@ int main()
     //     printf("Key %d found!\n", temp->data);
 
     //delete key 22
-    deleteHash(HT[hash(key)], key);
+    deleteHash(HT, key);
     //printf ("%d is at index: %d (-1) for not found.\n",key,indexFind(HT[hash(key)], key));
+    InsertHash(HT, 12);
 
     return 0;
 }
