@@ -19,6 +19,9 @@ void InsertHash(struct Node *H[], int key)
 int main()
 {
     struct Node *HT[10];  //hash table
+    int key;
+    struct Node *temp=NULL;
+
     int i;
 
     for(i=0; i<10;i++)
@@ -27,6 +30,16 @@ int main()
     InsertHash(HT, 12);
     InsertHash(HT, 22);
     InsertHash(HT, 42);
+
+    
+
+    // key = 21;
+    // temp = Search(HT[hash(key)], key);
+
+    // if(!temp)
+    //     printf("%d key not found. \n", key);
+    // else
+    //     printf("Key %d found!\n", temp->data);
 
 
 
