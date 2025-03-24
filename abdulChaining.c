@@ -3,7 +3,12 @@
 
 #include<stdio.h>
 #include "chains.h"
+/*
 
+*********************  Working on DELETE just added indexFind and DeleteHash as a way to 
+get back to using the native link list code with the workign delete function
+
+*/
 
 int hash(int key)
 {
