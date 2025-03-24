@@ -87,6 +87,46 @@ struct Node *Search(struct Node *p, int key)
     return Search(p->next, key);
 }
 
+void deleteKey(struct Node *p, int key)
+{
+    struct Node *temp = NULL;
+    temp = Search(p,key);
+    
+    if (!temp)  return;   //key not found.  Tell user??
+
+    struct Node *q;
+    
+
+    while(p)
+    {
+        if(p->data == key)
+        {
+            if(p==first)
+            {
+                first = p->next;
+                free(p);
+                return;
+            }
+            else
+            {
+                q->next = p->next;
+                free(p);
+                return;
+            }
+
+        }
+        else
+        {
+            //move to the next node and keep a trailing pointer q
+            q = p;
+            p = p->next;
+        }
+
+    }  //end while
+    
+    return;  //really shouldn't ever get here
+
+}
 
 int Delete(struct Node *p, int index)
 {

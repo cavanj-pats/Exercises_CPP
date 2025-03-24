@@ -33,7 +33,7 @@ int main()
 
     
 
-    // key = 21;
+    key = 22;
     // temp = Search(HT[hash(key)], key);
 
     // if(!temp)
@@ -41,6 +41,8 @@ int main()
     // else
     //     printf("Key %d found!\n", temp->data);
 
+    //delete key 22
+    deleteKey(HT[hash(key)], key);
 
 
     return 0;
