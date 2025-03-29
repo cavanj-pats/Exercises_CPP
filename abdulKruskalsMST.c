@@ -70,4 +70,7 @@ int main()
         }
     }
     included[k]=1;
+
+
+    return 0;
 }
