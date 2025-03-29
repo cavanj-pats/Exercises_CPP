@@ -34,7 +34,7 @@ int main()
     //stages
     //Cost Adjacency Matrix is:
     int c[9][9] = {{0,0,0,0,0,0,0,0,0},
-                {0,0,2,1,3,0,0,0,0},
+                    {0,0,2,1,3,0,0,0,0},
                     {0,0,0,0,0,2,3,0,0},
                     {0,0,0,0,0,6,7,0,0},
                     {0,0,0,0,0,6,8,9,0},
@@ -42,7 +42,7 @@ int main()
                     {0,0,0,0,0,0,0,0,4},
                     {0,0,0,0,0,0,0,0,5},
                     {0,0,0,0,0,0,0,0,0}};
-                    //starting vertex is row index  ending vertex is column index
+                    //starting vertex is row   ending vertex is column  data is cost
                     //cost adjaceny data is read only once enterdd to represent the subject graph
 
 
@@ -55,6 +55,8 @@ int main()
         {
             //first time through, k = 8 and cost[8] is zero.  just set it above as n==8
             //cost[7][8] == 5
+
+            //second time i = 6, k=7, c[6][7] = 0;
 
 
             if(c[i][k]!=0 && c[i][k]+cost[k]<min)
