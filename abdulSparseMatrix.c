@@ -18,15 +18,18 @@ struct Sparse
     struct Element *e;
 };  //struct Sparse
 
+
+//this is an array based sparse matrix
 void create(struct Sparse *s)
 {
     int i;
     
     printf("Enter Dimensions: ");
     scanf("%d%d",&s->m,&s->n);
-    printf("Number of non-zero: ");
+    printf("Enter the total Number of non-zero elements: ");
     scanf("%d",&s->num);
-    
+
+    //create space for all the non zero elements entered by the user:
     s->e=(struct Element *)malloc(s->num*sizeof(struct Element));
     printf("Enter the non-zero Elements in order from lowest to highest row, lowest to highest column: ");
     for(i=0;i<s->num;i++)
